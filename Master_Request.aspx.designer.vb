@@ -41,6 +41,15 @@ Partial Public Class Master_Request
     Protected WithEvents Tanggal As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''Kategori control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Kategori As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''Status control.
     '''</summary>
     '''<remarks>

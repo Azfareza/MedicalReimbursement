@@ -21,13 +21,14 @@ Namespace DataReq
         End Function
 
 
-        Public Function RequestInsert(nama As String, tanggal As String, status As Boolean) As Boolean
+        Public Function RequestInsert(nama As String, tanggal As String, kategori As String, status As Boolean) As Boolean
             Dim cmd As New SqlCommand
             cmd.CommandText = "REQUEST_INSERT"
             cmd.CommandType = CommandType.StoredProcedure
             cmd.Connection = ConnDB
             cmd.Parameters.Add(New SqlParameter("@nama", SqlDbType.Char, 10, ParameterDirection.Input, False, 0, 0, "", DataRowVersion.Original, nama))
             cmd.Parameters.Add(New SqlParameter("@tanggal", SqlDbType.Char, 20, ParameterDirection.Input, False, 0, 0, "", DataRowVersion.Original, tanggal))
+            cmd.Parameters.Add(New SqlParameter("@kategori", SqlDbType.Char, 11, ParameterDirection.Input, False, 0, 0, "", DataRowVersion.Original, kategori))
             cmd.Parameters.Add(New SqlParameter("@status", SqlDbType.Char, 30, ParameterDirection.Input, False, 0, 0, "", DataRowVersion.Original, status))
             Try
                 ConnDB.Open()

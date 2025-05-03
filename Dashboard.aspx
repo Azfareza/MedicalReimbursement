@@ -26,10 +26,10 @@
                 <asp:Label ID="lblUserName" runat="server" Text="Nadia Setyaningrum" CssClass="text-xs font-light" />
             </div>
             <nav class="flex flex-col gap-3">
-                <asp:Button ID="btnDashboard" runat="server" Text="Dashboard" CssClass="bg-[#FFAA0A] text-white text-xs font-semibold rounded px-4 py-2 text-left" />
-                <asp:Button ID="btnMedicalReimbursement" runat="server" Text="Medical Reimbursement" CssClass="bg-[#145445] text-white text-xs font-semibold rounded px-4 py-2 text-left" />
-                <asp:Button ID="btnEmployees" runat="server" Text="Employees" CssClass="bg-[#145445] text-white text-xs font-semibold rounded px-4 py-2 text-left" />
-                <asp:Button ID="btnLogOut" runat="server" Text="Log Out" CssClass="border border-[#FF6B6B] text-white text-xs font-semibold rounded px-4 py-2 text-left" />
+                <asp:Button ID="btnDashboard" runat="server" Text="Dashboard"  CssClass="bg-[#FFAA0A] text-white text-xs font-semibold rounded px-4 py-2 text-left hover:cursor-pointer" />
+                <asp:Button ID="btnMedicalReimbursement" runat="server" Text="Medical Reimbursement" CssClass="bg-[#145445] text-white text-xs font-semibold rounded px-4 py-2 text-left hover:cursor-pointer" />
+                <asp:Button ID="btnEmployees" runat="server" Text="Employees" CssClass="bg-[#145445] text-white text-xs font-semibold rounded px-4 py-2 text-left hover:cursor-pointer" />
+                <asp:Button ID="btnLogOut" runat="server" Text="Log Out" CssClass="border border-[#FF6B6B] text-white text-xs font-semibold rounded px-4 py-2 text-left hover:cursor-pointer" />
             </nav>
         </aside>
         <!-- Main content -->
@@ -62,6 +62,7 @@
                             <li class="bg-[#F9F9F9] rounded-lg flex justify-between items-center px-4 py-3">
                                 <span class="font-semibold text-sm"><%# Eval("Nama") %></span>
                                 <span class="text-xs text-gray-400"><%# Eval("Tanggal") %></span>
+                                <span class="text-xs font-semibold text-blue-400"><%# Eval("Kategori") %></span>
                                 <span class="text-xs font-bold text-red-600 ml-4"><%# Eval("Status") %></span>
                             </li>
                         </ItemTemplate>

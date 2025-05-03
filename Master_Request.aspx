@@ -13,6 +13,14 @@
                 </div>
         <div>
         <asp:TextBox ID="Tanggal" runat="server"></asp:TextBox>
+   </div>  
+        <div>
+        <asp:DropDownList runat="server" ID="Kategori">
+            <asp:ListItem  text="" value=""/> 
+            <asp:ListItem  text="Rawat Jalan" value="Rawat Jalan"/> 
+            <asp:ListItem  text="Kacamata" value="kacamata"/> 
+            <asp:ListItem  text="Persalinan" value="Persalinan"/> 
+        </asp:DropDownList>
    </div>
         <div>
             <asp:TextBox ID="Status" runat="server"></asp:TextBox>

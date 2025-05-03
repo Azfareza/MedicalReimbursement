@@ -8,7 +8,7 @@
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If Button1.Text = "simpan" Then
-            If simpan.RequestInsert(Nama.Text, Tanggal.Text, Status.Text) = True Then
+            If simpan.RequestInsert(Nama.Text, Tanggal.Text, Kategori.SelectedValue, Status.Text) = True Then
             End If
         End If
     End Sub
