@@ -27,10 +27,10 @@
                 <asp:Label ID="lblUserName" runat="server" Text="Nadia Setyaningrum" CssClass="text-xs font-light" />
             </div>
             <nav class="flex flex-col gap-3">
-                <asp:Button ID="btnDashboard" runat="server" Text="Dashboard" CssClass="bg-[#145445] text-white text-xs font-semibold rounded px-4 py-2 text-left hover:cursor-pointer" />
+                <asp:Button ID="btnDashboard" runat="server" Text="Dashboard" CssClass="bg-[#145445] text-white text-xs font-semibold rounded px-4 py-2 text-left hover:bg-[#FFAA0A] cursor-pointer" />
                 <asp:Button ID="btnMedicalReimbursement" runat="server" Text="Medical Reimbursement" CssClass="bg-[#FFAA0A] text-white text-xs font-semibold rounded px-4 py-2 text-left hover:cursor-pointer" />
-                <asp:Button ID="btnEmployees" runat="server" Text="Employees" CssClass="bg-[#145445] text-white text-xs font-semibold rounded px-4 py-2 text-left hover:cursor-pointer" />
-                <asp:Button ID="btnLogOut" runat="server" Text="Log Out" CssClass="border border-[#FF6B6B] text-white text-xs font-semibold rounded px-4 py-2 text-left hover:cursor-pointer" />
+                <asp:Button ID="btnEmployees" runat="server" Text="Employees" CssClass="bg-[#145445] text-white text-xs font-semibold rounded px-4 py-2 text-left hover:bg-[#FFAA0A] cursor-pointer" />
+                <asp:Button ID="btnLogOut" runat="server" Text="Log Out" CssClass="border border-[#FF6B6B] text-white text-xs font-semibold rounded px-4 py-2 text-left hover:bg-[#FF6B6B] cursor-pointer" />
             </nav>
         </aside>
         <!-- Main content -->
@@ -61,16 +61,16 @@
       <asp:GridView ID="gvRequestList" runat="server" CssClass="w-full text-center text-sm" AutoGenerateColumns="False" GridLines="None" HeaderStyle-Font-Bold="True" HeaderStyle-CssClass="font-semibold text-black" RowStyle-CssClass="bg-white rounded-full" >
        <Columns>
         <asp:BoundField DataField="NIP" HeaderText="NIP" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-        <asp:BoundField DataField="Name" HeaderText="Name" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-        <asp:BoundField DataField="Departement" HeaderText="Departement" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-        <asp:BoundField DataField="Category" HeaderText="Category" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-        <asp:BoundField DataField="RequestDate" HeaderText="Request Date" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+        <asp:BoundField DataField="Nama" HeaderText="Nama" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+        <asp:BoundField DataField="Departemen" HeaderText="Departemen" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+        <asp:BoundField DataField="Kategori" HeaderText="Kategori" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+        <asp:BoundField DataField="Tanggal" HeaderText="Tanggal" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
         <asp:TemplateField HeaderText="" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3">
          <ItemTemplate>
-          <asp:Button ID="btnEditRequest" runat="server" CssClass="relative text-white bg-blue-600 p-2 rounded">
-          <%-- <i class="fas fa-edit"></i>
-           <span class="absolute top-0 right-0 block h-2 w-2 rounded-full ring-2 ring-white bg-red-600"></span>--%>
-          </asp:Button>
+          <asp:Button ID="btnEditRequest" runat="server" CssClass="relative text-white bg-blue-600 p-2 rounded"/>
+           <i class="fas fa-edit"></i>
+           <span class="absolute top-0 right-0 block h-2 w-2 rounded-full ring-2 ring-white bg-red-600"></span>
+
          </ItemTemplate>
         </asp:TemplateField>
        </Columns>
@@ -83,16 +83,16 @@
       <asp:GridView ID="gvHistory" runat="server" CssClass="w-full text-center text-sm" AutoGenerateColumns="False" GridLines="None" HeaderStyle-Font-Bold="True" HeaderStyle-CssClass="font-semibold text-black" RowStyle-CssClass="bg-white rounded-full" >
        <Columns>
         <asp:BoundField DataField="NIP" HeaderText="NIP" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-        <asp:BoundField DataField="Name" HeaderText="Name" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-        <asp:BoundField DataField="Departement" HeaderText="Departement" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-        <asp:BoundField DataField="Category" HeaderText="Category" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-        <asp:BoundField DataField="RequestDate" HeaderText="Request Date" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+        <asp:BoundField DataField="Nama" HeaderText="Nama" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+        <asp:BoundField DataField="Departemen" HeaderText="Departemen" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+        <asp:BoundField DataField="Kategori" HeaderText="Kategori" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+        <asp:BoundField DataField="Tanggal" HeaderText="Tanggal" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
         <asp:TemplateField HeaderText="" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3">
          <ItemTemplate>
-          <asp:Button ID="btnEditHistory" runat="server" CssClass="relative text-white bg-blue-600 p-2 rounded">
-           <%--<i class="fas fa-edit"></i>
-           <span class="absolute top-0 right-0 block h-2 w-2 rounded-full ring-2 ring-white bg-red-600"></span>--%>
-          </asp:Button>
+          <asp:Button ID="btnEditHistory" runat="server" CssClass="relative text-white bg-blue-600 p-2 rounded"/>
+           <i class="fas fa-edit"></i>
+           <span class="absolute top-0 right-0 block h-2 w-2 rounded-full ring-2 ring-white bg-red-600"></span>
+
          </ItemTemplate>
         </asp:TemplateField>
        </Columns>

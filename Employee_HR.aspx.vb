@@ -1,8 +1,10 @@
 ﻿Public Class Employee_HR
     Inherits System.Web.UI.Page
-
+    Dim DataEmployee As New DataReq.Data_Dashboard
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
+        If Not Page.IsPostBack Then
+            BindEmployee()
+        End If
     End Sub
     Private Sub btnAddEmployee_Click(sender As Object, e As EventArgs) Handles btnAddEmployee.Click
         ViewState("ShowModal") = True
@@ -29,4 +31,11 @@
     Private Sub btnMedicalReimbursement_Click(sender As Object, e As EventArgs) Handles btnMedicalReimbursement.Click
         Response.Redirect("MR_HR.aspx")
     End Sub
+
+    Private Sub BindEmployee()
+        gvEmployees.Visible = True
+        gvEmployees.DataSource = DataEmployee.SelectAllPegawai
+        gvEmployees.DataBind()
+    End Sub
+
 End Class

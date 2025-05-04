@@ -2,13 +2,13 @@
 
 Namespace DataReq
     Public Class Data_Dashboard
-        Public Function SelectAllRequest() As DataTable
+        Public Function SelectAllPegawai() As DataTable
             Dim Comm As New SqlCommand
-            Comm.CommandText = "REQUEST_SELECT_ALL"
+            Comm.CommandText = "REQUEST_DATA_PEGAWAI"
             Comm.CommandType = CommandType.StoredProcedure
             Comm.Connection = ConnDB
             Dim DA As SqlDataAdapter = New SqlDataAdapter(Comm)
-            Dim DT As DataTable = New DataTable("DataReq")
+            Dim DT As DataTable = New DataTable("DataPegawai")
             Try
                 DA.Fill(DT)
                 Return DT
@@ -40,6 +40,58 @@ Namespace DataReq
                 ConnDB.Close()
                 cmd.Dispose()
                 cmd = Nothing
+            End Try
+        End Function
+
+        Public Function SelectAllAktif() As DataTable
+            Dim Comm As New SqlCommand
+            Comm.CommandText = "REQUEST_SELECT_ALL_AKTIF"
+            Comm.CommandType = CommandType.StoredProcedure
+            Comm.Connection = ConnDB
+            Dim DA As SqlDataAdapter = New SqlDataAdapter(Comm)
+            Dim DT As DataTable = New DataTable("DataReqAktif")
+            Try
+                DA.Fill(DT)
+                Return DT
+            Catch ex As Exception
+                Return DT
+            Finally
+                DA.Dispose()
+                DA = Nothing
+            End Try
+        End Function
+        Public Function SelectAllDahsboard() As DataTable
+            Dim Comm As New SqlCommand
+            Comm.CommandText = "REQUEST_SELECT_FOR_DASHBOARD"
+            Comm.CommandType = CommandType.StoredProcedure
+            Comm.Connection = ConnDB
+            Dim DA As SqlDataAdapter = New SqlDataAdapter(Comm)
+            Dim DT As DataTable = New DataTable("DataReqDashboard")
+            Try
+                DA.Fill(DT)
+                Return DT
+            Catch ex As Exception
+                Return DT
+            Finally
+                DA.Dispose()
+                DA = Nothing
+            End Try
+        End Function
+        Public Function SelectAllNonAktif() As DataTable
+            Dim Comm As New SqlCommand
+            Comm.CommandText = "REQUEST_SELECT_ALL_NonAktif"
+            Comm.CommandType = CommandType.StoredProcedure
+            Comm.Connection = ConnDB
+            Dim DA As SqlDataAdapter = New SqlDataAdapter(Comm)
+            Dim DT As DataTable = New DataTable("DataReqNonAktif")
+            Try
+                DA.Fill(DT)
+                Return DT
+            Catch ex As Exception
+                Return DT
+            Finally
+                DA.Dispose()
+                DA = Nothing
             End Try
         End Function
 
