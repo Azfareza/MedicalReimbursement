@@ -15,6 +15,22 @@
             font-family: 'Inter', sans-serif;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/2.3.0/js/dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.0/css/dataTables.dataTables.min.css">
+
+    <script>
+        $(document).ready(function () {
+            $('#requestsTable').DataTable({
+                "paging": true,
+                "pageLength": 5,
+                "searching": true,
+                "info": true,
+                "ordering": true,
+                "dom": '<"top"f>rt<"bottom"p><"clear">'
+            });
+        });
+    </script>
 </head>
 <body class="bg-gray-100">
     <form id="form1" runat="server" class="flex min-h-screen">
@@ -52,20 +68,125 @@
                     </div>
                 </div>
             </div>
+
+            <%--<div class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+                  <article class="flex max-w-xl flex-col items-start justify-between">
+                    <div class="flex items-center gap-x-4 text-xs">
+                      <time datetime="2020-03-16" class="text-gray-500">Mar 16, 2020</time>
+                      <a href="#" class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">Marketing</a>
+                    </div>
+                    <div class="group relative">
+                      <h3 class="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600">
+                        <a href="#">
+                          <span class="absolute inset-0"></span>
+                          Boost your conversion rate
+                        </a>
+                      </h3>
+                      <p class="mt-5 line-clamp-3 text-sm/6 text-gray-600">Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.</p>
+                    </div>
+                    <div class="relative mt-8 flex items-center gap-x-4">
+                      <img src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" class="size-10 rounded-full bg-gray-50">
+                      <div class="text-sm/6">
+                        <p class="font-semibold text-gray-900">
+                          <a href="#">
+                            <span class="absolute inset-0"></span>
+                            Michael Foster
+                          </a>
+                        </p>
+                        <p class="text-gray-600">Co-Founder / CTO</p>
+                      </div>
+                    </div>
+                  </article>
+                  <article class="flex max-w-xl flex-col items-start justify-between">
+                    <div class="flex items-center gap-x-4 text-xs">
+                      <time datetime="2020-03-16" class="text-gray-500">Mar 16, 2020</time>
+                      <a href="#" class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">Marketing</a>
+                    </div>
+                    <div class="group relative">
+                      <h3 class="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600">
+                        <a href="#">
+                          <span class="absolute inset-0"></span>
+                          Boost your conversion rate
+                        </a>
+                      </h3>
+                      <p class="mt-5 line-clamp-3 text-sm/6 text-gray-600">Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.</p>
+                    </div>
+                    <div class="relative mt-8 flex items-center gap-x-4">
+                      <img src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" class="size-10 rounded-full bg-gray-50">
+                      <div class="text-sm/6">
+                        <p class="font-semibold text-gray-900">
+                          <a href="#">
+                            <span class="absolute inset-0"></span>
+                            Michael Foster
+                          </a>
+                        </p>
+                        <p class="text-gray-600">Co-Founder / CTO</p>
+                      </div>
+                    </div>
+                  </article>
+                  <article class="flex max-w-xl flex-col items-start justify-between">
+                    <div class="flex items-center gap-x-4 text-xs">
+                      <time datetime="2020-03-16" class="text-gray-500">Mar 16, 2020</time>
+                      <a href="#" class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">Marketing</a>
+                    </div>
+                    <div class="group relative">
+                      <h3 class="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600">
+                        <a href="#">
+                          <span class="absolute inset-0"></span>
+                          Boost your conversion rate
+                        </a>
+                      </h3>
+                      <p class="mt-5 line-clamp-3 text-sm/6 text-gray-600">Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.</p>
+                    </div>
+                    <div class="relative mt-8 flex items-center gap-x-4">
+                      <img src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" class="size-10 rounded-full bg-gray-50">
+                      <div class="text-sm/6">
+                        <p class="font-semibold text-gray-900">
+                          <a href="#">
+                            <span class="absolute inset-0"></span>
+                            Michael Foster
+                          </a>
+                        </p>
+                        <p class="text-gray-600">Co-Founder / CTO</p>
+                      </div>
+                    </div>
+                  </article>
+            </div>--%>
+
             <!-- Cards container -->
             <div class="flex flex-col md:flex-row gap-6">
                 <!-- Requests card -->
-                <section aria-label="Requests list" class="bg-white rounded-lg p-5 flex-1 max-w-md">
+                <section aria-label="Requests list" class="bg-white rounded-lg p-5 flex-1 w-1/3">
                     <h2 class="font-semibold text-sm mb-4 text-center">Requests</h2>
                     <asp:Repeater ID="rptRequests" runat="server">
+                        <HeaderTemplate>
+                            <table id="requestsTable" class="display w-full">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Date</th>
+                                        <th>Category</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                        </HeaderTemplate>
                         <ItemTemplate>
-                            <li class="bg-[#F9F9F9] rounded-lg flex justify-between items-center px-4 py-3">
-                                <span class="font-semibold text-sm"><%# Eval("Nama") %></span>
-                                <span class="text-xs text-gray-400"><%# Eval("Tanggal") %></span>
-                                <span class="text-xs font-semibold text-blue-400"><%# Eval("Kategori") %></span>
-                                <span class="text-xs font-bold text-red-600 ml-4"><%# Eval("Status") %></span>
-                            </li>
+                            <tr>
+                                <td class="font-semibold text-sm"><%# Eval("Nama") %></td>
+                                <td class="text-xs text-gray-400"><%# Eval("Tanggal") %></td>
+                                <td class="text-xs font-semibold text-blue-400"><%# Eval("Kategori") %></td>
+                                <td class="text-xs font-bold">
+                                    <span class='<%# If(DirectCast(Eval("status"), Boolean), "text-green-600", "text-red-600") %>'>
+                                        <%# If(DirectCast(Eval("status"), Boolean), "Approved", "Pending") %>
+                                    </span>
+                                </td>
+                            </tr>
                         </ItemTemplate>
+                        <FooterTemplate>
+                                </tbody>
+                            </table>
+                        </FooterTemplate>
                     </asp:Repeater>
                 </section>
                 <!-- Requests Process card -->
