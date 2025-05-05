@@ -53,6 +53,53 @@
                     </div>
                 </div>
             </div>
+
+<%--MODAL--%>
+    <asp:Panel ID="pnlModal" runat="server" CssClass="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+  <div
+    class="bg-gray-100 bg-opacity-90 rounded-2xl p-10 max-w-6xl w-full grid grid-cols-1 sm:grid-cols-3 gap-x-12 gap-y-6 shadow-lg relative"
+  >
+    <asp:Button ID="btnCloseModal" runat="server" Text="×" CssClass="absolute top-4 right-4 text-3xl font-bold text-gray-700 hover:text-gray-900 bg-transparent border-none cursor-pointer"  />
+
+    <!-- Left Column -->
+    <div class="space-y-4">
+      <div>
+        <asp:Label ID="lblNIPModal" runat="server" AssociatedControlID="txtNIPModal" Text="NIP" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
+        <asp:TextBox ID="txtNIPModal" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
+      </div>
+      <div>
+        <asp:Label ID="lblNamaModal" runat="server" AssociatedControlID="txtNamaModal" Text="Nama" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
+        <asp:TextBox ID="txtNamaModal" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs" TextMode="Email"></asp:TextBox>
+      </div>
+      <div>
+        <asp:Label ID="lblDepartemenModal" runat="server" AssociatedControlID="txtDepartemenModal" Text="Departemen" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
+        <asp:TextBox ID="txtDepartemenModal" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
+      </div>
+      <div>
+        <asp:Label ID="lblKategoriModal" runat="server" AssociatedControlID="txtKategoriModal" Text="Kategori" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
+        <asp:TextBox ID="txtKategoriModal" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
+      </div>
+    </div>
+
+    <!-- Middle Column -->
+    <div class="space-y-4">
+
+    </div>
+
+
+    <!-- Right Column -->
+    <div class="space-y-4">
+      <div>
+        <asp:Label ID="lblTanggalModal" runat="server" AssociatedControlID="txtTanggalModal" Text="Tanggal" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
+        <asp:TextBox ID="txtTanggalModal" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
+      </div>
+        <asp:Button ID="Button1" runat="server" Text="Button" />
+    </div>
+  </div>
+</asp:Panel>
+<%--END MODAL--%>
+
+
              <section class="max-w-5xl mx-auto space-y-10">
      <div>
       <h2 class="text-[#f9a01b] font-extrabold text-2xl mb-6">
@@ -65,12 +112,13 @@
         <asp:BoundField DataField="Departemen" HeaderText="Departemen" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
         <asp:BoundField DataField="Kategori" HeaderText="Kategori" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
         <asp:BoundField DataField="Tanggal" HeaderText="Tanggal" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-        <asp:TemplateField HeaderText="" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3">
+        <asp:CommandField ShowSelectButton="true" />
+        <asp:TemplateField HeaderText="Edit" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3">
          <ItemTemplate>
-          <asp:Button ID="btnEditRequest" runat="server" CssClass="relative text-white bg-blue-600 p-2 rounded"/>
+          <asp:Button ID="btnEditRequest" runat="server" CssClass="relative text-white bg-blue-600 p-2 rounded" />
            <i class="fas fa-edit"></i>
            <span class="absolute top-0 right-0 block h-2 w-2 rounded-full ring-2 ring-white bg-red-600"></span>
-
+            
          </ItemTemplate>
         </asp:TemplateField>
        </Columns>
@@ -87,7 +135,7 @@
         <asp:BoundField DataField="Departemen" HeaderText="Departemen" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
         <asp:BoundField DataField="Kategori" HeaderText="Kategori" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
         <asp:BoundField DataField="Tanggal" HeaderText="Tanggal" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-        <asp:TemplateField HeaderText="" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3">
+        <asp:TemplateField HeaderText="Edit" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3">
          <ItemTemplate>
           <asp:Button ID="btnEditHistory" runat="server" CssClass="relative text-white bg-blue-600 p-2 rounded"/>
            <i class="fas fa-edit"></i>

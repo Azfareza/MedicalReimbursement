@@ -166,7 +166,7 @@
                                         <th>Name</th>
                                         <th>Date</th>
                                         <th>Category</th>
-                                        <th>Status</th>
+                                        <th>Approval</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -177,8 +177,8 @@
                                 <td class="text-xs text-gray-400"><%# Eval("Tanggal") %></td>
                                 <td class="text-xs font-semibold text-blue-400"><%# Eval("Kategori") %></td>
                                 <td class="text-xs font-bold">
-                                    <span class='<%# If(DirectCast(Eval("status"), Boolean), "text-green-600", "text-red-600") %>'>
-                                        <%# If(DirectCast(Eval("status"), Boolean), "Approved", "Pending") %>
+                                    <span class='<%# If(DirectCast(Eval("status_approval"), Boolean), "text-green-600", "text-red-600") %>'>
+                                        <%# If(DirectCast(Eval("status_approval"), Boolean), "Approved", "Pending") %>
                                     </span>
                                 </td>
                             </tr>

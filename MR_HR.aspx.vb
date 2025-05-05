@@ -28,4 +28,33 @@
         gvHistory.DataBind()
     End Sub
 
+    Private Sub gvRequestList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles gvRequestList.SelectedIndexChanged
+        ViewState("ShowModal") = True
+        Dim PilihText As GridViewRow = gvRequestList.SelectedRow
+        txtNIPModal.Text = Trim(PilihText.Cells(0).Text)
+        txtNamaModal.Text = Trim(PilihText.Cells(1).Text)
+        txtDepartemenModal.Text = Trim(PilihText.Cells(2).Text)
+        txtKategoriModal.Text = Trim(PilihText.Cells(3).Text)
+        txtTanggalModal.Text = Trim(PilihText.Cells(4).Text)
+
+        txtNIPModal.Enabled = False
+        txtNamaModal.Enabled = False
+        txtDepartemenModal.Enabled = False
+        txtKategoriModal.Enabled = False
+        txtTanggalModal.Enabled = False
+    End Sub
+
+    Private Sub MR_HR_PreRender(sender As Object, e As EventArgs) Handles Me.PreRender
+        If ViewState("ShowModal") IsNot Nothing AndAlso CBool(ViewState("ShowModal")) Then
+            pnlModal.CssClass = pnlModal.CssClass.Replace("hidden", "").Trim()
+        Else
+            If Not pnlModal.CssClass.Contains("hidden") Then
+                pnlModal.CssClass += " hidden"
+            End If
+        End If
+    End Sub
+
+    Private Sub btnCloseModal_Click(sender As Object, e As EventArgs) Handles btnCloseModal.Click
+        ViewState("ShowModal") = False
+    End Sub
 End Class

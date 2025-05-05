@@ -95,6 +95,123 @@ Partial Public Class MR_HR
     Protected WithEvents imgLogo As Global.System.Web.UI.WebControls.Image
 
     '''<summary>
+    '''pnlModal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pnlModal As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''btnCloseModal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnCloseModal As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''lblNIPModal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblNIPModal As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtNIPModal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtNIPModal As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lblNamaModal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblNamaModal As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtNamaModal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtNamaModal As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lblDepartemenModal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDepartemenModal As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtDepartemenModal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtDepartemenModal As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lblKategoriModal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblKategoriModal As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtKategoriModal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtKategoriModal As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lblTanggalModal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblTanggalModal As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtTanggalModal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtTanggalModal As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Button1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Button1 As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''gvRequestList control.
     '''</summary>
     '''<remarks>

@@ -166,7 +166,7 @@
       <asp:BoundField DataField="Divisi" HeaderText="Divisi" />
       <asp:BoundField DataField="Departemen" HeaderText="Departemen" />
       <asp:BoundField DataField="Level" HeaderText="Level" />
-      <asp:BoundField DataField="Status" HeaderText="Status" />
+      <asp:BoundField DataField="Status_pegawai" HeaderText="Status" />
       <asp:TemplateField>
        <ItemTemplate>
         <asp:Button ID="btnEdit" runat="server" CssClass="bg-[#0052cc] p-2 rounded-sm text-white"  CommandArgument='<%# Eval("NIP") %>'> <%--OnClick="btnEdit_Click"--%>
