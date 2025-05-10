@@ -113,7 +113,7 @@
         <asp:BoundField DataField="Kategori" HeaderText="Kategori" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
         <asp:BoundField DataField="Tanggal" HeaderText="Tanggal" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
         <asp:CommandField ShowSelectButton="true" />
-        <asp:TemplateField HeaderText="Edit" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3">
+        <asp:TemplateField HeaderText="" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3">
          <ItemTemplate>
           <asp:Button ID="btnEditRequest" runat="server" CssClass="relative text-white bg-blue-600 p-2 rounded" />
            <i class="fas fa-edit"></i>
@@ -135,7 +135,7 @@
         <asp:BoundField DataField="Departemen" HeaderText="Departemen" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
         <asp:BoundField DataField="Kategori" HeaderText="Kategori" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
         <asp:BoundField DataField="Tanggal" HeaderText="Tanggal" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-        <asp:TemplateField HeaderText="Edit" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3">
+        <asp:TemplateField HeaderText="" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3">
          <ItemTemplate>
           <asp:Button ID="btnEditHistory" runat="server" CssClass="relative text-white bg-blue-600 p-2 rounded"/>
            <i class="fas fa-edit"></i>

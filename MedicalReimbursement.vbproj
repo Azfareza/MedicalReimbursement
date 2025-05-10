@@ -144,11 +144,13 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Dashboard.aspx" />
+    <Content Include="Dashboard_EMP.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Employee_HR.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Master_Request.aspx" />
+    <Content Include="MR_EMP.aspx" />
     <Content Include="MR_HR.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -234,6 +236,13 @@
       <DependentUpon>Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Dashboard_EMP.aspx.designer.vb">
+      <DependentUpon>Dashboard_EMP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard_EMP.aspx.vb">
+      <DependentUpon>Dashboard_EMP.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Default.aspx.vb">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Default.aspx</DependentUpon>
@@ -256,6 +265,13 @@
     </Compile>
     <Compile Include="Master_Request.aspx.vb">
       <DependentUpon>Master_Request.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="MR_EMP.aspx.designer.vb">
+      <DependentUpon>MR_EMP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MR_EMP.aspx.vb">
+      <DependentUpon>MR_EMP.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="MR_HR.aspx.designer.vb">
