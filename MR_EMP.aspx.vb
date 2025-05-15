@@ -1,8 +1,11 @@
 ﻿Public Class MR_EMP
     Inherits System.Web.UI.Page
+    Dim MrEmployee As New DataReq.Data_Dashboard
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
+        If Not Page.IsPostBack Then
+            BindLogHistoris()
+        End If
     End Sub
 
     Private Sub gvLogHistory_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles gvLogHistory.RowDataBound
@@ -26,11 +29,17 @@
         End If
     End Sub
 
-    Private Sub btnAddNewRequest_Click(sender As Object, e As EventArgs) Handles btnAddNewRequest.Click
+    'Private Sub btnAddNewRequest_Click(sender As Object, e As EventArgs) Handles btnAddNewRequest.Click
 
-    End Sub
+    'End Sub
 
     Private Sub btnDashboard_Click(sender As Object, e As EventArgs) Handles btnDashboard.Click
         Response.Redirect("Dashboard_EMP.aspx")
+    End Sub
+
+    Private Sub BindLogHistoris()
+        gvLogHistory.Visible = True
+        gvLogHistory.DataSource = MrEmployee.SelectAllLogHistorisByNip
+        gvLogHistory.DataBind()
     End Sub
 End Class

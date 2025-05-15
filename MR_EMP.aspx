@@ -67,12 +67,13 @@
                     </div>
                 </div>
             </div>
-            <section class="flex-1">
+<div class="flex flex-col md:flex-row gap-6">
+            <section class="flex-1 w-1/2">
       <div class="flex justify-between items-center mb-4 px-1">
        <h2 class="text-[#f97316] font-semibold text-lg">
         Log History
        </h2>
-       <asp:Button ID="btnAddNewRequest" runat="server" Text="Add New Request" CssClass="bg-[#0052cc] text-white font-semibold rounded-md py-2 px-5" />
+       <%--<asp:Button ID="btnAddNewRequest" runat="server" Text="Add New Request" CssClass="bg-[#0052cc] text-white font-semibold rounded-md py-2 px-5" />--%>
       </div>
       <asp:GridView ID="gvLogHistory" runat="server" AutoGenerateColumns="False" CssClass="w-full bg-white rounded-lg shadow-sm border border-gray-400 text-sm" HeaderStyle-CssClass="text-left font-semibold p-3 border-b border-gray-400" RowStyle-CssClass="border border-gray-400 rounded-md mt-2" AlternatingRowStyle-CssClass="border border-gray-400 rounded-md mt-2">
        <Columns>
@@ -95,25 +96,29 @@
       </asp:GridView>
      </section>
      <!-- Form -->
-     <section class="bg-white rounded-lg p-6 w-full max-w-md flex flex-col space-y-4">
+     <section class="flex-1 w-1/2">
+                   <h2 class="text-[#f97316] font-semibold text-lg">
+        Add New Request
+       </h2>
       <div>
        <asp:Label AssociatedControlID="ddlReimbursementCategory" runat="server" Text="Reimbursement Category" CssClass="block text-xs font-semibold mb-1" />
        <asp:DropDownList ID="ddlReimbursementCategory" runat="server" CssClass="w-full rounded-md bg-gray-200 text-gray-900 py-2 px-3">
+        <asp:ListItem></asp:ListItem>
         <asp:ListItem>Rawat Jalan</asp:ListItem>
+        <asp:ListItem>Kacamata</asp:ListItem>
+        <asp:ListItem>Persalinan</asp:ListItem>
        </asp:DropDownList>
       </div>
       <div>
        <asp:Label AssociatedControlID="fuReceiptFile" runat="server" Text="Receipt File" CssClass="block text-xs font-semibold mb-1" />
        <div class="flex items-center bg-gray-200 rounded-md overflow-hidden">
         <asp:FileUpload ID="fuReceiptFile" runat="server" CssClass="bg-gray-300 px-4 py-2 border-r border-gray-300" />
-        <asp:Label ID="lblReceiptFileName" runat="server" Text="Kuitansi_20_02_25.jpg" CssClass="px-3 text-sm font-semibold" />
        </div>
       </div>
       <div>
        <asp:Label AssociatedControlID="fuPrescriptionFile" runat="server" Text="Medical Prescription File" CssClass="block text-xs font-semibold mb-1" />
        <div class="flex items-center bg-gray-200 rounded-md overflow-hidden">
         <asp:FileUpload ID="fuPrescriptionFile" runat="server" CssClass="bg-gray-300 px-4 py-2 border-r border-gray-300" />
-        <asp:Label ID="lblPrescriptionFileName" runat="server" Text="ResepObat_20_02_25.jpg" CssClass="px-3 text-sm font-semibold" />
        </div>
       </div>
       <div>
@@ -121,7 +126,6 @@
        <span class="font-normal text-[10px]">(Consultation, Medicine, Lab)</span>
        <div class="flex items-center bg-gray-200 rounded-md overflow-hidden mt-1">
         <asp:FileUpload ID="fuSupportingFiles" runat="server" CssClass="bg-gray-300 px-4 py-2 border-r border-gray-300" />
-        <asp:Label ID="lblSupportingFilesName" runat="server" Text="FilePendukung_20_02_25.jpg" CssClass="px-3 text-sm font-semibold" />
        </div>
       </div>
       <div>
@@ -139,7 +143,8 @@
        <asp:TextBox ID="txtTotalCost" runat="server" CssClass="w-full rounded-md bg-gray-200 text-xs font-semibold px-3 py-2" ReadOnly="true" Text="Rp.2.000.000 (Rp.1.000.000)" />
       </div>
       <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="bg-[#0052cc] text-white font-semibold rounded-md py-2 px-5 self-start" />
-     </section>
+             </section>
+    </div>    
             </main>
     </form>
 </body>

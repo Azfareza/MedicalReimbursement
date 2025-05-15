@@ -95,5 +95,23 @@ Namespace DataReq
             End Try
         End Function
 
+        Public Function SelectAllLogHistorisByNip() As DataTable
+            Dim Comm As New SqlCommand
+            Comm.CommandText = "SELECT_ALL_LOG_HISTORIS_PEGAWAI_BY_NIP"
+            Comm.CommandType = CommandType.StoredProcedure
+            Comm.Connection = ConnDB
+            Dim DA As SqlDataAdapter = New SqlDataAdapter(Comm)
+            Dim DT As DataTable = New DataTable("DataLogHistorisByNip")
+            Try
+                DA.Fill(DT)
+                Return DT
+            Catch ex As Exception
+                Return DT
+            Finally
+                DA.Dispose()
+                DA = Nothing
+            End Try
+        End Function
+
     End Class
 End Namespace

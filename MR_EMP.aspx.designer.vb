@@ -86,15 +86,6 @@ Partial Public Class MR_EMP
     Protected WithEvents imgLogo As Global.System.Web.UI.WebControls.Image
 
     '''<summary>
-    '''btnAddNewRequest control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnAddNewRequest As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
     '''gvLogHistory control.
     '''</summary>
     '''<remarks>
@@ -122,15 +113,6 @@ Partial Public Class MR_EMP
     Protected WithEvents fuReceiptFile As Global.System.Web.UI.WebControls.FileUpload
 
     '''<summary>
-    '''lblReceiptFileName control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblReceiptFileName As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''fuPrescriptionFile control.
     '''</summary>
     '''<remarks>
@@ -140,15 +122,6 @@ Partial Public Class MR_EMP
     Protected WithEvents fuPrescriptionFile As Global.System.Web.UI.WebControls.FileUpload
 
     '''<summary>
-    '''lblPrescriptionFileName control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblPrescriptionFileName As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''fuSupportingFiles control.
     '''</summary>
     '''<remarks>
@@ -156,15 +129,6 @@ Partial Public Class MR_EMP
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents fuSupportingFiles As Global.System.Web.UI.WebControls.FileUpload
-
-    '''<summary>
-    '''lblSupportingFilesName control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblSupportingFilesName As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''ddlDiseaseCategory control.
