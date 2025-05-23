@@ -185,24 +185,6 @@ Partial Public Class MR_HR
     Protected WithEvents txtKategoriModal As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''lblLevelModal control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblLevelModal As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''txtLevelModal control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtLevelModal As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
     '''lblTanggalModal control.
     '''</summary>
     '''<remarks>

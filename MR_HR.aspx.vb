@@ -56,14 +56,12 @@
         txtDepartemenModal.Text = Trim(PilihText.Cells(2).Text)
         txtKategoriModal.Text = Trim(PilihText.Cells(3).Text)
         txtTanggalModal.Text = Trim(PilihText.Cells(4).Text)
-        txtLevelModal.Text = Trim(PilihText.Cells(5).Text)
 
         txtNIPModal.Enabled = False
         txtNamaModal.Enabled = False
         txtDepartemenModal.Enabled = False
         txtKategoriModal.Enabled = False
         txtTanggalModal.Enabled = False
-        txtLevelModal.Enabled = False
     End Sub
 
 
@@ -77,14 +75,12 @@
         txtDepartemenModal.Text = Trim(PilihText.Cells(2).Text)
         txtKategoriModal.Text = Trim(PilihText.Cells(3).Text)
         txtTanggalModal.Text = Trim(PilihText.Cells(4).Text)
-        txtLevelModal.Text = Trim(PilihText.Cells(5).Text)
 
         txtNIPModal.Enabled = False
         txtNamaModal.Enabled = False
         txtDepartemenModal.Enabled = False
         txtKategoriModal.Enabled = False
         txtTanggalModal.Enabled = False
-        txtLevelModal.Enabled = False
         ScriptManager.RegisterStartupScript(Me, Me.GetType(), "removeReviewOption", "document.getElementById('reviewOption')?.remove();", True)
     End Sub
 

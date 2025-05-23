@@ -18,42 +18,6 @@
     </style>
     <script type="text/javascript">
         function showTab(tabId) {
-
-            const rejectBtn = document.getElementById('rejectBtn');
-            const rejectForm = document.getElementById('rejectForm');
-
-            const approveBtn = document.getElementById('approveBtn');
-            const approveForm = document.getElementById('approveForm');
-
-            const approveSubmit = document.getElementById('approveSubmit');
-            const rejectSubmit = document.getElementById('rejectSubmit');
-
-            const rejectNote = document.getElementById('rejectNote');
-
-            rejectBtn.addEventListener('click', function () {
-                rejectForm.classList.remove('hidden');
-                approveForm.classList.add('hidden');
-            });
-
-            approveBtn.addEventListener('click', function () {
-                approveForm.classList.remove('hidden');
-                rejectForm.classList.add('hidden');
-            });
-
-            approveSubmit.addEventListener('click', function () {
-                alert("Berhasil Diterima");
-            });
-
-            rejectSubmit.addEventListener('click', function () {
-                const note = rejectNote.value.trim();
-                if (note === '') {
-                    alert('Mohon isi catatan penolakan.');
-                } else {
-                    alert('Catatan Penolakan:\n' + note);
-                }
-            });
-
-            // Hide all tab content
             document.querySelectorAll('.tab-content').forEach(function (el) {
                 el.classList.add('hidden');
             });
@@ -73,9 +37,42 @@
         // Set default tab
         document.addEventListener("DOMContentLoaded", function () {
             showTab('tab1');
+            const approveBtn = document.getElementById('approveBtn');
+            const approveForm = document.getElementById('approveForm');
+            const approveSubmit = document.getElementById('approveSubmit');
+
+            const rejectBtn = document.getElementById('rejectBtn');
+            const rejectForm = document.getElementById('rejectForm');
+            const rejectSubmit = document.getElementById('rejectSubmit');
+            const rejectNote = document.getElementById('rejectNote');
+
+            approveBtn.addEventListener('click', function () {
+                approveForm.classList.remove('hidden');
+                rejectForm.classList.add('hidden');
+            });
+
+            approveSubmit.addEventListener('click', function () {
+                alert("Berhasil Diterima");
+            });
+
+            rejectBtn.addEventListener('click', function () {
+                rejectForm.classList.remove('hidden');
+                approveForm.classList.add('hidden');
+            });
+
+            rejectSubmit.addEventListener('click', function () {
+                const note = rejectNote.value.trim();
+                if (note === '') {
+                    alert('Mohon isi catatan penolakan.');
+                } else {
+                    alert('Catatan Penolakan:\n' + note);
+                }
+            });
         });
+
     </script>
 </head>
+
 <body class="bg-gray-100">
     <form id="form1" runat="server" class="flex min-h-screen">
         <!-- Sidebar -->
@@ -142,10 +139,6 @@
                         <asp:TextBox ID="txtKategoriModal" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
                       </div>
                       <div>
-                        <asp:Label ID="lblLevelModal" runat="server" AssociatedControlID="txtLevelModal" Text="Level" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
-                        <asp:TextBox ID="txtLevelModal" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
-                      </div>
-                      <div>
                         <asp:Label ID="lblTanggalModal" runat="server" AssociatedControlID="txtTanggalModal" Text="Tanggal" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
                         <asp:TextBox ID="txtTanggalModal" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
                       </div>
@@ -186,10 +179,10 @@
                     <div class="flex flex-col items-center space-y-4">
                         <!-- Approve & Reject Buttons -->
                         <div class="flex space-x-4">
-                            <button type="button" id="approveBtn" class="bg-green-400 hover:bg-green-500 text-white font-bold py-2 px-6 rounded-full text-lg">
+                            <button type="button" id="approveBtn" onclick="showApprove()" class="bg-green-400 hover:bg-green-500 text-white font-bold py-2 px-6 rounded-full text-lg">
                                 Approve
                             </button>
-                            <button type="button" id="rejectBtn" class="bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-6 rounded-full text-lg">
+                            <button type="button" id="rejectBtn" onclick="showReject()" class="bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-6 rounded-full text-lg">
                                 Reject
                             </button>
                         </div>
@@ -226,13 +219,21 @@
                         <asp:BoundField DataField="Departemen" HeaderText="Departemen" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
                         <asp:BoundField DataField="Kategori" HeaderText="Kategori" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
                         <asp:BoundField DataField="Tanggal" HeaderText="Tanggal" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-                        <asp:CommandField ShowSelectButton="true"/>
-                        <asp:TemplateField HeaderText="" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3">
-                             <ItemTemplate>
-                              <asp:Button ID="btnEditRequest" runat="server" CssClass="relative text-white bg-blue-600 p-2 rounded" />
-                               <i class="fas fa-edit"></i>
-                               <span class="absolute top-0 right-0 block h-2 w-2 rounded-full ring-2 ring-white bg-red-600"></span>
-                             </ItemTemplate>
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:LinkButton 
+                                    ID="btnSelect" 
+                                    runat="server" 
+                                    CommandName="Select" 
+                                    CssClass="text-blue-500 hover:text-blue-700"
+                                    ToolTip="Lihat Detail">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5.25 12 5.25s8.268 2.693 9.542 6.75c-1.274 4.057-5.065 6.75-9.542 6.75S3.732 16.057 2.458 12z" />
+                                    </svg>
+                                </asp:LinkButton>
+                            </ItemTemplate>
+                            <ItemStyle CssClass="py-4 px-6 text-center" />
                         </asp:TemplateField>
                        </Columns>
                     </asp:GridView>
@@ -249,7 +250,22 @@
                             <asp:BoundField DataField="Kategori" HeaderText="Kategori" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
                             <asp:BoundField DataField="Tanggal" HeaderText="Tanggal" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
                             <asp:BoundField DataField="status_approval" HeaderText="Status" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-                            <asp:CommandField ShowSelectButton="true" />
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <asp:LinkButton 
+                                        ID="btnSelect" 
+                                        runat="server" 
+                                        CommandName="Select" 
+                                        CssClass="text-blue-500 hover:text-blue-700"
+                                        ToolTip="Lihat Detail">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5.25 12 5.25s8.268 2.693 9.542 6.75c-1.274 4.057-5.065 6.75-9.542 6.75S3.732 16.057 2.458 12z" />
+                                        </svg>
+                                    </asp:LinkButton>
+                                </ItemTemplate>
+                                <ItemStyle CssClass="py-4 px-6 text-center" />
+                            </asp:TemplateField>
                        </Columns>
                     </asp:GridView>
                 </div>
