@@ -37,7 +37,7 @@
         txtKategoriModal.Text = Trim(PilihText.Cells(3).Text)
         txtTanggalModal.Text = Trim(PilihText.Cells(4).Text)
 
-        txtNIPModal.Enabled = False
+        txtNIPModal.Enabled = FalseS
         txtNamaModal.Enabled = False
         txtDepartemenModal.Enabled = False
         txtKategoriModal.Enabled = False

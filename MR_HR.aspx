@@ -16,6 +16,65 @@
             font-family: 'Inter', sans-serif;
         }
     </style>
+    <script type="text/javascript">
+        function showTab(tabId) {
+
+            const rejectBtn = document.getElementById('rejectBtn');
+            const rejectForm = document.getElementById('rejectForm');
+
+            const approveBtn = document.getElementById('approveBtn');
+            const approveForm = document.getElementById('approveForm');
+
+            const approveSubmit = document.getElementById('approveSubmit');
+            const rejectSubmit = document.getElementById('rejectSubmit');
+
+            const rejectNote = document.getElementById('rejectNote');
+
+            rejectBtn.addEventListener('click', function () {
+                rejectForm.classList.remove('hidden');
+                approveForm.classList.add('hidden');
+            });
+
+            approveBtn.addEventListener('click', function () {
+                approveForm.classList.remove('hidden');
+                rejectForm.classList.add('hidden');
+            });
+
+            approveSubmit.addEventListener('click', function () {
+                alert("Berhasil Diterima");
+            });
+
+            rejectSubmit.addEventListener('click', function () {
+                const note = rejectNote.value.trim();
+                if (note === '') {
+                    alert('Mohon isi catatan penolakan.');
+                } else {
+                    alert('Catatan Penolakan:\n' + note);
+                }
+            });
+
+            // Hide all tab content
+            document.querySelectorAll('.tab-content').forEach(function (el) {
+                el.classList.add('hidden');
+            });
+
+            // Reset all button styles
+            document.querySelectorAll('.tab-button').forEach(function (el) {
+                el.classList.remove('bg-[#FFAA0A]', 'text-white');
+                el.classList.add('bg-gray-300', 'text-gray-700');
+            });
+
+            // Show selected tab and highlight button
+            document.getElementById(tabId).classList.remove('hidden');
+            document.getElementById(tabId + 'Btn').classList.add('bg-[#FFAA0A]', 'text-white');
+            document.getElementById(tabId + 'Btn').classList.remove('bg-gray-300', 'text-gray-700');
+        }
+
+        // Set default tab
+        document.addEventListener("DOMContentLoaded", function () {
+            showTab('tab1');
+        });
+    </script>
 </head>
 <body class="bg-gray-100">
     <form id="form1" runat="server" class="flex min-h-screen">
@@ -56,97 +115,145 @@
 
 <%--MODAL--%>
     <asp:Panel ID="pnlModal" runat="server" CssClass="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-  <div
-    class="bg-gray-100 bg-opacity-90 rounded-2xl p-10 max-w-6xl w-full grid grid-cols-1 sm:grid-cols-3 gap-x-12 gap-y-6 shadow-lg relative"
-  >
-    <asp:Button ID="btnCloseModal" runat="server" Text="×" CssClass="absolute top-4 right-4 text-3xl font-bold text-gray-700 hover:text-gray-900 bg-transparent border-none cursor-pointer"  />
+        <div class="bg-gray-100 bg-opacity-90 rounded-2xl p-10 max-w-6xl w-full shadow-lg relative space-y-6"">
+            <asp:Button ID="btnCloseModal" runat="server" Text="×" CssClass="absolute top-4 right-4 text-3xl font-bold text-gray-700 hover:text-gray-900 bg-transparent border-none cursor-pointer"  />
+                    
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-x-12 gap-y-6">
+                    <!-- Left Column -->
+                    <div class="space-y-4">
+                          <div>
+                            <asp:Label ID="lblNIPModal" runat="server" AssociatedControlID="txtNIPModal" Text="NIP" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
+                            <asp:TextBox ID="txtNIPModal" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
+                          </div>
+                          <div>
+                            <asp:Label ID="lblNamaModal" runat="server" AssociatedControlID="txtNamaModal" Text="Nama" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
+                            <asp:TextBox ID="txtNamaModal" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs" TextMode="Email"></asp:TextBox>
+                          </div>
+                          <div>
+                            <asp:Label ID="lblDepartemenModal" runat="server" AssociatedControlID="txtDepartemenModal" Text="Departemen" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
+                            <asp:TextBox ID="txtDepartemenModal" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
+                          </div>
+                          <div>
+                            <asp:Label ID="lblKategoriModal" runat="server" AssociatedControlID="txtKategoriModal" Text="Kategori" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
+                            <asp:TextBox ID="txtKategoriModal" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
+                          </div>
+                        </div>
 
-    <!-- Left Column -->
-    <div class="space-y-4">
-      <div>
-        <asp:Label ID="lblNIPModal" runat="server" AssociatedControlID="txtNIPModal" Text="NIP" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
-        <asp:TextBox ID="txtNIPModal" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
-      </div>
-      <div>
-        <asp:Label ID="lblNamaModal" runat="server" AssociatedControlID="txtNamaModal" Text="Nama" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
-        <asp:TextBox ID="txtNamaModal" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs" TextMode="Email"></asp:TextBox>
-      </div>
-      <div>
-        <asp:Label ID="lblDepartemenModal" runat="server" AssociatedControlID="txtDepartemenModal" Text="Departemen" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
-        <asp:TextBox ID="txtDepartemenModal" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
-      </div>
-      <div>
-        <asp:Label ID="lblKategoriModal" runat="server" AssociatedControlID="txtKategoriModal" Text="Kategori" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
-        <asp:TextBox ID="txtKategoriModal" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
-      </div>
-    </div>
+                    <!-- Middle Column -->
+                    <div class="space-y-4">
+                      <div>
+                        <asp:Label ID="lblTanggalModal" runat="server" AssociatedControlID="txtTanggalModal" Text="Tanggal" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
+                        <asp:TextBox ID="txtTanggalModal" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
+                      </div>
+                    </div>
 
-    <!-- Middle Column -->
-    <div class="space-y-4">
+                    <!-- Right Column -->
+                    <div class="space-y-4">
+                        <div class="flex space-x-2 text-xs font-semibold mb-2">
+                            <button type="button" onclick="showTab('tab1')" class="tab-button px-4 py-2 rounded bg-[#FFAA0A] text-white" id="tab1Btn">Kwitansi</button>
+                            <button type="button" onclick="showTab('tab2')" class="tab-button px-4 py-2 rounded bg-gray-300 text-gray-700" id="tab2Btn">Resep</button>
+                            <button type="button" onclick="showTab('tab3')" class="tab-button px-4 py-2 rounded bg-gray-300 text-gray-700" id="tab3Btn">Pendukung</button>
+                        </div>
+                        <div id="tab1" class="tab-content space-y-4">
+                            <div>
+                                <asp:Label ID="lblKwitansi" runat="server" Text="Kwitansi" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
+                                <h2>Kwitansi</h2>
+                            </div>
+                        </div>
 
-    </div>
+                        <div id="tab2" class="tab-content hidden space-y-4">
+                            <div>
+                                <asp:Label ID="lblResep" runat="server" Text="Resep Obat" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
+                                <h2>Resep Obat</h2>
+                            </div>
+                        </div>
 
-
-    <!-- Right Column -->
-    <div class="space-y-4">
-      <div>
-        <asp:Label ID="lblTanggalModal" runat="server" AssociatedControlID="txtTanggalModal" Text="Tanggal" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
-        <asp:TextBox ID="txtTanggalModal" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
-      </div>
-        <asp:Button ID="Button1" runat="server" Text="Button" />
-    </div>
-  </div>
-</asp:Panel>
-<%--END MODAL--%>
+                        <div id="tab3" class="tab-content hidden space-y-4">
+                            <div>
+                                <asp:Label ID="lblPendukung" runat="server" Text="File Pendukung" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
+                                <h2>File Pendukung</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-center w-full">
+                    <div class="flex flex-col items-center space-y-4">
+                    <!-- Approve & Reject Buttons -->
+                    <div class="flex space-x-4">
+                        <button type="button" id="approveBtn" class="bg-green-400 hover:bg-green-500 text-white font-bold py-2 px-6 rounded-full text-lg">
+                            Approve
+                        </button>
+                        <button type="button" id="rejectBtn" class="bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-6 rounded-full text-lg">
+                            Reject
+                        </button>
+                    </div>
+                    
+                    <!-- Reject Form (Initially Hidden) -->
+                    <div id="rejectForm" class="hidden flex flex-col items-center space-y-4">
+                        <textarea id="rejectNote" placeholder="Catatan Penolakan" class="w-[300px] p-3 border rounded-lg text-sm" rows="5"></textarea>
+                        <button id="rejectSubmit" type="button" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-full text-lg">
+                            Submit Reject
+                        </button>
+                    </div>
+                    
+                    <div id="approveForm" class="hidden flex flex-col items-center space-y-4">
+                        <button id="approveSubmit" type="button" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded-full text-lg">
+                            Submit Approve
+                        </button>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </asp:Panel>
+        <%--END MODAL--%>
 
 
              <section class="max-w-5xl mx-auto space-y-10">
-     <div>
-      <h2 class="text-[#f9a01b] font-extrabold text-2xl mb-6">
-       REQUEST LIST
-      </h2>
-      <asp:GridView ID="gvRequestList" runat="server" CssClass="w-full text-center text-sm" AutoGenerateColumns="False" GridLines="None" HeaderStyle-Font-Bold="True" HeaderStyle-CssClass="font-semibold text-black" RowStyle-CssClass="bg-white rounded-full" >
-       <Columns>
-        <asp:BoundField DataField="NIP" HeaderText="NIP" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-        <asp:BoundField DataField="Nama" HeaderText="Nama" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-        <asp:BoundField DataField="Departemen" HeaderText="Departemen" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-        <asp:BoundField DataField="Kategori" HeaderText="Kategori" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-        <asp:BoundField DataField="Tanggal" HeaderText="Tanggal" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-        <asp:CommandField ShowSelectButton="true" />
-        <asp:TemplateField HeaderText="" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3">
-         <ItemTemplate>
-          <asp:Button ID="btnEditRequest" runat="server" CssClass="relative text-white bg-blue-600 p-2 rounded" />
-           <i class="fas fa-edit"></i>
-           <span class="absolute top-0 right-0 block h-2 w-2 rounded-full ring-2 ring-white bg-red-600"></span>
-            
-         </ItemTemplate>
-        </asp:TemplateField>
-       </Columns>
-      </asp:GridView>
-     </div>
-     <div>
-      <h2 class="text-[#f9a01b] font-extrabold text-2xl mb-6">
-       HISTORY
-      </h2>
-      <asp:GridView ID="gvHistory" runat="server" CssClass="w-full text-center text-sm" AutoGenerateColumns="False" GridLines="None" HeaderStyle-Font-Bold="True" HeaderStyle-CssClass="font-semibold text-black" RowStyle-CssClass="bg-white rounded-full" >
-       <Columns>
-        <asp:BoundField DataField="NIP" HeaderText="NIP" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-        <asp:BoundField DataField="Nama" HeaderText="Nama" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-        <asp:BoundField DataField="Departemen" HeaderText="Departemen" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-        <asp:BoundField DataField="Kategori" HeaderText="Kategori" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-        <asp:BoundField DataField="Tanggal" HeaderText="Tanggal" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-        <asp:TemplateField HeaderText="" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3">
-         <ItemTemplate>
-          <asp:Button ID="btnEditHistory" runat="server" CssClass="relative text-white bg-blue-600 p-2 rounded"/>
-           <i class="fas fa-edit"></i>
-           <span class="absolute top-0 right-0 block h-2 w-2 rounded-full ring-2 ring-white bg-red-600"></span>
-
-         </ItemTemplate>
-        </asp:TemplateField>
-       </Columns>
-      </asp:GridView>
-     </div>
-    </section>
+                <div>
+                  <h2 class="text-[#f9a01b] font-extrabold text-2xl mb-6">
+                    REQUEST LIST
+                  </h2>
+                  <asp:GridView ID="gvRequestList" runat="server" CssClass="w-full text-center text-sm" AutoGenerateColumns="False" GridLines="None" HeaderStyle-Font-Bold="True" HeaderStyle-CssClass="font-semibold text-black" RowStyle-CssClass="bg-white rounded-full" >
+                       <Columns>
+                        <asp:BoundField DataField="NIP" HeaderText="NIP" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+                        <asp:BoundField DataField="Nama" HeaderText="Nama" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+                        <asp:BoundField DataField="Departemen" HeaderText="Departemen" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+                        <asp:BoundField DataField="Kategori" HeaderText="Kategori" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+                        <asp:BoundField DataField="Tanggal" HeaderText="Tanggal" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+                        <asp:CommandField ShowSelectButton="true"/>
+                        <asp:TemplateField HeaderText="" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3">
+                             <ItemTemplate>
+                              <asp:Button ID="btnEditRequest" runat="server" CssClass="relative text-white bg-blue-600 p-2 rounded" />
+                               <i class="fas fa-edit"></i>
+                               <span class="absolute top-0 right-0 block h-2 w-2 rounded-full ring-2 ring-white bg-red-600"></span>
+                             </ItemTemplate>
+                        </asp:TemplateField>
+                       </Columns>
+                    </asp:GridView>
+                </div>
+                <div>
+                    <h2 class="text-[#f9a01b] font-extrabold text-2xl mb-6">
+                        HISTORY
+                    </h2>
+                    <asp:GridView ID="gvHistory" runat="server" CssClass="w-full text-center text-sm" AutoGenerateColumns="False" GridLines="None" HeaderStyle-Font-Bold="True" HeaderStyle-CssClass="font-semibold text-black" RowStyle-CssClass="bg-white rounded-full" >
+                        <Columns>
+                            <asp:BoundField DataField="NIP" HeaderText="NIP" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+                            <asp:BoundField DataField="Nama" HeaderText="Nama" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+                            <asp:BoundField DataField="Departemen" HeaderText="Departemen" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+                            <asp:BoundField DataField="Kategori" HeaderText="Kategori" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+                            <asp:BoundField DataField="Tanggal" HeaderText="Tanggal" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+                            <asp:TemplateField HeaderText="" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3">
+                        <ItemTemplate>
+                            <asp:Button ID="btnEditHistory" runat="server" CssClass="relative text-white bg-blue-600 p-2 rounded"/>
+                            <i class="fas fa-edit"></i>
+                            <span class="absolute top-0 right-0 block h-2 w-2 rounded-full ring-2 ring-white bg-red-600"></span>
+                        </ItemTemplate>
+                        </asp:TemplateField>
+                       </Columns>
+                    </asp:GridView>
+                </div>
+            </section>
         </main>
     </form>
 </body>
