@@ -104,6 +104,24 @@ Partial Public Class MR_EMP
     Protected WithEvents ddlReimbursementCategory As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''lblDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDate As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtDate As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''fuReceiptFile control.
     '''</summary>
     '''<remarks>
@@ -131,15 +149,6 @@ Partial Public Class MR_EMP
     Protected WithEvents fuSupportingFiles As Global.System.Web.UI.WebControls.FileUpload
 
     '''<summary>
-    '''ddlDiseaseCategory control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ddlDiseaseCategory As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
     '''txtMedicalDetail control.
     '''</summary>
     '''<remarks>
@@ -156,6 +165,24 @@ Partial Public Class MR_EMP
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtTotalCost As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''btnCalculate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnCalculate As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''lblCalculation control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblCalculation As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''btnSubmit control.
