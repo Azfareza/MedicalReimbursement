@@ -1,6 +1,10 @@
-﻿Public Class MR_EMP
+﻿Imports System.IO
+Imports System.Net
+
+Public Class MR_EMP
     Inherits System.Web.UI.Page
     Dim MrEmployee As New DataReq.Data_Dashboard
+    Dim Pengajuan As New dataPengajuanKlaim.DAFTAR_PENGAJUAN_KLAIM
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not Page.IsPostBack Then
@@ -55,29 +59,33 @@
         Dim result As Integer
         If HitungReimbursement(result) Then
             Dim rawInput As String = txtTotalCost.Text.Replace(".", "").Replace(",", "").Replace("Rp", "").Trim()
-            Dim totalCost As Integer = Convert.ToInt32(rawInput)
-            Dim formattedTotal As String = FormatRupiah(totalCost)
-            Dim formattedResult As String = FormatRupiah(result)
-            Dim kategori As String = ddlReimbursementCategory.SelectedItem.Text.Trim()
 
-            Select Case kategori
-                Case "Kacamata"
-                    lblCalculation.Text = $"{formattedTotal} x 0.85 (maks. Rp600.000) = {formattedResult}"
+            ' Validasi input tidak boleh negatif
+            If Not Integer.TryParse(rawInput, Nothing) OrElse Convert.ToInt32(rawInput) <> 0 Then
+                btnSubmit.Enabled = True
+                btnSubmit.Style("display") = "inline-block"
+                Dim totalCost As Integer = Convert.ToInt32(rawInput)
+                Dim formattedTotal As String = FormatRupiah(totalCost)
+                Dim formattedResult As String = FormatRupiah(result)
+                Dim kategori As String = ddlReimbursementCategory.SelectedItem.Text.Trim()
 
-                Case "Rawat Jalan"
-                    lblCalculation.Text = $"Total klaim = {formattedResult}"
+                Select Case kategori
+                    Case "Kacamata"
+                        lblCalculation.Text = $"{formattedTotal} x 0.85 (maks. Rp600.000) = {formattedResult}"
 
-                Case "Persalinan"
-                    lblCalculation.Text = $"{formattedTotal} (maks.Rp15.000.000) → {formattedResult}"
+                    Case "Rawat Jalan"
+                        lblCalculation.Text = $"Total klaim = {formattedResult}"
 
-                Case Else
-                    lblCalculation.Text = ""
-            End Select
-        Else
-            lblCalculation.Text = ""
+                    Case "Persalinan"
+                        lblCalculation.Text = $"{formattedTotal} (maks.Rp15.000.000) → {formattedResult}"
+
+                    Case Else
+                        lblCalculation.Text = ""
+                End Select
+            Else
+                lblCalculation.Text = ""
+            End If
         End If
-        btnSubmit.Enabled = True
-        btnSubmit.Style("display") = "inline-block"
     End Sub
 
     Protected Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
@@ -112,9 +120,25 @@
 
             Session("SuccessMessage") = alertMessage
 
+            ' Simpan data ke database
+            Pengajuan.AddNewRequest(
+                Kategori:=category,
+                TanggalPengobatan:=Date.Parse(selectedDate),
+                TanggalPengajuan:=DateTime.Now,
+                DetailPenyakit:=medicalDetail,
+                Biaya:=result,
+                Status_Terakhir:="On Process"
+            )
+            sendReqNotif(
+                Kategori:=category,
+                TanggalPengobatan:=Date.Parse(selectedDate),
+                TanggalPengajuan:=DateTime.Now,
+                DetailPenyakit:=medicalDetail,
+                Biaya:=result,
+                Status_Terakhir:="On Process"
+            )
             ' Redirect agar form tidak dipost ulang saat reload
             Response.Redirect(Request.RawUrl)
-
         End If
     End Sub
 
@@ -149,6 +173,62 @@
     'Private Sub btnAddNewRequest_Click(sender As Object, e As EventArgs) Handles btnAddNewRequest.Click
 
     'End Sub
+
+    Protected Sub sendReqNotif(Kategori As String, TanggalPengobatan As Date, TanggalPengajuan As DateTime, DetailPenyakit As String, Biaya As Integer, Status_Terakhir As String)
+
+        Dim nomor As String = "6285156909701"
+        Dim waktuSekarang As String = TanggalPengajuan
+        Dim pesanLengkap As String =
+            $"[PENGAJUAN BARU REIMBURSEMENT]" & vbCrLf &
+            $"Kategori: {Kategori}" & vbCrLf &
+            $"Tanggal Pengobatan: {TanggalPengobatan:dd/MM/yyyy}" & vbCrLf &
+            $"Detail Penyakit: {DetailPenyakit}" & vbCrLf &
+            $"Total Biaya: Rp{Biaya:N0}" & vbCrLf &
+            $"Status: {Status_Terakhir}" & vbCrLf &
+            $"Diajukan pada: {TanggalPengajuan:dd/MM/yyyy HH:mm:ss}"
+
+        'Fill the TOKEN!
+        'Dim token As String = "zF8z5jBiZ5MBaXpP6q9N"
+
+        Dim boundary As String = "------------------------" & DateTime.Now.Ticks.ToString("x")
+        Dim request As HttpWebRequest = CType(WebRequest.Create("https://api.fonnte.com/send"), HttpWebRequest)
+        request.Method = "POST"
+        request.ContentType = "multipart/form-data; boundary=" & boundary
+        request.Headers.Add("Authorization", token)
+
+        Dim postData As New StringBuilder()
+        postData.AppendLine("--" & boundary)
+        postData.AppendLine("Content-Disposition: form-data; name=""target""")
+        postData.AppendLine()
+        postData.AppendLine(nomor)
+
+        postData.AppendLine("--" & boundary)
+        postData.AppendLine("Content-Disposition: form-data; name=""message""")
+        postData.AppendLine()
+        postData.AppendLine(pesanLengkap)
+
+        postData.AppendLine("--" & boundary & "--")
+
+        Dim byteArray As Byte() = Encoding.UTF8.GetBytes(postData.ToString())
+        request.ContentLength = byteArray.Length
+
+        Try
+            Using dataStream As Stream = request.GetRequestStream()
+                dataStream.Write(byteArray, 0, byteArray.Length)
+            End Using
+
+            Dim response As HttpWebResponse = CType(request.GetResponse(), HttpWebResponse)
+            Using reader As New StreamReader(response.GetResponseStream())
+                Dim responseText As String = reader.ReadToEnd()
+                lblStatus.Text = "Pesan dikirim!"
+            End Using
+        Catch ex As WebException
+            Using reader As New StreamReader(ex.Response.GetResponseStream())
+                Dim errorText As String = reader.ReadToEnd()
+                lblStatus.Text = "Gagal mengirim pesan!"
+            End Using
+        End Try
+    End Sub
 
     Private Sub btnDashboard_Click(sender As Object, e As EventArgs) Handles btnDashboard.Click
         Response.Redirect("Dashboard_EMP.aspx")

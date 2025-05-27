@@ -222,6 +222,7 @@
       <DependentUpon>About.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Classing\DAFTAR_PENGAJUAN_KLAIM.vb" />
     <Compile Include="Classing\Dashboard.vb" />
     <Compile Include="Classing\UtiUmum.vb" />
     <Compile Include="Contact.aspx.designer.vb">
@@ -267,7 +268,7 @@
     </Compile>
     <Compile Include="Master_Request.aspx.vb">
       <DependentUpon>Master_Request.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="MR_EMP.aspx.designer.vb">
       <DependentUpon>MR_EMP.aspx</DependentUpon>
