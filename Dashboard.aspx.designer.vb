@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Dashboaed
+Partial Public Class Dashboard
 
     '''<summary>
     '''form1 control.

@@ -122,31 +122,31 @@ Partial Public Class MR_EMP
     Protected WithEvents txtDate As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''fuReceiptFile control.
+    '''fileKwitansi control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents fuReceiptFile As Global.System.Web.UI.WebControls.FileUpload
+    Protected WithEvents fileKwitansi As Global.System.Web.UI.WebControls.FileUpload
 
     '''<summary>
-    '''fuPrescriptionFile control.
+    '''fileResep control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents fuPrescriptionFile As Global.System.Web.UI.WebControls.FileUpload
+    Protected WithEvents fileResep As Global.System.Web.UI.WebControls.FileUpload
 
     '''<summary>
-    '''fuSupportingFiles control.
+    '''filePendukung control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents fuSupportingFiles As Global.System.Web.UI.WebControls.FileUpload
+    Protected WithEvents filePendukung As Global.System.Web.UI.WebControls.FileUpload
 
     '''<summary>
     '''txtMedicalDetail control.
@@ -201,4 +201,31 @@ Partial Public Class MR_EMP
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblStatus As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''imgKwitansi control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents imgKwitansi As Global.System.Web.UI.WebControls.Image
+
+    '''<summary>
+    '''imgResep control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents imgResep As Global.System.Web.UI.WebControls.Image
+
+    '''<summary>
+    '''imgPendukung control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents imgPendukung As Global.System.Web.UI.WebControls.Image
 End Class

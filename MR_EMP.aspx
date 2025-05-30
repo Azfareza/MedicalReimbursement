@@ -121,24 +121,25 @@
                     </div>
 
                     <div class="mb-4">
-                        <asp:Label AssociatedControlID="fuReceiptFile" runat="server" Text="Receipt File" CssClass="block text-xs font-semibold mb-1" />
+                        <asp:Label AssociatedControlID="fileKwitansi" runat="server" Text="Kwitansi" CssClass="block text-xs font-semibold mb-1" />
                         <div class="flex items-center">
-                            <asp:FileUpload ID="fuReceiptFile" runat="server" CssClass="bg-gray-200 rounded-md px-4 py-2 border-gray-300 w-full" />
+                            <asp:FileUpload ID="fileKwitansi" runat="server" CssClass="ftoKwt bg-gray-200 rounded-md px-4 py-2 border-gray-300 w-full" />
                         </div>
                     </div>
                     <div class="mb-4">
-                        <asp:Label AssociatedControlID="fuPrescriptionFile" runat="server" Text="Medical Prescription File" CssClass="block text-xs font-semibold mb-1" />
+                        <asp:Label AssociatedControlID="fileResep" runat="server" Text="Resep Obat" CssClass="block text-xs font-semibold mb-1" />
                         <div class="flex items-center">
-                            <asp:FileUpload ID="fuPrescriptionFile" runat="server" CssClass="bg-gray-200 rounded-md px-4 py-2 border-gray-300 w-full" />
+                            <asp:FileUpload ID="fileResep" runat="server" CssClass="bg-gray-200 rounded-md px-4 py-2 border-gray-300 w-full" />
                         </div>
                     </div>
                     <div class="mb-4">
-                        <asp:Label AssociatedControlID="fuSupportingFiles" runat="server" Text="Supporting Files" CssClass="block text-xs font-semibold mb-1" />
-                        <span class="font-normal text-[10px]">(Consultation, Medicine, Lab)</span>
+                        <asp:Label AssociatedControlID="filePendukung" runat="server" Text="File Pendukung" CssClass="block text-xs font-semibold mb-1" />
+                        <span class="font-normal text-[10px]">(Konsultasi, Lab)</span>
                         <div class="flex items-center bg-gray-200 rounded-md">
-                            <asp:FileUpload ID="fuSupportingFiles" runat="server" CssClass="px-4 py-2 rounded-md border-gray-300 w-full" />
+                            <asp:FileUpload ID="filePendukung" runat="server" CssClass="px-4 py-2 rounded-md border-gray-300 w-full" />
                         </div>
                     </div>
+
                     <div class="mb-4">
                         <asp:Label AssociatedControlID="txtMedicalDetail" runat="server" Text="Medical Detail" CssClass="block text-xs font-semibold mb-1" />
                         <asp:TextBox ID="txtMedicalDetail" runat="server" TextMode="MultiLine" Rows="4" CssClass="w-full rounded-md bg-gray-200 text-xs p-3 resize-none"></asp:TextBox>
@@ -163,6 +164,9 @@
                     </div>
                 </section>
             </div>    
+            <asp:Image ID="imgKwitansi" runat="server" Width="300px" /><br />
+            <asp:Image ID="imgResep" runat="server" Width="300px" /><br />
+            <asp:Image ID="imgPendukung" runat="server" Width="300px" />
         </main>
     </form>
 </body>

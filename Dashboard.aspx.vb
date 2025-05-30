@@ -1,4 +1,4 @@
-﻿Public Class Dashboaed
+﻿Public Class Dashboard
     Inherits System.Web.UI.Page
     Dim Datadashboard As New DataReq.Data_Dashboard
 
@@ -8,6 +8,20 @@
             BindRequest()
         End If
     End Sub
+
+    Public Function GetStatusText(ByVal status As Object) As String
+        If status Is Nothing OrElse Convert.IsDBNull(status) Then
+            Return "On Progress"
+        ElseIf Convert.ToBoolean(status) Then
+            Return "Approved"
+        Else
+            Return "Rejected"
+        End If
+    End Function
+
+    Public Function GetStatusColor(ByVal status As Object) As String
+        Return If(status Is Nothing OrElse Convert.IsDBNull(status), "#878787", If(Convert.ToBoolean(status), "#43AD96", "#EE5C5F"))
+    End Function
 
     Private Sub BindRequest()
         rptRequests.Visible = True

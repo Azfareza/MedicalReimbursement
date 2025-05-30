@@ -20,6 +20,23 @@ Public Class MR_EMP
 
             btnSubmit.Enabled = False
             btnSubmit.Style("display") = "none"
+
+            'DUMMY MANGGIL GAMBAR JPEG!
+
+            Dim dokumen = Pengajuan.SelectDocument(KdDokumen:=1)
+
+            If dokumen IsNot Nothing Then
+                If dokumen.ContainsKey("kwitansi") Then
+                    imgKwitansi.ImageUrl = "data:image/jpeg;base64," & Convert.ToBase64String(dokumen("kwitansi"))
+                End If
+                If dokumen.ContainsKey("resep") Then
+                    imgResep.ImageUrl = "data:image/jpeg;base64," & Convert.ToBase64String(dokumen("resep"))
+                End If
+                If dokumen.ContainsKey("pendukung") Then
+                    imgPendukung.ImageUrl = "data:image/jpeg;base64," & Convert.ToBase64String(dokumen("pendukung"))
+                End If
+            End If
+
         End If
     End Sub
 
@@ -90,8 +107,40 @@ Public Class MR_EMP
 
     Protected Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
 
+        ' Ambil nama file
+        Dim kwitansiFileName As String = Path.GetFileName(fileKwitansi.FileName)
+        Dim resepFileName As String = Path.GetFileName(fileResep.FileName)
+        Dim pendukungFileName As String = Path.GetFileName(filePendukung.FileName)
+
+        ' Tentukan path penyimpanan
+        Dim kwitansiPath As String = Server.MapPath("~/Uploads/Kwitansi/" & kwitansiFileName)
+        Dim resepPath As String = Server.MapPath("~/Uploads/Resep/" & resepFileName)
+        Dim pendukungPath As String = Server.MapPath("~/Uploads/Pendukung/" & pendukungFileName)
+
+        ' Pastikan direktori sudah ada (buat jika belum)
+        Directory.CreateDirectory(Path.GetDirectoryName(kwitansiPath))
+        Directory.CreateDirectory(Path.GetDirectoryName(resepPath))
+        Directory.CreateDirectory(Path.GetDirectoryName(pendukungPath))
+
+        ' Simpan file ke folder tujuan
+        fileKwitansi.SaveAs(kwitansiPath)
+        fileResep.SaveAs(resepPath)
+        filePendukung.SaveAs(pendukungPath)
+
+        ' Baca isi file sebagai Byte array
+        Dim kwitansi As Byte() = File.ReadAllBytes(kwitansiPath)
+        Dim resep As Byte() = File.ReadAllBytes(resepPath)
+        Dim pendukung As Byte() = File.ReadAllBytes(pendukungPath)
+
+        ' Simpan ke database atau model
+        Pengajuan.SaveDocument(kwitansi, DateTime.Now, resep, pendukung)
+
+
         'VALIDASI KELENGKAPAN FORM
         If ddlReimbursementCategory.SelectedIndex = 0 OrElse
+            String.IsNullOrWhiteSpace(fileKwitansi.HasFiles) OrElse
+            String.IsNullOrWhiteSpace(fileResep.HasFiles) OrElse
+            String.IsNullOrWhiteSpace(filePendukung.HasFiles) OrElse
             String.IsNullOrWhiteSpace(txtDate.Text) OrElse
             String.IsNullOrWhiteSpace(txtMedicalDetail.Text) OrElse
             String.IsNullOrWhiteSpace(txtTotalCost.Text) Then
@@ -129,15 +178,17 @@ Public Class MR_EMP
                 Biaya:=result,
                 Status_Terakhir:="On Process"
             )
-            sendReqNotif(
-                Kategori:=category,
-                TanggalPengobatan:=Date.Parse(selectedDate),
-                TanggalPengajuan:=DateTime.Now,
-                DetailPenyakit:=medicalDetail,
-                Biaya:=result,
-                Status_Terakhir:="On Process"
-            )
+
+            'sendReqNotif(
+            '    Kategori:=category,
+            '    TanggalPengobatan:=Date.Parse(selectedDate),
+            '    TanggalPengajuan:=DateTime.Now,
+            '    DetailPenyakit:=medicalDetail,
+            '    Biaya:=result,
+            '    Status_Terakhir:="On Process"
+            ')
             ' Redirect agar form tidak dipost ulang saat reload
+
             Response.Redirect(Request.RawUrl)
         End If
     End Sub
@@ -188,7 +239,7 @@ Public Class MR_EMP
             $"Diajukan pada: {TanggalPengajuan:dd/MM/yyyy HH:mm:ss}"
 
         'Fill the TOKEN!
-        'Dim token As String = "zF8z5jBiZ5MBaXpP6q9N"
+        Dim token As String = "zF8z5jBiZ5MBaXpP6q9N"
 
         Dim boundary As String = "------------------------" & DateTime.Now.Ticks.ToString("x")
         Dim request As HttpWebRequest = CType(WebRequest.Create("https://api.fonnte.com/send"), HttpWebRequest)
@@ -229,6 +280,8 @@ Public Class MR_EMP
             End Using
         End Try
     End Sub
+
+
 
     Private Sub btnDashboard_Click(sender As Object, e As EventArgs) Handles btnDashboard.Click
         Response.Redirect("Dashboard_EMP.aspx")

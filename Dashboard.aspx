@@ -1,4 +1,4 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Dashboard.aspx.vb" Inherits="MedicalReimbursement.Dashboaed" %>
+﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Dashboard.aspx.vb" Inherits="MedicalReimbursement.Dashboard" %>
 
 <!DOCTYPE html>
 
@@ -170,20 +170,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                        </HeaderTemplate>
-                        <ItemTemplate>
-                            <tr>
-                                <td class="font-semibold text-sm"><%# Eval("Nama") %></td>
-                                <td class="text-xs text-gray-400"><%# Eval("Tanggal") %></td>
-                                <td class="text-xs font-semibold text-blue-400"><%# Eval("Kategori") %></td>
-                                <td class="text-xs font-bold">
-                                    <span class='<%# If(DirectCast(Eval("status_approval"), Boolean), "text-green-600", "text-red-600") %>'>
-                                        <%# If(DirectCast(Eval("status_approval"), Boolean), "Approved", "Pending") %>
-                                    </span>
-                                </td>
-                            </tr>
-                        </ItemTemplate>
-                        <FooterTemplate>
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <tr>
+                                            <td class="font-semibold text-sm"><%# Eval("Nama") %></td>
+                                            <td class="text-xs text-gray-400"><%# Eval("Tanggal") %></td>
+                                            <td class="text-xs font-semibold text-blue-400"><%# Eval("Kategori") %></td>
+                                            <td class="text-xs font-bold" style='color:<%# GetStatusColor(Eval("Status_Approval")) %>'>
+                                                <%# GetStatusText(Eval("Status_Approval")) %>
+                                            </td>
+                                        </tr>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
                                 </tbody>
                             </table>
                         </FooterTemplate>
