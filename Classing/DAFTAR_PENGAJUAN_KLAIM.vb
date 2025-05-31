@@ -3,7 +3,7 @@
 Namespace dataPengajuanKlaim
     Public Class DAFTAR_PENGAJUAN_KLAIM
 
-        Public Function AddNewRequest(Kategori As String, TanggalPengobatan As Date, TanggalPengajuan As DateTime, DetailPenyakit As String, Biaya As Integer, Status_Terakhir As String) As Boolean
+        Public Function AddNewRequest(Kategori As String, TanggalPengobatan As Date, TanggalPengajuan As DateTime, DetailPenyakit As String, Biaya As Integer, Status_Terakhir As String, NIP As String) As Boolean
             Dim cmd As New SqlCommand
             cmd.CommandText = "DAFTAR_PENGAJUAN_KLAIM_INSERT"
             cmd.CommandType = CommandType.StoredProcedure
@@ -15,6 +15,8 @@ Namespace dataPengajuanKlaim
             cmd.Parameters.Add(New SqlParameter("@DetailPenyakit", SqlDbType.Char, 30, ParameterDirection.Input, False, 0, 0, "", DataRowVersion.Original, DetailPenyakit))
             cmd.Parameters.Add(New SqlParameter("@Biaya", SqlDbType.Int, 32, ParameterDirection.Input, False, 0, 0, "", DataRowVersion.Original, Biaya))
             cmd.Parameters.Add(New SqlParameter("@StatusTerakhir", SqlDbType.Char, 12, ParameterDirection.Input, False, 0, 0, "", DataRowVersion.Original, Status_Terakhir))
+            cmd.Parameters.Add(New SqlParameter("@NIP", SqlDbType.Char, 10, ParameterDirection.Input, False, 0, 0, "", DataRowVersion.Original, NIP))
+
             Try
                 ConnDB.Open()
                 cmd.ExecuteNonQuery()
@@ -27,7 +29,7 @@ Namespace dataPengajuanKlaim
                 cmd = Nothing
             End Try
         End Function
-        Public Function SaveDocument(kwitansi As Byte(), WaktuUpload As DateTime, resep As Byte(), pendukung As Byte()) As Boolean
+        Public Function SaveDocument(kwitansi As Byte(), WaktuUpload As DateTime, resep As Byte(), pendukung As Byte(), KdKlaim As integer) As Boolean
             Dim cmd As New SqlCommand
             cmd.CommandText = "DAFTAR_DOKUMEN_KLAIM_INSERT"
             cmd.CommandType = CommandType.StoredProcedure
@@ -37,6 +39,7 @@ Namespace dataPengajuanKlaim
             cmd.Parameters.Add("@WaktuUpload", SqlDbType.DateTime).Value = WaktuUpload
             cmd.Parameters.Add("@FileResep", SqlDbType.VarBinary).Value = resep
             cmd.Parameters.Add("@FilePendukung", SqlDbType.VarBinary).Value = pendukung
+            cmd.Parameters.Add("@KdKlaim", SqlDbType.Int).Value = KdKlaim
 
             Try
                 ConnDB.Open()

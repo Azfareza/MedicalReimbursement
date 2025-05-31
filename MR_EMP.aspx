@@ -119,6 +119,23 @@
                             <asp:TextBox ID="txtDate" runat="server" TextMode="Date" CssClass="w-full rounded-md border bg-gray-200 p-2 text-sm focus:border-blue-500 focus:ring focus:ring-blue-200" />
                         </div>
                     </div>
+                    
+                    <div class="mb-4">
+                        <asp:Label AssociatedControlID="txtMedicalDetail" runat="server" Text="Medical Detail" CssClass="block text-xs font-semibold mb-1" />
+                        <asp:TextBox ID="txtMedicalDetail" runat="server" TextMode="MultiLine" Rows="4" CssClass="w-full rounded-md bg-gray-200 text-xs p-3 resize-none"></asp:TextBox>
+                    </div>
+                    <div class="mb-4">
+                        <asp:Label AssociatedControlID="txtTotalCost" runat="server" Text="Total Cost" CssClass="block text-xs font-semibold mb-1" />
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <div class="w-5/6">
+                                <asp:TextBox ID="txtTotalCost" runat="server" CssClass="w-full rounded-md bg-gray-200 font-semibold px-3 py-2 w-full" />            
+                            </div>
+                            <div class="w-1/6">
+                                <asp:Button ID="btnCalculate" runat="server" Text="Calculate" CssClass="bg-[#0052cc] text-white font-semibold rounded-md py-2 px-5 w-full cursor-pointer" OnClick="btnCalculate_Click"  />
+                            </div>
+                        </div>
+                    </div>
+                    <asp:Label ID="lblCalculation" runat="server" CssClass="block text-xs text-gray-600 mt-2 mb-4" />
 
                     <div class="mb-4">
                         <asp:Label AssociatedControlID="fileKwitansi" runat="server" Text="Kwitansi" CssClass="block text-xs font-semibold mb-1" />
@@ -140,30 +157,13 @@
                         </div>
                     </div>
 
-                    <div class="mb-4">
-                        <asp:Label AssociatedControlID="txtMedicalDetail" runat="server" Text="Medical Detail" CssClass="block text-xs font-semibold mb-1" />
-                        <asp:TextBox ID="txtMedicalDetail" runat="server" TextMode="MultiLine" Rows="4" CssClass="w-full rounded-md bg-gray-200 text-xs p-3 resize-none"></asp:TextBox>
-                    </div>
-                    <div class="mb-4">
-                        <asp:Label AssociatedControlID="txtTotalCost" runat="server" Text="Total Cost" CssClass="block text-xs font-semibold mb-1" />
-                        <div class="flex flex-col md:flex-row gap-6">
-                            <div class="w-5/6">
-                                <asp:TextBox ID="txtTotalCost" runat="server" CssClass="w-full rounded-md bg-gray-200 font-semibold px-3 py-2 w-full" />            
-                            </div>
-                            <div class="w-1/6">
-                                <asp:Button ID="btnCalculate" runat="server" Text="Calculate" CssClass="bg-[#0052cc] text-white font-semibold rounded-md py-2 px-5 w-full cursor-pointer" OnClick="btnCalculate_Click"  />
-                            </div>
-                        </div>
-                    </div>
-                    <asp:Label ID="lblCalculation" runat="server" CssClass="block text-xs text-gray-600 mt-2 mb-4" />
-
                     <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="bg-[#0052cc] text-white font-semibold rounded-md py-2 px-5 self-start cursor-pointer" OnClientClick="return confirm('Apakah kamu yakin ingin mengajukan klaim ini?');" OnClick="btnSubmit_Click"/>
 
                     <div class="text-center mt-4">
                         <asp:Label ID="lblStatus" runat="server" CssClass="text-blue-600 font-semibold"></asp:Label>
                     </div>
                 </section>
-            </div>    
+            </div>
             <asp:Image ID="imgKwitansi" runat="server" Width="300px" /><br />
             <asp:Image ID="imgResep" runat="server" Width="300px" /><br />
             <asp:Image ID="imgPendukung" runat="server" Width="300px" />

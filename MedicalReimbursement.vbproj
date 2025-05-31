@@ -149,6 +149,7 @@
     <Content Include="Employee_HR.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Login.aspx" />
     <Content Include="Master_Request.aspx" />
     <Content Include="MR_EMP.aspx" />
     <Content Include="MR_HR.aspx" />
@@ -181,7 +182,6 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="SendNotif.aspx" />
-    <Content Include="WebForm1.aspx" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -263,6 +263,13 @@
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Login.aspx.designer.vb">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.vb">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Master_Request.aspx.designer.vb">
       <DependentUpon>Master_Request.aspx</DependentUpon>
     </Compile>
@@ -336,13 +343,6 @@
     </Compile>
     <Compile Include="SendNotif.aspx.vb">
       <DependentUpon>SendNotif.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="WebForm1.aspx.designer.vb">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="WebForm1.aspx.vb">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
   </ItemGroup>

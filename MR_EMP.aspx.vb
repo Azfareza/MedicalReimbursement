@@ -1,4 +1,5 @@
-﻿Imports System.IO
+﻿Imports System.Data.SqlClient
+Imports System.IO
 Imports System.Net
 
 Public Class MR_EMP
@@ -19,11 +20,14 @@ Public Class MR_EMP
             End If
 
             btnSubmit.Enabled = False
+            fileKwitansi.Enabled = False
+            fileResep.Enabled = False
+            filePendukung.Enabled = False
             btnSubmit.Style("display") = "none"
 
             'DUMMY MANGGIL GAMBAR JPEG!
 
-            Dim dokumen = Pengajuan.SelectDocument(KdDokumen:=1)
+            Dim dokumen = Pengajuan.SelectDocument(KdDokumen:=7)
 
             If dokumen IsNot Nothing Then
                 If dokumen.ContainsKey("kwitansi") Then
@@ -62,7 +66,6 @@ Public Class MR_EMP
                 hasil = totalCost
 
             Case Else
-                ' Jika kategori tidak sesuai atau belum dipilih
                 hasil = 0
                 Return False
         End Select
@@ -80,6 +83,9 @@ Public Class MR_EMP
             ' Validasi input tidak boleh negatif
             If Not Integer.TryParse(rawInput, Nothing) OrElse Convert.ToInt32(rawInput) <> 0 Then
                 btnSubmit.Enabled = True
+                fileKwitansi.Enabled = True
+                fileResep.Enabled = True
+                filePendukung.Enabled = True
                 btnSubmit.Style("display") = "inline-block"
                 Dim totalCost As Integer = Convert.ToInt32(rawInput)
                 Dim formattedTotal As String = FormatRupiah(totalCost)
@@ -105,45 +111,98 @@ Public Class MR_EMP
         End If
     End Sub
 
+    'Protected Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
+
+    '    Dim kwitansiFileName As String = Path.GetFileName(fileKwitansi.FileName)
+    '    Dim resepFileName As String = Path.GetFileName(fileResep.FileName)
+    '    Dim pendukungFileName As String = Path.GetFileName(filePendukung.FileName)
+
+    '    Dim kwitansiPath As String = Server.MapPath("~/Uploads/Kwitansi/" & kwitansiFileName)
+    '    Dim resepPath As String = Server.MapPath("~/Uploads/Resep/" & resepFileName)
+    '    Dim pendukungPath As String = Server.MapPath("~/Uploads/Pendukung/" & pendukungFileName)
+
+    '    Directory.CreateDirectory(Path.GetDirectoryName(kwitansiPath))
+    '    Directory.CreateDirectory(Path.GetDirectoryName(resepPath))
+    '    Directory.CreateDirectory(Path.GetDirectoryName(pendukungPath))
+
+    '    fileKwitansi.SaveAs(kwitansiPath)
+    '    fileResep.SaveAs(resepPath)
+    '    filePendukung.SaveAs(pendukungPath)
+
+    '    Dim kwitansi As Byte() = File.ReadAllBytes(kwitansiPath)
+    '    Dim resep As Byte() = File.ReadAllBytes(resepPath)
+    '    Dim pendukung As Byte() = File.ReadAllBytes(pendukungPath)
+
+    '    Pengajuan.SaveDocument(kwitansi, DateTime.Now, resep, pendukung)
+
+
+    '    If ddlReimbursementCategory.SelectedIndex = 0 OrElse
+    '        String.IsNullOrWhiteSpace(fileKwitansi.HasFiles) OrElse
+    '        String.IsNullOrWhiteSpace(fileResep.HasFiles) OrElse
+    '        String.IsNullOrWhiteSpace(filePendukung.HasFiles) OrElse
+    '        String.IsNullOrWhiteSpace(txtDate.Text) OrElse
+    '        String.IsNullOrWhiteSpace(txtMedicalDetail.Text) OrElse
+    '        String.IsNullOrWhiteSpace(txtTotalCost.Text) Then
+
+    '        Dim warningScript As String = "<script>alert('Harap isi semua data sebelum mengirim.');</script>"
+    '        ClientScript.RegisterStartupScript(Me.GetType(), "InputValidation", warningScript, False)
+    '        Return
+    '    End If
+
+    '    Dim rawInput As String = txtTotalCost.Text.Replace(".", "").Replace(",", "").Replace("Rp", "").Trim()
+    '    Dim totalCost As Integer
+    '    If Not Integer.TryParse(rawInput, totalCost) Then
+    '        Dim errorScript As String = "<script>alert('Total biaya tidak valid.');</script>"
+    '        ClientScript.RegisterStartupScript(Me.GetType(), "InvalidCost", errorScript, False)
+    '        Return
+    '    End If
+
+    '    Dim result As Integer
+    '    If HitungReimbursement(result) Then
+    '        Dim category As String = ddlReimbursementCategory.SelectedItem.Text
+    '        Dim selectedDate As String = txtDate.Text
+    '        Dim medicalDetail As String = txtMedicalDetail.Text
+
+    '        Dim alertMessage As String = $"Category: {category}\nDate: {selectedDate}\nDetail: {medicalDetail}\nCalculated Amount: {result}"
+    '        alertMessage = alertMessage.Replace("'", "\'").Replace(vbCrLf, "\n").Replace(vbLf, "\n")
+
+    '        Session("SuccessMessage") = alertMessage
+
+    '        Pengajuan.AddNewRequest(
+    '            Kategori:=category,
+    '            TanggalPengobatan:=Date.Parse(selectedDate),
+    '            TanggalPengajuan:=DateTime.Now,
+    '            DetailPenyakit:=medicalDetail,
+    '            Biaya:=result,
+    '            Status_Terakhir:="On Process",
+    '            NIP:="0987654321"
+    '        )
+
+    '        sendReqNotif(
+    '            Kategori:=category,
+    '            TanggalPengobatan:=Date.Parse(selectedDate),
+    '            TanggalPengajuan:=DateTime.Now,
+    '            DetailPenyakit:=medicalDetail,
+    '            Biaya:=result,
+    '            Status_Terakhir:="On Process"
+    '        )
+
+    '        Response.Redirect(Request.RawUrl)
+    '    End If
+    'End Sub
+
+    ' Fungsi format Rupiah
+
     Protected Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
 
-        ' Ambil nama file
-        Dim kwitansiFileName As String = Path.GetFileName(fileKwitansi.FileName)
-        Dim resepFileName As String = Path.GetFileName(fileResep.FileName)
-        Dim pendukungFileName As String = Path.GetFileName(filePendukung.FileName)
-
-        ' Tentukan path penyimpanan
-        Dim kwitansiPath As String = Server.MapPath("~/Uploads/Kwitansi/" & kwitansiFileName)
-        Dim resepPath As String = Server.MapPath("~/Uploads/Resep/" & resepFileName)
-        Dim pendukungPath As String = Server.MapPath("~/Uploads/Pendukung/" & pendukungFileName)
-
-        ' Pastikan direktori sudah ada (buat jika belum)
-        Directory.CreateDirectory(Path.GetDirectoryName(kwitansiPath))
-        Directory.CreateDirectory(Path.GetDirectoryName(resepPath))
-        Directory.CreateDirectory(Path.GetDirectoryName(pendukungPath))
-
-        ' Simpan file ke folder tujuan
-        fileKwitansi.SaveAs(kwitansiPath)
-        fileResep.SaveAs(resepPath)
-        filePendukung.SaveAs(pendukungPath)
-
-        ' Baca isi file sebagai Byte array
-        Dim kwitansi As Byte() = File.ReadAllBytes(kwitansiPath)
-        Dim resep As Byte() = File.ReadAllBytes(resepPath)
-        Dim pendukung As Byte() = File.ReadAllBytes(pendukungPath)
-
-        ' Simpan ke database atau model
-        Pengajuan.SaveDocument(kwitansi, DateTime.Now, resep, pendukung)
-
-
-        'VALIDASI KELENGKAPAN FORM
+        ' VALIDASI KELENGKAPAN FORM
         If ddlReimbursementCategory.SelectedIndex = 0 OrElse
-            String.IsNullOrWhiteSpace(fileKwitansi.HasFiles) OrElse
-            String.IsNullOrWhiteSpace(fileResep.HasFiles) OrElse
-            String.IsNullOrWhiteSpace(filePendukung.HasFiles) OrElse
-            String.IsNullOrWhiteSpace(txtDate.Text) OrElse
-            String.IsNullOrWhiteSpace(txtMedicalDetail.Text) OrElse
-            String.IsNullOrWhiteSpace(txtTotalCost.Text) Then
+        Not fileKwitansi.HasFile OrElse
+        Not fileResep.HasFile OrElse
+        Not filePendukung.HasFile OrElse
+        String.IsNullOrWhiteSpace(txtDate.Text) OrElse
+        String.IsNullOrWhiteSpace(txtMedicalDetail.Text) OrElse
+        String.IsNullOrWhiteSpace(txtTotalCost.Text) Then
 
             Dim warningScript As String = "<script>alert('Harap isi semua data sebelum mengirim.');</script>"
             ClientScript.RegisterStartupScript(Me.GetType(), "InputValidation", warningScript, False)
@@ -164,41 +223,79 @@ Public Class MR_EMP
             Dim selectedDate As String = txtDate.Text
             Dim medicalDetail As String = txtMedicalDetail.Text
 
-            Dim alertMessage As String = $"Category: {category}\nDate: {selectedDate}\nDetail: {medicalDetail}\nCalculated Amount: {result}"
-            alertMessage = alertMessage.Replace("'", "\'").Replace(vbCrLf, "\n").Replace(vbLf, "\n")
-
-            Session("SuccessMessage") = alertMessage
-
-            ' Simpan data ke database
-            Pengajuan.AddNewRequest(
+            ' Simpan data ke database dan ambil KdKlaim
+            Dim isSuccess As Boolean = Pengajuan.AddNewRequest(
                 Kategori:=category,
                 TanggalPengobatan:=Date.Parse(selectedDate),
                 TanggalPengajuan:=DateTime.Now,
                 DetailPenyakit:=medicalDetail,
                 Biaya:=result,
-                Status_Terakhir:="On Process"
+                Status_Terakhir:="On Process",
+                NIP:="0987654321"
             )
 
-            'sendReqNotif(
-            '    Kategori:=category,
-            '    TanggalPengobatan:=Date.Parse(selectedDate),
-            '    TanggalPengajuan:=DateTime.Now,
-            '    DetailPenyakit:=medicalDetail,
-            '    Biaya:=result,
-            '    Status_Terakhir:="On Process"
-            ')
-            ' Redirect agar form tidak dipost ulang saat reload
+            If isSuccess Then
+                ' Ambil KdKlaim terakhir yang disimpan
+                Dim KdKlaim As Integer = GetLastInsertedKlaimId() ' Implementasikan fungsi ini untuk mendapatkan ID terakhir
 
-            Response.Redirect(Request.RawUrl)
+                ' Baca isi file sebagai Byte array
+                Dim kwitansi As Byte() = New Byte(fileKwitansi.PostedFile.ContentLength - 1) {}
+                fileKwitansi.PostedFile.InputStream.Read(kwitansi, 0, fileKwitansi.PostedFile.ContentLength)
+
+                Dim resep As Byte() = New Byte(fileResep.PostedFile.ContentLength - 1) {}
+                fileResep.PostedFile.InputStream.Read(resep, 0, fileResep.PostedFile.ContentLength)
+
+                Dim pendukung As Byte() = New Byte(filePendukung.PostedFile.ContentLength - 1) {}
+                filePendukung.PostedFile.InputStream.Read(pendukung, 0, filePendukung.PostedFile.ContentLength)
+
+
+                ' Simpan dokumen ke database
+                Try
+                    Pengajuan.SaveDocument(kwitansi, DateTime.Now, resep, pendukung, KdKlaim)
+                Catch ex As Exception
+                    Dim errorScript As String = $"<script>alert('Gagal menyimpan dokumen: {ex.Message}');</script>"
+                    ClientScript.RegisterStartupScript(Me.GetType(), "SaveError", errorScript, False)
+                    Return
+                End Try
+
+                ' Set pesan sukses
+                Session("SuccessMessage") = "Pengajuan berhasil disimpan."
+                Response.Redirect(Request.RawUrl)
+            Else
+                Dim errorScript As String = "<script>alert('Gagal menyimpan pengajuan.');</script>"
+                ClientScript.RegisterStartupScript(Me.GetType(), "SaveError", errorScript, False)
+                Return
+            End If
         End If
     End Sub
 
-    ' Fungsi format Rupiah
     Private Function FormatRupiah(value As Integer) As String
         Return "Rp" & value.ToString("N0", New Globalization.CultureInfo("id-ID"))
     End Function
 
+    Public Function GetLastInsertedKlaimId() As Integer
+        Dim lastId As Integer = 0
+        Dim cmd As New SqlCommand
+        cmd.CommandText = "SELECT TOP 1 KdKlaim FROM DAFTAR_PENGAJUAN_KLAIM ORDER BY TanggalPengajuan DESC"
+        cmd.CommandType = CommandType.Text
+        cmd.Connection = ConnDB
 
+        Try
+            ConnDB.Open()
+            Dim reader As SqlDataReader = cmd.ExecuteReader()
+            If reader.Read() Then
+                lastId = Convert.ToInt32(reader("KdKlaim"))
+            End If
+            reader.Close()
+        Catch ex As Exception
+            ' Tangani kesalahan jika diperlukan
+        Finally
+            ConnDB.Close()
+            cmd.Dispose()
+        End Try
+
+        Return lastId
+    End Function
 
     Private Sub gvLogHistory_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles gvLogHistory.RowDataBound
         If e.Row.RowType = DataControlRowType.DataRow Then

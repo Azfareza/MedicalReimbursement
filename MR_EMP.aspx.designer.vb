@@ -122,33 +122,6 @@ Partial Public Class MR_EMP
     Protected WithEvents txtDate As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''fileKwitansi control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents fileKwitansi As Global.System.Web.UI.WebControls.FileUpload
-
-    '''<summary>
-    '''fileResep control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents fileResep As Global.System.Web.UI.WebControls.FileUpload
-
-    '''<summary>
-    '''filePendukung control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents filePendukung As Global.System.Web.UI.WebControls.FileUpload
-
-    '''<summary>
     '''txtMedicalDetail control.
     '''</summary>
     '''<remarks>
@@ -183,6 +156,33 @@ Partial Public Class MR_EMP
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblCalculation As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''fileKwitansi control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents fileKwitansi As Global.System.Web.UI.WebControls.FileUpload
+
+    '''<summary>
+    '''fileResep control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents fileResep As Global.System.Web.UI.WebControls.FileUpload
+
+    '''<summary>
+    '''filePendukung control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents filePendukung As Global.System.Web.UI.WebControls.FileUpload
 
     '''<summary>
     '''btnSubmit control.
