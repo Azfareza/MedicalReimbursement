@@ -154,7 +154,7 @@
                         <div id="tab1" class="tab-content space-y-4">
                             <div>
                                 <asp:Label ID="lblKwitansi" runat="server" Text="Kwitansi" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
-                                <h2>Kwitansi</h2>
+                                <asp:Image ID="imgKwitansi" runat="server" Width="300px" /><br />
                             </div>
                         </div>
 
@@ -162,6 +162,7 @@
                             <div>
                                 <asp:Label ID="lblResep" runat="server" Text="Resep Obat" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
                                 <h2>Resep Obat</h2>
+                                <asp:Image ID="imgResep" runat="server" Width="300px" /><br />
                             </div>
                         </div>
 
@@ -169,6 +170,7 @@
                             <div>
                                 <asp:Label ID="lblPendukung" runat="server" Text="File Pendukung" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
                                 <h2>File Pendukung</h2>
+                                <asp:Image ID="imgPendukung" runat="server" Width="300px" />
                             </div>
                         </div>
                     </div>
@@ -214,11 +216,11 @@
                   </h2>
                   <asp:GridView ID="gvRequestList" runat="server" CssClass="w-full text-center text-sm" AutoGenerateColumns="False" GridLines="None" HeaderStyle-Font-Bold="True" HeaderStyle-CssClass="font-semibold text-black" RowStyle-CssClass="bg-white rounded-full">
                        <Columns>
-                        <asp:BoundField DataField="NIP" HeaderText="NIP" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-                        <asp:BoundField DataField="Nama" HeaderText="Nama" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-                        <asp:BoundField DataField="Departemen" HeaderText="Departemen" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-                        <asp:BoundField DataField="Kategori" HeaderText="Kategori" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-                        <asp:BoundField DataField="Tanggal" HeaderText="Tanggal" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+                        <asp:BoundField DataField="NIP" ID="RtrNIP" HeaderText="NIP" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+                        <asp:BoundField DataField="Nama" ID="RtrNama" HeaderText="Nama" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+                        <asp:BoundField DataField="Departemen" ID="RtrDept" HeaderText="Departemen" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+                        <asp:BoundField DataField="Kategori" ID="RtrKategori" HeaderText="Kategori" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+                        <asp:BoundField DataField="Tanggal" ID="RtrTanggal" HeaderText="Tanggal" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
                         <asp:TemplateField>
                             <ItemTemplate>
                                 <asp:LinkButton 

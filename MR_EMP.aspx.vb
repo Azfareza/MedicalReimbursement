@@ -25,22 +25,6 @@ Public Class MR_EMP
             filePendukung.Enabled = False
             btnSubmit.Style("display") = "none"
 
-            'DUMMY MANGGIL GAMBAR JPEG!
-
-            Dim dokumen = Pengajuan.SelectDocument(KdDokumen:=7)
-
-            If dokumen IsNot Nothing Then
-                If dokumen.ContainsKey("kwitansi") Then
-                    imgKwitansi.ImageUrl = "data:image/jpeg;base64," & Convert.ToBase64String(dokumen("kwitansi"))
-                End If
-                If dokumen.ContainsKey("resep") Then
-                    imgResep.ImageUrl = "data:image/jpeg;base64," & Convert.ToBase64String(dokumen("resep"))
-                End If
-                If dokumen.ContainsKey("pendukung") Then
-                    imgPendukung.ImageUrl = "data:image/jpeg;base64," & Convert.ToBase64String(dokumen("pendukung"))
-                End If
-            End If
-
         End If
     End Sub
 
@@ -178,15 +162,6 @@ Public Class MR_EMP
     '            NIP:="0987654321"
     '        )
 
-    '        sendReqNotif(
-    '            Kategori:=category,
-    '            TanggalPengobatan:=Date.Parse(selectedDate),
-    '            TanggalPengajuan:=DateTime.Now,
-    '            DetailPenyakit:=medicalDetail,
-    '            Biaya:=result,
-    '            Status_Terakhir:="On Process"
-    '        )
-
     '        Response.Redirect(Request.RawUrl)
     '    End If
     'End Sub
@@ -230,9 +205,18 @@ Public Class MR_EMP
                 TanggalPengajuan:=DateTime.Now,
                 DetailPenyakit:=medicalDetail,
                 Biaya:=result,
-                Status_Terakhir:="On Process",
+                Status_Terakhir:="Awaiting",
                 NIP:="0987654321"
             )
+
+            'sendReqNotif(
+            '    Kategori:=category,
+            '    TanggalPengobatan:=Date.Parse(selectedDate),
+            '    TanggalPengajuan:=DateTime.Now,
+            '    DetailPenyakit:=medicalDetail,
+            '    Biaya:=result,
+            '    Status_Terakhir:="Awaiting"
+            ')
 
             If isSuccess Then
                 ' Ambil KdKlaim terakhir yang disimpan

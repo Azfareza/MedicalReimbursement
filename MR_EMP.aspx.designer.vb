@@ -201,31 +201,4 @@ Partial Public Class MR_EMP
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblStatus As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''imgKwitansi control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents imgKwitansi As Global.System.Web.UI.WebControls.Image
-
-    '''<summary>
-    '''imgResep control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents imgResep As Global.System.Web.UI.WebControls.Image
-
-    '''<summary>
-    '''imgPendukung control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents imgPendukung As Global.System.Web.UI.WebControls.Image
 End Class

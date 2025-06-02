@@ -164,9 +164,6 @@
                     </div>
                 </section>
             </div>
-            <asp:Image ID="imgKwitansi" runat="server" Width="300px" /><br />
-            <asp:Image ID="imgResep" runat="server" Width="300px" /><br />
-            <asp:Image ID="imgPendukung" runat="server" Width="300px" />
         </main>
     </form>
 </body>

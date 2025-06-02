@@ -212,6 +212,15 @@ Partial Public Class MR_HR
     Protected WithEvents lblKwitansi As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''imgKwitansi control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents imgKwitansi As Global.System.Web.UI.WebControls.Image
+
+    '''<summary>
     '''lblResep control.
     '''</summary>
     '''<remarks>
@@ -219,6 +228,15 @@ Partial Public Class MR_HR
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblResep As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''imgResep control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents imgResep As Global.System.Web.UI.WebControls.Image
 
     '''<summary>
     '''lblPendukung control.
@@ -230,6 +248,15 @@ Partial Public Class MR_HR
     Protected WithEvents lblPendukung As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''imgPendukung control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents imgPendukung As Global.System.Web.UI.WebControls.Image
+
+    '''<summary>
     '''gvRequestList control.
     '''</summary>
     '''<remarks>
@@ -237,6 +264,51 @@ Partial Public Class MR_HR
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvRequestList As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''RtrNIP control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RtrNIP As Global.System.Web.UI.WebControls.BoundField
+
+    '''<summary>
+    '''RtrNama control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RtrNama As Global.System.Web.UI.WebControls.BoundField
+
+    '''<summary>
+    '''RtrDept control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RtrDept As Global.System.Web.UI.WebControls.BoundField
+
+    '''<summary>
+    '''RtrKategori control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RtrKategori As Global.System.Web.UI.WebControls.BoundField
+
+    '''<summary>
+    '''RtrTanggal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RtrTanggal As Global.System.Web.UI.WebControls.BoundField
 
     '''<summary>
     '''gvHistory control.
