@@ -60,7 +60,7 @@ Namespace dataPengajuanKlaim
         'SELECT DOCUMENT BY ID
         Public Function SelectDocument(Kdklaim As Integer) As Dictionary(Of String, Byte())
             Dim result As New Dictionary(Of String, Byte())()
-            Using cmd As New SqlCommand("DTA_DAFTAR_PENGAJUAN_KLAIM_SELECT_NOTPROCESSEDYET", ConnDB)
+            Using cmd As New SqlCommand("DOKUMEN_KLAIM_SELECT_BY_ID", ConnDB)
                 cmd.CommandType = CommandType.StoredProcedure
                 cmd.Parameters.Add("@kdklaim", SqlDbType.Int).Value = Kdklaim
 

@@ -96,14 +96,21 @@ Public Class MR_HR
 
         If dokumen IsNot Nothing Then
             If dokumen.ContainsKey("kwitansi") Then
-                imgKwitansi.ImageUrl = "data:image/jpeg;base64," & Convert.ToBase64String(dokumen("kwitansi"))
+                Dim base64String = Convert.ToBase64String(dokumen("kwitansi"))
+                Debug.WriteLine("KWITANSI BASE64: " & base64String.Substring(0, Math.Min(base64String.Length, 100)))
+                imgKwitansi.ImageUrl = "data:image/jpeg;base64," & base64String
             End If
             If dokumen.ContainsKey("resep") Then
-                imgResep.ImageUrl = "data:image/jpeg;base64," & Convert.ToBase64String(dokumen("resep"))
+                Dim base64String = Convert.ToBase64String(dokumen("resep"))
+                Debug.WriteLine("RESEP BASE64: " & base64String.Substring(0, Math.Min(base64String.Length, 100)))
+                imgResep.ImageUrl = "data:image/jpeg;base64," & base64String
             End If
             If dokumen.ContainsKey("pendukung") Then
-                imgPendukung.ImageUrl = "data:image/jpeg;base64," & Convert.ToBase64String(dokumen("pendukung"))
+                Dim base64String = Convert.ToBase64String(dokumen("pendukung"))
+                Debug.WriteLine("PENDUKUNG BASE64: " & base64String.Substring(0, Math.Min(base64String.Length, 100)))
+                imgPendukung.ImageUrl = "data:image/jpeg;base64," & base64String
             End If
+
         End If
 
 
@@ -115,21 +122,7 @@ Public Class MR_HR
 
         Dim PilihText As GridViewRow = gvHistory.SelectedRow
 
-        'DUMMY MANGGIL GAMBAR JPEG!
 
-        'Dim dokumen = Pengajuan.SelectDocument(KdDokumen:=7)
-
-        'If dokumen IsNot Nothing Then
-        '    If dokumen.ContainsKey("kwitansi") Then
-        '        imgKwitansi.ImageUrl = "data:image/jpeg;base64," & Convert.ToBase64String(dokumen("kwitansi"))
-        '    End If
-        '    If dokumen.ContainsKey("resep") Then
-        '        imgResep.ImageUrl = "data:image/jpeg;base64," & Convert.ToBase64String(dokumen("resep"))
-        '    End If
-        '    If dokumen.ContainsKey("pendukung") Then
-        '        imgPendukung.ImageUrl = "data:image/jpeg;base64," & Convert.ToBase64String(dokumen("pendukung"))
-        '    End If
-        'End If
 
         txtClaim.Text = Trim(PilihText.Cells(0).Text)
         txtNIPModal.Text = Trim(PilihText.Cells(1).Text)
@@ -147,6 +140,30 @@ Public Class MR_HR
         txtKategoriModal.Enabled = False
         txtTanggalModal.Enabled = False
         txtbiayaModal.Enabled = False
+
+
+        Dim kdklaim = txtClaim.Text
+        Dim dokumen = Pengajuan.SelectDocument(kdklaim)
+
+        If dokumen IsNot Nothing Then
+            If dokumen.ContainsKey("kwitansi") Then
+                Dim base64String = Convert.ToBase64String(dokumen("kwitansi"))
+                Debug.WriteLine("KWITANSI BASE64: " & base64String.Substring(0, Math.Min(base64String.Length, 100)))
+                imgKwitansi.ImageUrl = "data:image/jpeg;base64," & base64String
+            End If
+            If dokumen.ContainsKey("resep") Then
+                Dim base64String = Convert.ToBase64String(dokumen("resep"))
+                Debug.WriteLine("RESEP BASE64: " & base64String.Substring(0, Math.Min(base64String.Length, 100)))
+                imgResep.ImageUrl = "data:image/jpeg;base64," & base64String
+            End If
+            If dokumen.ContainsKey("pendukung") Then
+                Dim base64String = Convert.ToBase64String(dokumen("pendukung"))
+                Debug.WriteLine("PENDUKUNG BASE64: " & base64String.Substring(0, Math.Min(base64String.Length, 100)))
+                imgPendukung.ImageUrl = "data:image/jpeg;base64," & base64String
+            End If
+
+        End If
+
         ScriptManager.RegisterStartupScript(Me, Me.GetType(), "removeReviewOption", "document.getElementById('reviewOption')?.remove();", True)
     End Sub
 

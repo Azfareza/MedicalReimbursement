@@ -33,42 +33,28 @@
             document.getElementById(tabId + 'Btn').classList.add('bg-[#FFAA0A]', 'text-white');
             document.getElementById(tabId + 'Btn').classList.remove('bg-gray-300', 'text-gray-700');
         }
+        
 
-        // Set default tab
-        document.addEventListener("DOMContentLoaded", function () {
-            showTab('tab1');
-            const approveBtn = document.getElementById('approveBtn');
-            const approveForm = document.getElementById('approveForm');
-            const approveSubmit = document.getElementById('approveSubmit');
-
-            const rejectBtn = document.getElementById('rejectBtn');
-            const rejectForm = document.getElementById('rejectForm');
-            const rejectSubmit = document.getElementById('rejectSubmit');
-            const rejectNote = document.getElementById('rejectNote');
-
-            approveBtn.addEventListener('click', function () {
-                approveForm.classList.remove('hidden');
-                rejectForm.classList.add('hidden');
-            });
-
-            approveSubmit.addEventListener('click', function () {
-                alert("Berhasil Diterima");
-            });
-
-            rejectBtn.addEventListener('click', function () {
-                rejectForm.classList.remove('hidden');
-                approveForm.classList.add('hidden');
-            });
-
-            rejectSubmit.addEventListener('click', function () {
-                const note = rejectNote.value.trim();
-                if (note === '') {
-                    alert('Mohon isi catatan penolakan.');
-                } else {
-                    alert('Catatan Penolakan:\n' + note);
-                }
-            });
-        });
+        function openFullscreen(imageId) {
+            const img = document.getElementById('<%= imgKwitansi.ClientID %>'.replace("imgKwitansi", imageId));
+              if (img.requestFullscreen) {
+                  img.requestFullscreen();
+              } else if (img.webkitRequestFullscreen) {
+                  img.webkitRequestFullscreen(); // Safari
+              } else if (img.msRequestFullscreen) {
+                  img.msRequestFullscreen(); // IE11
+              }
+        }
+        function openFullscreen(imageId) {
+            const img = document.getElementById(imageId);
+            if (img && img.requestFullscreen) {
+                img.requestFullscreen();
+            } else if (img.webkitRequestFullscreen) {
+                img.webkitRequestFullscreen(); // Safari
+            } else if (img.msRequestFullscreen) {
+                img.msRequestFullscreen(); // IE11
+            }
+        }
 
     </script>
 </head>
@@ -112,7 +98,7 @@
 
 <%--MODAL--%>
     <asp:Panel ID="pnlModal" runat="server" CssClass="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-        <div class="bg-gray-100 bg-opacity-90 rounded-2xl p-10 max-w-6xl w-full shadow-lg relative space-y-6"">
+        <div class="bg-gray-100 bg-opacity-90 rounded-2xl p-10 max-w-6xl w-full shadow-lg relative space-y-6 overflow-y-auto max-h-[90vh]">
             <asp:Button ID="btnCloseModal" runat="server" Text="×" CssClass="absolute top-4 right-4 text-3xl font-bold text-gray-700 hover:text-gray-900 bg-transparent border-none cursor-pointer"  />
                     
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-x-12 gap-y-6">
@@ -163,7 +149,8 @@
                         <div id="tab1" class="tab-content space-y-4">
                             <div>
                                 <asp:Label ID="lblKwitansi" runat="server" Text="Kwitansi" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
-                                <asp:Image ID="imgKwitansi" runat="server" Width="300px" /><br />
+                                <asp:Image ID="imgKwitansi" runat="server" ClientIDMode="Static" CssClass="max-w-full h-auto" />
+                                <button type="button" onclick="openFullscreen('imgKwitansi')" class="text-xs text-blue-500 underline mt-1">Perbesar Gambar</button>
                             </div>
                         </div>
 
@@ -171,7 +158,8 @@
                             <div>
                                 <asp:Label ID="lblResep" runat="server" Text="Resep Obat" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
                                 <h2>Resep Obat</h2>
-                                <asp:Image ID="imgResep" runat="server" Width="300px" /><br />
+                                <asp:Image ID="imgResep" runat="server" ClientIDMode="Static" CssClass="max-w-full h-auto" />
+                                <button type="button" onclick="openFullscreen('imgResep')" class="text-xs text-blue-500 underline mt-1">Perbesar Gambar</button>
                             </div>
                         </div>
 
@@ -179,7 +167,8 @@
                             <div>
                                 <asp:Label ID="lblPendukung" runat="server" Text="File Pendukung" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
                                 <h2>File Pendukung</h2>
-                                <asp:Image ID="imgPendukung" runat="server" Width="300px" />
+                                <asp:Image ID="imgPendukung" runat="server" ClientIDMode="Static" CssClass="max-w-full h-auto" />
+                                <button type="button" onclick="openFullscreen('imgPendukung')" class="text-xs text-blue-500 underline mt-1">Perbesar Gambar</button>
                             </div>
                         </div>
                     </div>
@@ -195,20 +184,7 @@
                             </asp:button>
                             <asp:button runat="server" Text="Reject" id="btntidaksetuju" OnClientClick="showReject()" class="bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-6 rounded-full text-lg">
                             </asp:button>
-                    
-                        </div>
-                    
-                        <!-- Reject Form (Initially Hidden) -->
-                        <div id="rejectForm" class="hidden flex flex-col items-center space-y-4">
-                            <textarea id="rejectNote" placeholder="Catatan Penolakan" class="w-[300px] p-3 border rounded-lg text-sm" rows="5"></textarea>
-                            <button id="rejectSubmit" type="button" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-full text-lg">
-                                Submit Reject
-                            </button>
-                        </div>
-                        <div id="approveForm" class="hidden flex flex-col items-center space-y-4">
-                            <button id="approveSubmit" type="button" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded-full text-lg">
-                                Submit Approve
-                            </button>
+        
                         </div>
                     </div>
                 </div>
