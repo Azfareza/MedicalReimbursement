@@ -54,8 +54,35 @@ Namespace dataPengajuanKlaim
             End Try
         End Function
 
+        Public Function InsertHistoryStatus(Status As String, Waktu As DateTime, Catatan As String, Kdklaim As Integer) As Boolean
+            Dim cmd As New SqlCommand
+            cmd.CommandText = "DAFTAR_HISTORY_STATUS_INSERT"
+            cmd.CommandType = CommandType.StoredProcedure
+            cmd.Connection = ConnDB
 
+            cmd.Parameters.Add(New SqlParameter("@Status", SqlDbType.Char, 12, ParameterDirection.Input, False, 0, 0, "", DataRowVersion.Original, Status))
+            cmd.Parameters.Add(New SqlParameter("@Waktu", SqlDbType.DateTime, 8, ParameterDirection.Input, False, 0, 0, "", DataRowVersion.Original, Waktu))
 
+            If String.IsNullOrWhiteSpace(Catatan) Then
+                cmd.Parameters.Add(New SqlParameter("@Catatan", SqlDbType.Char, 30)).Value = DBNull.Value
+            Else
+                cmd.Parameters.Add(New SqlParameter("@Catatan", SqlDbType.Char, 30)).Value = Catatan
+            End If
+
+            cmd.Parameters.Add(New SqlParameter("@Kdklaim", SqlDbType.Int, 4, ParameterDirection.Input, False, 0, 0, "", DataRowVersion.Original, Kdklaim))
+
+            Try
+                ConnDB.Open()
+                cmd.ExecuteNonQuery()
+                Return True
+            Catch ex As Exception
+                Return False
+            Finally
+                ConnDB.Close()
+                cmd.Dispose()
+                cmd = Nothing
+            End Try
+        End Function
 
         'SELECT DOCUMENT BY ID
         Public Function SelectDocument(Kdklaim As Integer) As Dictionary(Of String, Byte())

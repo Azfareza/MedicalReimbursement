@@ -183,7 +183,9 @@ Public Class MR_HR
     End Sub
 
     Private Sub btnSetuju_Click(sender As Object, e As EventArgs) Handles btnSetuju.Click
+        Dim kdklaim As Integer = CInt(txtClaim.Text)
         If KlaimUpdating.KlaimUpdater(txtClaim.Text, "Approved") = True Then
+            Pengajuan.InsertHistoryStatus("Approve", DateTime.Now, Nothing, kdklaim)
             pnlModal.Visible = False
             BindgvReqList()
             BindgvHistory()
@@ -193,7 +195,10 @@ Public Class MR_HR
     End Sub
 
     Private Sub btntidaksetuju_Click(sender As Object, e As EventArgs) Handles btntidaksetuju.Click
+        Dim kdklaim As Integer = CInt(txtClaim.Text)
+        Dim catatan As String = Request.Form("rejectNote")
         If KlaimUpdating.KlaimUpdater(txtClaim.Text, "Rejected") = True Then
+            Pengajuan.InsertHistoryStatus("Reject", DateTime.Now, catatan, kdklaim)
             pnlModal.Visible = False
             BindgvReqList()
             BindgvHistory()

@@ -206,7 +206,7 @@ Public Class MR_EMP
                 DetailPenyakit:=medicalDetail,
                 Biaya:=result,
                 Status_Terakhir:="Awaiting",
-                NIP:="3344556677"
+                NIP:="1234567890"
             )
 
             sendReqNotif(
