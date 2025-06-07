@@ -113,6 +113,24 @@ Partial Public Class MR_HR
     Protected WithEvents btnCloseModal As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
+    '''lblClaim control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblClaim As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtClaim control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtClaim As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''lblNIPModal control.
     '''</summary>
     '''<remarks>
@@ -203,6 +221,24 @@ Partial Public Class MR_HR
     Protected WithEvents txtTanggalModal As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''lblBiayaModal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblBiayaModal As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtbiayaModal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtbiayaModal As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''lblKwitansi control.
     '''</summary>
     '''<remarks>
@@ -257,6 +293,24 @@ Partial Public Class MR_HR
     Protected WithEvents imgPendukung As Global.System.Web.UI.WebControls.Image
 
     '''<summary>
+    '''btnSetuju control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnSetuju As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btntidaksetuju control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btntidaksetuju As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''gvRequestList control.
     '''</summary>
     '''<remarks>
@@ -264,51 +318,6 @@ Partial Public Class MR_HR
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvRequestList As Global.System.Web.UI.WebControls.GridView
-
-    '''<summary>
-    '''RtrNIP control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RtrNIP As Global.System.Web.UI.WebControls.BoundField
-
-    '''<summary>
-    '''RtrNama control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RtrNama As Global.System.Web.UI.WebControls.BoundField
-
-    '''<summary>
-    '''RtrDept control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RtrDept As Global.System.Web.UI.WebControls.BoundField
-
-    '''<summary>
-    '''RtrKategori control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RtrKategori As Global.System.Web.UI.WebControls.BoundField
-
-    '''<summary>
-    '''RtrTanggal control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RtrTanggal As Global.System.Web.UI.WebControls.BoundField
 
     '''<summary>
     '''gvHistory control.

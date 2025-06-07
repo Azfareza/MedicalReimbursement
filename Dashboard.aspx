@@ -166,19 +166,15 @@
                                         <th>Name</th>
                                         <th>Date</th>
                                         <th>Category</th>
-                                        <th>Approval</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     </HeaderTemplate>
                                     <ItemTemplate>
-                                        <tr>
-                                            <td class="font-semibold text-sm"><%# Eval("Nama") %></td>
-                                            <td class="text-xs text-gray-400"><%# Eval("Tanggal") %></td>
+                                        <tr style="cursor:pointer" class="hover:bg-gray-100 transition duration-150" onclick='location.href="MR_HR.aspx"'>
+                                            <td class="font-semibold text-sm"><%# Eval("Namalengkap") %></td>
+                                            <td class="text-xs text-gray-400"><%# Eval("Tanggalpengajuan") %></td>
                                             <td class="text-xs font-semibold text-blue-400"><%# Eval("Kategori") %></td>
-                                            <td class="text-xs font-bold" style='color:<%# GetStatusColor(Eval("Status_Approval")) %>'>
-                                                <%# GetStatusText(Eval("Status_Approval")) %>
-                                            </td>
                                         </tr>
                                     </ItemTemplate>
                                     <FooterTemplate>

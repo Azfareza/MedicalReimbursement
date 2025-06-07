@@ -1,6 +1,9 @@
-﻿Public Class Dashboard
+﻿Imports MedicalReimbursement.dataPengajuanKlaim
+
+Public Class Dashboard
     Inherits System.Web.UI.Page
     Dim Datadashboard As New DataReq.Data_Dashboard
+    Dim pengajuan As New DAFTAR_PENGAJUAN_KLAIM
 
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -9,23 +12,9 @@
         End If
     End Sub
 
-    Public Function GetStatusText(ByVal status As Object) As String
-        If status Is Nothing OrElse Convert.IsDBNull(status) Then
-            Return "On Progress"
-        ElseIf Convert.ToBoolean(status) Then
-            Return "Approved"
-        Else
-            Return "Rejected"
-        End If
-    End Function
-
-    Public Function GetStatusColor(ByVal status As Object) As String
-        Return If(status Is Nothing OrElse Convert.IsDBNull(status), "#878787", If(Convert.ToBoolean(status), "#43AD96", "#EE5C5F"))
-    End Function
-
     Private Sub BindRequest()
         rptRequests.Visible = True
-        rptRequests.DataSource = Datadashboard.SelectAllDahsboard
+        rptRequests.DataSource = pengajuan.SelectAllUnProcessed
         rptRequests.DataBind()
     End Sub
 

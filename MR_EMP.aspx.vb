@@ -206,17 +206,17 @@ Public Class MR_EMP
                 DetailPenyakit:=medicalDetail,
                 Biaya:=result,
                 Status_Terakhir:="Awaiting",
-                NIP:="0987654321"
+                NIP:="3344556677"
             )
 
-            'sendReqNotif(
-            '    Kategori:=category,
-            '    TanggalPengobatan:=Date.Parse(selectedDate),
-            '    TanggalPengajuan:=DateTime.Now,
-            '    DetailPenyakit:=medicalDetail,
-            '    Biaya:=result,
-            '    Status_Terakhir:="Awaiting"
-            ')
+            sendReqNotif(
+                Kategori:=category,
+                TanggalPengobatan:=Date.Parse(selectedDate),
+                TanggalPengajuan:=DateTime.Now,
+                DetailPenyakit:=medicalDetail,
+                Biaya:=result,
+                Status_Terakhir:="Awaiting"
+            )
 
             If isSuccess Then
                 ' Ambil KdKlaim terakhir yang disimpan
@@ -308,7 +308,7 @@ Public Class MR_EMP
 
     Protected Sub sendReqNotif(Kategori As String, TanggalPengobatan As Date, TanggalPengajuan As DateTime, DetailPenyakit As String, Biaya As Integer, Status_Terakhir As String)
 
-        Dim nomor As String = "6285156909701"
+        Dim nomor As String = "6281806038088"
         Dim waktuSekarang As String = TanggalPengajuan
         Dim pesanLengkap As String =
             $"[PENGAJUAN BARU REIMBURSEMENT]" & vbCrLf &

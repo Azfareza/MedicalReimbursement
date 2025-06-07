@@ -54,38 +54,37 @@ Namespace dataPengajuanKlaim
             End Try
         End Function
 
+
+
+
         'SELECT DOCUMENT BY ID
-        Public Function SelectDocument(KdDokumen As Integer) As Dictionary(Of String, Byte())
+        Public Function SelectDocument(Kdklaim As Integer) As Dictionary(Of String, Byte())
             Dim result As New Dictionary(Of String, Byte())()
-            Dim cmd As New SqlCommand
-            cmd.CommandText = "REQUEST_SELECT_DOKUMEN_KLAIM"
-            cmd.CommandType = CommandType.StoredProcedure
-            cmd.Connection = ConnDB
+            Using cmd As New SqlCommand("DTA_DAFTAR_PENGAJUAN_KLAIM_SELECT_NOTPROCESSEDYET", ConnDB)
+                cmd.CommandType = CommandType.StoredProcedure
+                cmd.Parameters.Add("@kdklaim", SqlDbType.Int).Value = Kdklaim
 
-            cmd.Parameters.Add("@KdDokumen", SqlDbType.Int).Value = KdDokumen
-
-            Try
-                ConnDB.Open()
-                Dim reader As SqlDataReader = cmd.ExecuteReader()
-                If reader.Read() Then
-                    If Not reader.IsDBNull(0) Then
-                        result("kwitansi") = CType(reader("FileKwitansi"), Byte())
-                    End If
-                    If Not reader.IsDBNull(1) Then
-                        result("resep") = CType(reader("FileResep"), Byte())
-                    End If
-                    If Not reader.IsDBNull(2) Then
-                        result("pendukung") = CType(reader("FilePendukung"), Byte())
-                    End If
-                End If
-                reader.Close()
-            Catch ex As Exception
-            Finally
-                ConnDB.Close()
-                cmd.Dispose()
-                cmd = Nothing
-            End Try
-
+                Try
+                    ConnDB.Open()
+                    Using reader As SqlDataReader = cmd.ExecuteReader()
+                        If reader.Read() Then
+                            If Not reader.IsDBNull(reader.GetOrdinal("FileKwitansi")) Then
+                                result("kwitansi") = CType(reader("FileKwitansi"), Byte())
+                            End If
+                            If Not reader.IsDBNull(reader.GetOrdinal("FileResep")) Then
+                                result("resep") = CType(reader("FileResep"), Byte())
+                            End If
+                            If Not reader.IsDBNull(reader.GetOrdinal("FilePendukung")) Then
+                                result("pendukung") = CType(reader("FilePendukung"), Byte())
+                            End If
+                        End If
+                    End Using
+                Catch ex As Exception
+                    ' Tambahkan log error jika perlu
+                Finally
+                    ConnDB.Close()
+                End Try
+            End Using
             Return result
         End Function
 
@@ -127,9 +126,26 @@ Namespace dataPengajuanKlaim
             End Using
             Return userdetails
         End Function
+        Public Function SelectAllUnProcessed() As DataTable
+            Dim Comm As New SqlCommand
+            Comm.CommandText = "DTA_DAFTAR_PENGAJUAN_KLAIM_SELECT_NOTPROCESSEDYET"
+            Comm.CommandType = CommandType.StoredProcedure
+            Comm.Connection = ConnDB
+            Dim DA As SqlDataAdapter = New SqlDataAdapter(Comm)
+            Dim DT As DataTable = New DataTable("DataUnProcessedHR")
+            Try
+                DA.Fill(DT)
+                Return DT
+            Catch ex As Exception
+                Return DT
+            Finally
+                DA.Dispose()
+                DA = Nothing
+            End Try
+        End Function
         Public Function SelectAllProcessed() As DataTable
             Dim Comm As New SqlCommand
-            Comm.CommandText = "DTA_DAFTAR_PENGAJUAN_KLAIM_SELECT_BY_PROCESSED"
+            Comm.CommandText = "DTA_KLAIM_STATUS_HISTORY"
             Comm.CommandType = CommandType.StoredProcedure
             Comm.Connection = ConnDB
             Dim DA As SqlDataAdapter = New SqlDataAdapter(Comm)

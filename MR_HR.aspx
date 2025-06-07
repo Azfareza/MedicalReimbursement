@@ -74,7 +74,7 @@
 </head>
 
 <body class="bg-gray-100">
-    <form id="form1" runat="server" class="flex min-h-screen">
+    <form id="form1" runat="server" class="flex min-h-screen"><asp:ScriptManager runat="server"></asp:ScriptManager>
         <!-- Sidebar -->
         <aside class="bg-[#1B5E57] w-56 flex flex-col p-5">
             <asp:TextBox ID="txtSearch" runat="server" CssClass="mb-6 h-10 rounded px-3 text-gray-900" />
@@ -118,6 +118,10 @@
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-x-12 gap-y-6">
                     <!-- Left Column -->
                     <div class="space-y-4">
+                        <div>
+                            <asp:Label ID="lblClaim" runat="server" AssociatedControlID="txtClaim" Text="Kode Klaim" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
+                            <asp:TextBox ID="txtClaim" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
+                        </div>
                           <div>
                             <asp:Label ID="lblNIPModal" runat="server" AssociatedControlID="txtNIPModal" Text="NIP" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
                             <asp:TextBox ID="txtNIPModal" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
@@ -134,6 +138,7 @@
 
                     <!-- Middle Column -->
                     <div class="space-y-4">
+
                       <div>
                         <asp:Label ID="lblKategoriModal" runat="server" AssociatedControlID="txtKategoriModal" Text="Kategori" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
                         <asp:TextBox ID="txtKategoriModal" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
@@ -141,6 +146,10 @@
                       <div>
                         <asp:Label ID="lblTanggalModal" runat="server" AssociatedControlID="txtTanggalModal" Text="Tanggal" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
                         <asp:TextBox ID="txtTanggalModal" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
+                      </div>
+                        <div>
+                        <asp:Label ID="lblBiayaModal" runat="server" AssociatedControlID="txtBiayaModal" Text="Biaya" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
+                        <asp:TextBox ID="txtbiayaModal" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
                       </div>
                     </div>
 
@@ -181,12 +190,12 @@
                     <div class="flex flex-col items-center space-y-4">
                         <!-- Approve & Reject Buttons -->
                         <div class="flex space-x-4">
-                            <button type="button" id="approveBtn" onclick="showApprove()" class="bg-green-400 hover:bg-green-500 text-white font-bold py-2 px-6 rounded-full text-lg">
-                                Approve
-                            </button>
-                            <button type="button" id="rejectBtn" onclick="showReject()" class="bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-6 rounded-full text-lg">
-                                Reject
-                            </button>
+                            <asp:button runat="server" Text="Approve" id="btnSetuju" OnClientClick="Disetujui()" class="bg-green-400 hover:bg-green-500 text-white font-bold py-2 px-6 rounded-full text-lg">
+                                
+                            </asp:button>
+                            <asp:button runat="server" Text="Reject" id="btntidaksetuju" OnClientClick="showReject()" class="bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-6 rounded-full text-lg">
+                            </asp:button>
+                    
                         </div>
                     
                         <!-- Reject Form (Initially Hidden) -->
@@ -196,7 +205,6 @@
                                 Submit Reject
                             </button>
                         </div>
-                    
                         <div id="approveForm" class="hidden flex flex-col items-center space-y-4">
                             <button id="approveSubmit" type="button" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded-full text-lg">
                                 Submit Approve
@@ -216,11 +224,13 @@
                   </h2>
                   <asp:GridView ID="gvRequestList" runat="server" CssClass="w-full text-center text-sm" AutoGenerateColumns="False" GridLines="None" HeaderStyle-Font-Bold="True" HeaderStyle-CssClass="font-semibold text-black" RowStyle-CssClass="bg-white rounded-full">
                        <Columns>
-                        <asp:BoundField DataField="NIP" ID="RtrNIP" HeaderText="NIP" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-                        <asp:BoundField DataField="Nama" ID="RtrNama" HeaderText="Nama" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-                        <asp:BoundField DataField="Departemen" ID="RtrDept" HeaderText="Departemen" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-                        <asp:BoundField DataField="Kategori" ID="RtrKategori" HeaderText="Kategori" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-                        <asp:BoundField DataField="Tanggal" ID="RtrTanggal" HeaderText="Tanggal" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+                        <asp:BoundField DataField="kdklaim"  HeaderText="No. Klaim" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+                        <asp:BoundField DataField="NIP"  HeaderText="NIP" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+                        <asp:BoundField DataField="NamaLengkap"  HeaderText="Nama" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+                        <asp:BoundField DataField="NamaDepartemen" HeaderText="Departemen" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+                        <asp:BoundField DataField="Kategori"  HeaderText="Kategori" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+                        <asp:BoundField DataField="TanggalPengajuan"  HeaderText="Tanggal" DataFormatString="{0:dd-MM-yyyy}" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+                        <asp:BoundField DataField="Biaya"  HeaderText="Biaya" DataFormatString="{0:#,##0.00} IDR" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
                         <asp:TemplateField>
                             <ItemTemplate>
                                 <asp:LinkButton 
@@ -246,12 +256,13 @@
                     </h2>
                     <asp:GridView ID="gvHistory" runat="server" CssClass="w-full text-center text-sm" AutoGenerateColumns="False" GridLines="None" HeaderStyle-Font-Bold="True" HeaderStyle-CssClass="font-semibold text-black" RowStyle-CssClass="bg-white rounded-full" OnRowDataBound="gvHistory_RowDataBound" >
                         <Columns>
+                            <asp:BoundField DataField="kdklaim"  HeaderText="No. Klaim" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
                             <asp:BoundField DataField="NIP" HeaderText="NIP" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-                            <asp:BoundField DataField="Nama" HeaderText="Nama" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-                            <asp:BoundField DataField="Departemen" HeaderText="Departemen" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+                            <asp:BoundField DataField="Namalengkap" HeaderText="Nama" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+                            <asp:BoundField DataField="NamaDepartemen" HeaderText="Departemen" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
                             <asp:BoundField DataField="Kategori" HeaderText="Kategori" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-                            <asp:BoundField DataField="Tanggal" HeaderText="Tanggal" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-                            <asp:BoundField DataField="status_approval" HeaderText="Status" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+                            <asp:BoundField DataField="Tanggalpengajuan" HeaderText="Tanggal" DataFormatString="{0:dd-MM-yyyy}" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
+                            <asp:BoundField DataField="status_terakhir" HeaderText="Status" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
                             <asp:TemplateField>
                                 <ItemTemplate>
                                     <asp:LinkButton 

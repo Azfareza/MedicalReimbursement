@@ -45,7 +45,7 @@ Namespace DataReq
 
         Public Function SelectAllAktif() As DataTable
             Dim Comm As New SqlCommand
-            Comm.CommandText = "REQUEST_SELECT_ALL_AKTIF"
+            Comm.CommandText = "DTA_DAFTAR_PENGAJUAN_KLAIM_SELECT_NOTPROCESSEDYET" '"REQUEST_SELECT_ALL_AKTIF"
             Comm.CommandType = CommandType.StoredProcedure
             Comm.Connection = ConnDB
             Dim DA As SqlDataAdapter = New SqlDataAdapter(Comm)
