@@ -11,77 +11,77 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Dashboard_EMP
+Partial Public Class Sidebar
 
     '''<summary>
-    '''scriptmanager1 control.
+    '''head control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents scriptmanager1 As Global.System.Web.UI.ScriptManager
+    Protected WithEvents head As Global.System.Web.UI.WebControls.ContentPlaceHolder
 
     '''<summary>
-    '''FullNameLabel control.
+    '''form1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents FullNameLabel As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
-    '''NIPLabel control.
+    '''txtSearch control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents NIPLabel As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents txtSearch As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''DepartementLabel control.
+    '''lblUserName control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents DepartementLabel As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblUserName As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''DivisionLabel control.
+    '''btnDashboard control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents DivisionLabel As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents btnDashboard As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''LevelLabel control.
+    '''btnMedicalReimbursement control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents LevelLabel As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents btnMedicalReimbursement As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''StatusLabel control.
+    '''btnLogOut control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents StatusLabel As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents btnLogOut As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''MedicalReimbursementGrid control.
+    '''ContentPlaceHolder1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents MedicalReimbursementGrid As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents ContentPlaceHolder1 As Global.System.Web.UI.WebControls.ContentPlaceHolder
 End Class
