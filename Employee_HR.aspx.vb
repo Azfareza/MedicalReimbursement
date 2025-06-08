@@ -24,14 +24,6 @@
         End If
     End Sub
 
-    Private Sub btnDashboard_Click(sender As Object, e As EventArgs) Handles btnDashboard.Click
-        Response.Redirect("Dashboard.aspx")
-    End Sub
-
-    Private Sub btnMedicalReimbursement_Click(sender As Object, e As EventArgs) Handles btnMedicalReimbursement.Click
-        Response.Redirect("MR_HR.aspx")
-    End Sub
-
     Private Sub BindEmployee()
         gvEmployees.Visible = True
         gvEmployees.DataSource = DataEmployee.SelectAllPegawai

@@ -16,14 +16,6 @@ Public Class MR_HR
         End If
     End Sub
 
-    Private Sub btnDashboard_Click(sender As Object, e As EventArgs) Handles btnDashboard.Click
-        Response.Redirect("Dashboard.aspx")
-    End Sub
-
-    Private Sub btnEmployees_Click(sender As Object, e As EventArgs) Handles btnEmployees.Click
-        Response.Redirect("Employee_HR.aspx")
-    End Sub
-
     Private Sub BindNipPegawai()
         Dim dt As DataTable = Pengajuan.RetrieveNipPegawai()
 

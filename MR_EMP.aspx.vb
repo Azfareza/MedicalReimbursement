@@ -362,12 +362,6 @@ Public Class MR_EMP
         End Try
     End Sub
 
-
-
-    Private Sub btnDashboard_Click(sender As Object, e As EventArgs) Handles btnDashboard.Click
-        Response.Redirect("Dashboard_EMP.aspx")
-    End Sub
-
     Private Sub BindLogHistoris()
         gvLogHistory.Visible = True
         gvLogHistory.DataSource = MrEmployee.SelectAllLogHistorisByNip

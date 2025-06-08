@@ -14,85 +14,13 @@ Option Explicit On
 Partial Public Class Dashboard
 
     '''<summary>
-    '''form1 control.
+    '''scriptmanager1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
-
-    '''<summary>
-    '''txtSearch control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtSearch As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''lblUserName control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblUserName As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''btnDashboard control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnDashboard As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''btnMedicalReimbursement control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnMedicalReimbursement As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''btnEmployees control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnEmployees As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''btnLogOut control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnLogOut As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''imgHeaderBg control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents imgHeaderBg As Global.System.Web.UI.WebControls.Image
-
-    '''<summary>
-    '''imgLogo control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents imgLogo As Global.System.Web.UI.WebControls.Image
+    Protected WithEvents scriptmanager1 As Global.System.Web.UI.ScriptManager
 
     '''<summary>
     '''rptRequests control.

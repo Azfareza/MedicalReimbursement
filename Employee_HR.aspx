@@ -1,65 +1,15 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Employee_HR.aspx.vb" Inherits="MedicalReimbursement.Employee_HR" %>
+﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Employee_HR.aspx.vb" Inherits="MedicalReimbursement.Employee_HR" MasterPageFile="~/Header.master" %>
 
-<!DOCTYPE html>
+<asp:Content ID="headContent" runat="server" ContentPlaceHolderID="head">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</asp:Content>
 
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <title>Medical Reimbursement</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <%--<link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />--%>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap" rel="stylesheet" />
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-    </style>
-</head>
-<body class="bg-gray-100">
-    <form id="form1" runat="server" class="flex min-h-screen">
-        <!-- Sidebar -->
-        <aside class="bg-[#1B5E57] w-56 flex flex-col p-5">
-            <asp:TextBox ID="txtSearch" runat="server" CssClass="mb-6 h-10 rounded px-3 text-gray-900" />
-            <div class="text-white mb-6">
-                <p class="font-bold text-sm">Welcome,</p>
-                <asp:Label ID="lblUserName" runat="server" Text="Nadia Setyaningrum" CssClass="text-xs font-light" />
-            </div>
-            <nav class="flex flex-col gap-3">
-                <asp:Button ID="btnDashboard" runat="server" Text="Dashboard" CssClass="bg-[#145445] text-white text-xs font-semibold rounded px-4 py-2 text-left hover:bg-[#FFAA0A] cursor-pointer" />
-                <asp:Button ID="btnMedicalReimbursement" runat="server" Text="Medical Reimbursement" CssClass="bg-[#145445] text-white text-xs font-semibold rounded px-4 py-2 text-left hover:bg-[#FFAA0A] cursor-pointer" />
-                <asp:Button ID="btnEmployees" runat="server" Text="Employees" CssClass="bg-[#FFAA0A] text-white text-xs font-semibold rounded px-4 py-2 text-left hover:cursor-pointer" />
-                <asp:Button ID="btnLogOut" runat="server" Text="Log Out" CssClass="border border-[#FF6B6B] text-white text-xs font-semibold rounded px-4 py-2 text-left hover:bg-[#FF6B6B] cursor-pointer" />
-            </nav>
-        </aside>
-        <!-- Main content -->
-        <main class="flex-1 p-6">
-            <!-- Header with logo and background image -->
-            <div class="relative mb-8 rounded overflow-hidden">
-                <asp:Image ID="imgHeaderBg" runat="server" CssClass="w-full h-28 object-cover opacity-30" 
-                    ImageUrl="https://storage.googleapis.com/a1aa/image/dcc648eb-8145-4b6b-6446-fca61fbff108.jpg" 
-                    AlternateText="Mining trucks and equipment in a mining site" />
-                <div aria-label="Company logo and dashboard title" class="absolute inset-0 flex items-center gap-4 px-6">
-                    <asp:Image ID="imgLogo" runat="server" CssClass="h-20 w-20 object-contain" 
-                        ImageUrl="https://kutaibara.co.id/wp-content/uploads/2023/04/KBN-Logo-horizontal.png" 
-                        AlternateText="Kutai Bara Nusantara company logo with flame and diamond shapes" />
-                    <div class="text-[#145445] font-semibold text-xl md:text-2xl flex items-center gap-1">
-                        <span class="text-lg md:text-xl font-normal block leading-none">
-                            KUTAI BARA NUSANTARA<br />
-                            <span class="text-xs font-light leading-tight block">A Leading Energy Producer</span>
-                        </span>
-                        <span class="text-[#145445] font-extrabold text-2xl md:text-3xl ml-2">EMPLOYEE</span>
-                    </div>
-                </div>
-            </div>
-         <div class="max-w-5xl mx-auto flex justify-end mb-8">
-    <asp:Button ID="btnAddEmployee" runat="server" Text="Add Employee" CssClass="bg-[#0052cc] text-white font-semibold rounded-lg py-3 px-6 flex items-center space-x-2 hover:cursor-pointer"/> <%--OnClick="btnAddEmployee_Click"--%> 
-    <%--<i class="fas fa-caret-down ml-2 mt-1 text-white"></i>--%>
+<asp:Content ID="mainContent" runat="server" ContentPlaceHolderID="SubContent">
+    <asp:ScriptManager ID="scriptmanager1" runat="server" />
+    <div class="max-w-5xl mx-auto flex justify-end mb-8">
+        <asp:Button ID="btnAddEmployee" runat="server" Text="Add Employee" CssClass="bg-[#0052cc] text-white font-semibold rounded-lg py-3 px-6 flex items-center space-x-2 hover:cursor-pointer"/> <%--OnClick="btnAddEmployee_Click"--%> 
         <asp:Panel ID="pnlModal" runat="server" CssClass="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-      <div
-        class="bg-gray-100 bg-opacity-90 rounded-2xl p-10 max-w-6xl w-full grid grid-cols-1 sm:grid-cols-3 gap-x-12 gap-y-6 shadow-lg relative"
-      >
+        <div class="bg-gray-100 bg-opacity-90 rounded-2xl p-10 max-w-6xl w-full grid grid-cols-1 sm:grid-cols-3 gap-x-12 gap-y-6 shadow-lg relative">
         <asp:Button ID="btnCloseModal" runat="server" Text="×" CssClass="absolute top-4 right-4 text-3xl font-bold text-gray-700 hover:text-gray-900 bg-transparent border-none cursor-pointer"  />
 
         <!-- Left Column -->
@@ -157,28 +107,23 @@
       </div>
     </asp:Panel>
 
-   </div>
-             <section class="max-w-5xl mx-auto">
-    <asp:GridView ID="gvEmployees" runat="server" AutoGenerateColumns="False" CssClass="w-full text-center text-sm font-semibold text-black" HeaderStyle-CssClass="pb-3" RowStyle-CssClass="bg-white rounded-full" GridLines="None">
-     <Columns>
-      <asp:BoundField DataField="NIP" HeaderText="NIP" />
-      <asp:BoundField DataField="Nama" HeaderText="Nama" />
-      <asp:BoundField DataField="Divisi" HeaderText="Divisi" />
-      <asp:BoundField DataField="Departemen" HeaderText="Departemen" />
-      <asp:BoundField DataField="Level" HeaderText="Level" />
-      <asp:BoundField DataField="Status_pegawai" HeaderText="Status" />
-      <asp:TemplateField>
-       <ItemTemplate>
-        <asp:Button ID="btnEdit" runat="server" CssClass="bg-[#0052cc] p-2 rounded-sm text-white"  CommandArgument='<%# Eval("NIP") %>'> <%--OnClick="btnEdit_Click"--%>
-         <%--<i class="fas fa-edit"></i>--%>
-        </asp:Button>
-        <span aria-hidden="true" class="absolute top-0 right-0 block h-3 w-3 rounded-full bg-red-600 border-2 border-white" style="position: relative; top: -1.25rem; left: 0.75rem;"></span>
-       </ItemTemplate>
-      </asp:TemplateField>
-     </Columns>
-    </asp:GridView>
-   </section>
-        </main>
-    </form>
-</body>
-</html>
+    </div>
+    <section class="max-w-5xl mx-auto">
+        <asp:GridView ID="gvEmployees" runat="server" AutoGenerateColumns="False" CssClass="w-full text-center text-sm font-semibold text-black" HeaderStyle-CssClass="pb-3" RowStyle-CssClass="bg-white rounded-full" GridLines="None">
+             <Columns>
+                  <asp:BoundField DataField="NIP" HeaderText="NIP" />
+                  <asp:BoundField DataField="Nama" HeaderText="Nama" />
+                  <asp:BoundField DataField="Divisi" HeaderText="Divisi" />
+                  <asp:BoundField DataField="Departemen" HeaderText="Departemen" />
+                  <asp:BoundField DataField="Level" HeaderText="Level" />
+                  <asp:BoundField DataField="Status_pegawai" HeaderText="Status" />
+                  <asp:TemplateField>
+                       <ItemTemplate>
+                            <asp:Button ID="btnEdit" runat="server" CssClass="bg-[#0052cc] p-2 rounded-sm text-white"  CommandArgument='<%# Eval("NIP") %>'></asp:Button>
+                            <span aria-hidden="true" class="absolute top-0 right-0 block h-3 w-3 rounded-full bg-red-600 border-2 border-white" style="position: relative; top: -1.25rem; left: 0.75rem;"></span>
+                       </ItemTemplate>
+                  </asp:TemplateField>
+             </Columns>
+        </asp:GridView>
+    </section>
+</asp:Content>

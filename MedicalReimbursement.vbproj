@@ -149,6 +149,7 @@
     <Content Include="Employee_HR.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Login.aspx" />
     <Content Include="Master_Request.aspx" />
     <Content Include="MR_EMP.aspx" />
     <Content Include="MR_HR.aspx" />
@@ -270,6 +271,13 @@
     <Compile Include="Header.master.vb">
       <DependentUpon>Header.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.vb">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.vb">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Master_Request.aspx.designer.vb">
       <DependentUpon>Master_Request.aspx</DependentUpon>

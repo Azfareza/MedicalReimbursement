@@ -17,12 +17,4 @@ Public Class Dashboard
         rptRequests.DataSource = pengajuan.SelectAllUnProcessed
         rptRequests.DataBind()
     End Sub
-
-    Private Sub btnMedicalReimbursement_Click(sender As Object, e As EventArgs) Handles btnMedicalReimbursement.Click
-        Response.Redirect("MR_HR.aspx")
-    End Sub
-
-    Private Sub btnEmployees_Click(sender As Object, e As EventArgs) Handles btnEmployees.Click
-        Response.Redirect("Employee_HR.aspx")
-    End Sub
 End Class

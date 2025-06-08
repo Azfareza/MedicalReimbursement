@@ -20,14 +20,7 @@
 
 <asp:Content ID="mainContent" runat="server" ContentPlaceHolderID="SubContent">
     <asp:ScriptManager ID="scriptmanager1" runat="server" />
-
-
-
-
-
     <!-- Main content -->
-
-
         <section aria-label="Summary sections" class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
             <article>
                 <h2 class="text-[#f7931e] font-semibold text-xl mb-4">Personal Summary
