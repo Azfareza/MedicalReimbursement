@@ -2,13 +2,13 @@
 
 <asp:Content ID="headContent" runat="server" ContentPlaceHolderID="head">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/2.3.0/js/dataTables.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.0/css/dataTables.dataTables.min.css">
+    <script src="https://cdn.datatables.net/2.3.2/js/dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.min.css">
     <script>
         $(document).ready(function () {
-            $('#requestsTable').DataTable({
+            $('#logHistoryTable').DataTable({
                 "paging": true,
-                "pageLength": 5,
+                "pageLength": 12,
                 "searching": true,
                 "info": true,
                 "ordering": true,
@@ -18,36 +18,39 @@
     </script>
 </asp:Content>
 
+<asp:Content ID="Content1" ContentPlaceHolderID="PageTitlePlaceHolder" runat="server">
+    <span class="text-[#145445] font-extrabold text-2xl md:text-3xl ml-2">REIMBURSEMENT</span>
+</asp:Content>
+
 <asp:Content ID="mainContent" runat="server" ContentPlaceHolderID="SubContent">
     <asp:ScriptManager ID="scriptmanager1" runat="server" />
             
     <div class="flex flex-col md:flex-row gap-6 container mx-auto px-4">
-        <section class="flex-1 w-1/2">
+        <section class="bg-white rounded-lg p-5 flex-1 w-1/2">
             <div class="flex justify-between items-center mb-4 px-1">
-                <h2 class="text-[#f97316] font-semibold text-lg">
-                    Log History
-                </h2>
-                <%--<asp:Button ID="btnAddNewRequest" runat="server" Text="Add New Request" CssClass="bg-[#0052cc] text-white font-semibold rounded-md py-2 px-5" />--%>
+                <h2 class="text-[#f97316] font-semibold text-lg">Log History</h2>
             </div>
-            <asp:GridView ID="gvLogHistory" runat="server" AutoGenerateColumns="False" CssClass="w-full bg-white rounded-lg shadow-sm border border-gray-400 text-sm" HeaderStyle-CssClass="text-left font-semibold p-3 border-b border-gray-400" RowStyle-CssClass="border border-gray-400 rounded-md mt-2" AlternatingRowStyle-CssClass="border border-gray-400 rounded-md mt-2">
-                <Columns>
-                    <asp:TemplateField HeaderText="Status">
+
+            <table id="logHistoryTable" class="w-full bg-white rounded-lg shadow-sm border border-gray-400 text-sm display">
+                <thead class="text-left font-semibold border-b border-gray-400">
+                    <tr>
+                        <th class="p-3">Category</th>
+                        <th class="p-3">Req. Date</th>
+                        <th class="p-3">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <asp:Repeater ID="rptLogHistory" runat="server">
                         <ItemTemplate>
-                            <asp:Label ID="lblStatus" runat="server" />
+                            <tr class="border border-gray-400 rounded-md mt-2">
+                                <td class="p-3"><%# Eval("Kategori") %></td>
+                                <td class="p-3"><%# Eval("TanggalPengajuan") %></td>
+                                <td class="p-3"><%# Eval("Status_Terakhir") %></td>
+                            </tr>
                         </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:BoundField DataField="Category" HeaderText="Category" ItemStyle-CssClass="p-3" />
-                    <asp:BoundField DataField="RequestDate" HeaderText="Request Date" ItemStyle-CssClass="p-3" />
-                    <asp:TemplateField>
-                        <ItemTemplate>
-                            <asp:Button ID="btnEdit" runat="server" CssClass="bg-[#0052cc] p-2 rounded text-white relative" CommandName="EditRequest" CommandArgument='<%# Container.DataItemIndex %>'>
-                            <%--<i class="fas fa-edit"></i>--%>
-                            </asp:Button>
-                            <span class="absolute top-0 right-0 block h-2 w-2 rounded-full ring-2 ring-white bg-red-600" style="position:relative; top:-28px; left:-28px;"></span>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                </Columns>
-            </asp:GridView>
+                    </asp:Repeater>
+                </tbody>
+            </table>
         </section>
      <!-- Form -->
         <section class="flex-1 w-1/2">

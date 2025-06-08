@@ -50,22 +50,13 @@ Partial Public Class Dashboard_EMP
     Protected WithEvents DepartementLabel As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''DivisionLabel control.
+    '''JabatanLabel control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents DivisionLabel As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''LevelLabel control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents LevelLabel As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents JabatanLabel As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''StatusLabel control.

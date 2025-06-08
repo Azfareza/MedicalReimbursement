@@ -4,6 +4,10 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </asp:Content>
 
+<asp:Content ID="Content1" ContentPlaceHolderID="PageTitlePlaceHolder" runat="server">
+    <span class="text-[#145445] font-extrabold text-2xl md:text-3xl ml-2">EMPLOYEES</span>
+</asp:Content>
+
 <asp:Content ID="mainContent" runat="server" ContentPlaceHolderID="SubContent">
     <asp:ScriptManager ID="scriptmanager1" runat="server" />
     <div class="max-w-5xl mx-auto flex justify-end mb-8">

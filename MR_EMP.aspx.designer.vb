@@ -23,13 +23,13 @@ Partial Public Class MR_EMP
     Protected WithEvents scriptmanager1 As Global.System.Web.UI.ScriptManager
 
     '''<summary>
-    '''gvLogHistory control.
+    '''rptLogHistory control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents gvLogHistory As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents rptLogHistory As Global.System.Web.UI.WebControls.Repeater
 
     '''<summary>
     '''ddlReimbursementCategory control.

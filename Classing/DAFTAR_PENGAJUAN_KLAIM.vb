@@ -29,7 +29,7 @@ Namespace dataPengajuanKlaim
                 cmd = Nothing
             End Try
         End Function
-        Public Function SaveDocument(kwitansi As Byte(), WaktuUpload As DateTime, resep As Byte(), pendukung As Byte(), KdKlaim As integer) As Boolean
+        Public Function SaveDocument(kwitansi As Byte(), WaktuUpload As DateTime, resep As Byte(), pendukung As Byte(), KdKlaim As Integer) As Boolean
             Dim cmd As New SqlCommand
             cmd.CommandText = "DAFTAR_DOKUMEN_KLAIM_INSERT"
             cmd.CommandType = CommandType.StoredProcedure
@@ -240,6 +240,26 @@ Namespace dataPengajuanKlaim
                 DA = Nothing
             End Try
         End Function
+
+        Public Function SelectAllLogHistorisByNip(NIP As String) As DataTable
+            Dim Comm As New SqlCommand
+            Comm.CommandText = "DTA_KLAIM_STATUS_HISTORY_BY_NIP"
+            Comm.CommandType = CommandType.StoredProcedure
+            Comm.Connection = ConnDB
+            Comm.Parameters.Add("@NIP", SqlDbType.Char).Value = NIP
+            Dim DA As SqlDataAdapter = New SqlDataAdapter(Comm)
+            Dim DT As DataTable = New DataTable("DataLogHistorisByNip")
+            Try
+                DA.Fill(DT)
+                Return DT
+            Catch ex As Exception
+                Return DT
+            Finally
+                DA.Dispose()
+                DA = Nothing
+            End Try
+        End Function
+
 
     End Class
 End Namespace

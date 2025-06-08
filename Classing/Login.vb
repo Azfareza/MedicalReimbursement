@@ -40,5 +40,25 @@ Namespace LoginLogic
 
             Return ""
         End Function
+        Public Function GetUserDetail(nip As String) As Dictionary(Of String, Object)
+            Dim Comm As New SqlCommand
+            Dim userDetails As New Dictionary(Of String, Object)
+            Comm.CommandText = "DTA_SUMMARY_PEGAWAI"
+            Comm.CommandType = CommandType.StoredProcedure
+            Comm.Parameters.AddWithValue("@nip", nip)
+            Comm.Connection = ConnDB
+            ConnDB.Open()
+
+            Using reader As SqlDataReader = Comm.ExecuteReader()
+                If reader.Read() Then
+                    userDetails("NIP") = If(IsDBNull(reader("NIP")), String.Empty, reader("NIP").ToString())
+                    userDetails("Name") = If(IsDBNull(reader("NamaLengkap")), String.Empty, reader("NamaLengkap").ToString())
+                    userDetails("Dept") = If(IsDBNull(reader("NamaDepartemen")), String.Empty, reader("NamaDepartemen").ToString())
+                    userDetails("Jabatan") = If(IsDBNull(reader("NamaJabatan")), String.Empty, reader("NamaJabatan").ToString())
+                    userDetails("Status") = If(IsDBNull(reader("Status")), String.Empty, reader("Status").ToString())
+                End If
+            End Using
+            Return userDetails
+        End Function
     End Class
 End Namespace

@@ -17,6 +17,25 @@ Public Class Login
             Session("NIP") = nip
             Session("Role") = LoginLogic.GetUserRole(nip)
 
+            Dim userDetails As Dictionary(Of String, Object) = LoginLogic.GetUserDetail(nip)
+            If userDetails IsNot Nothing Then
+                If userDetails.ContainsKey("NIP") Then
+                    Session("NIP") = userDetails("NIP").ToString()
+                End If
+                If userDetails.ContainsKey("Name") Then
+                    Session("Name") = userDetails("Name").ToString()
+                End If
+                If userDetails.ContainsKey("Dept") Then
+                    Session("Dept") = userDetails("Dept").ToString()
+                End If
+                If userDetails.ContainsKey("Jabatan") Then
+                    Session("Jabatan") = userDetails("Jabatan").ToString()
+                End If
+                If userDetails.ContainsKey("Status") Then
+                    Session("Status") = userDetails("Status").ToString()
+                End If
+            End If
+
             ' Redirect sesuai role
             Select Case Session("Role").ToString()
                 Case "1"

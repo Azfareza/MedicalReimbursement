@@ -60,6 +60,10 @@
     </script>
 </asp:Content>
 
+<asp:Content ID="Content1" ContentPlaceHolderID="PageTitlePlaceHolder" runat="server">
+    <span class="text-[#145445] font-extrabold text-2xl md:text-3xl ml-2">REIMBURSEMENT</span>
+</asp:Content>
+
 <asp:Content ID="mainContent" runat="server" ContentPlaceHolderID="SubContent">
     <asp:ScriptManager ID="scriptmanager1" runat="server" />
     <%--MODAL--%>

@@ -32,6 +32,15 @@ Partial Public Class Header
     Protected WithEvents imgLogo As Global.System.Web.UI.WebControls.Image
 
     '''<summary>
+    '''PageTitlePlaceHolder control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents PageTitlePlaceHolder As Global.System.Web.UI.WebControls.ContentPlaceHolder
+
+    '''<summary>
     '''head control.
     '''</summary>
     '''<remarks>

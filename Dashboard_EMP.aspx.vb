@@ -17,6 +17,12 @@
         ElseIf userRole = "4" Then ' Role 4: USER
 
         End If
+
+        NIPLabel.Text = Session("NIP").ToString()
+        FullNameLabel.Text = Session("Name").ToString()
+        DepartementLabel.Text = Session("Dept").ToString()
+        JabatanLabel.Text = Session("Jabatan").ToString()
+        StatusLabel.Text = Session("Status").ToString
     End Sub
 
 End Class
