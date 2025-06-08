@@ -226,6 +226,7 @@
     <Compile Include="Classing\DAFTAR_PENGAJUAN_KLAIM.vb" />
     <Compile Include="Classing\Dashboard.vb" />
     <Compile Include="Classing\KLAIM_UPDATE.vb" />
+    <Compile Include="Classing\Login.vb" />
     <Compile Include="Classing\UtiUmum.vb" />
     <Compile Include="Contact.aspx.designer.vb">
       <DependentUpon>Contact.aspx</DependentUpon>
