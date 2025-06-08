@@ -41,31 +41,157 @@ Partial Public Class Sidebar
     Protected WithEvents txtSearch As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''lblUserName control.
+    '''Labeladmin control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblUserName As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents Labeladmin As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''btnDashboard control.
+    '''Labeldir control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnDashboard As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents Labeldir As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''btnMedicalReimbursement control.
+    '''Labelhr control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnMedicalReimbursement As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents Labelhr As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Labelemp control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Labelemp As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Adminpanel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Adminpanel As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''btnDashboardAdmin control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnDashboardAdmin As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''Dirpanel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Dirpanel As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''btnDashboardDir control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnDashboardDir As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnMedicalReimbursementDir control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnMedicalReimbursementDir As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnEmployeeDir control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnEmployeeDir As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''hrpanel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hrpanel As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''btnDashboardHr control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnDashboardHr As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnMedicalReimbursementHr control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnMedicalReimbursementHr As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnEmployeeHr control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnEmployeeHr As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''emppanel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents emppanel As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''btnDashboardEmp control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnDashboardEmp As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnMedicalReimbursementEmp control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnMedicalReimbursementEmp As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''btnLogOut control.

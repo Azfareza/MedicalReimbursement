@@ -27,11 +27,37 @@
                 <asp:TextBox ID="txtSearch" runat="server" CssClass="mb-6 h-10 rounded px-3 text-gray-900" />
                 <div class="text-white mb-6">
                     <p class="font-bold text-sm">Welcome,</p>
-                    <asp:Label ID="lblUserName" runat="server" Text="Nadia Setyaningrum" CssClass="text-xs font-light" />
+                    <asp:Label ID="Labeladmin" runat="server" Font-Bold="true" Font-Size="XX-Large" ForeColor="White" Visible="false" CssClass="nav-link"></asp:Label>
+                    <asp:Label ID="Labeldir" runat="server" Font-Bold="true" Font-Size="XX-Large" ForeColor="White" Visible="false" CssClass="nav-link"></asp:Label>
+                    <asp:Label ID="Labelhr" runat="server" Font-Bold="true" Font-Size="XX-Large" ForeColor="White" Visible="false" CssClass="nav-link"></asp:Label>
+                    <asp:Label ID="Labelemp" runat="server" Font-Bold="true" Font-Size="XX-Large" ForeColor="White" Visible="false" CssClass="nav-link"></asp:Label>
                 </div>
                 <nav class="flex flex-col gap-3">
-                    <asp:Button ID="btnDashboard" runat="server" Text="Dashboard" CssClass="bg-[#FFAA0A] text-white text-xs font-semibold rounded px-4 py-2 text-left hover:cursor-pointer" />
-                    <asp:Button ID="btnMedicalReimbursement" runat="server" Text="Medical Reimbursement" CssClass="bg-[#145445] text-white text-xs font-semibold rounded px-4 py-2 text-left hover:bg-[#FFAA0A] cursor-pointer" />
+                <asp:Panel runat="server" ID="Adminpanel" Visible="false">
+                    <nav class="flex flex-col gap-3">
+                        <asp:Button ID="btnDashboardAdmin" runat="server" Text="Dashboard" CssClass="bg-[#FFAA0A] text-white text-xs font-semibold rounded px-4 py-2 text-left hover:cursor-pointer" />
+                    </nav>
+                </asp:Panel>
+                <asp:Panel runat="server" ID="Dirpanel" Visible="false">
+                    <nav class="flex flex-col gap-3">
+                        <asp:Button ID="btnDashboardDir" runat="server" Text="Dashboard" CssClass="bg-[#FFAA0A] text-white text-xs font-semibold rounded px-4 py-2 text-left hover:cursor-pointer" />
+                        <asp:Button ID="btnMedicalReimbursementDir" runat="server" Text="Medical Reimbursement" CssClass="bg-[#145445] text-white text-xs font-semibold rounded px-4 py-2 text-left hover:bg-[#FFAA0A] cursor-pointer" />
+                        <asp:Button ID="btnEmployeeDir" runat="server" Text="Employee" CssClass="bg-[#145445] text-white text-xs font-semibold rounded px-4 py-2 text-left hover:bg-[#FFAA0A] cursor-pointer" />
+                    </nav>
+                </asp:Panel>
+                <asp:Panel runat="server" ID="hrpanel" Visible="false">
+                    <nav class="flex flex-col gap-3">
+                        <asp:Button ID="btnDashboardHr" runat="server" Text="Dashboard" CssClass="bg-[#FFAA0A] text-white text-xs font-semibold rounded px-4 py-2 text-left hover:cursor-pointer" />
+                        <asp:Button ID="btnMedicalReimbursementHr" runat="server" Text="Medical Reimbursement" CssClass="bg-[#145445] text-white text-xs font-semibold rounded px-4 py-2 text-left hover:bg-[#FFAA0A] cursor-pointer" />
+                        <asp:Button ID="btnEmployeeHr" runat="server" Text="Employee" CssClass="bg-[#145445] text-white text-xs font-semibold rounded px-4 py-2 text-left hover:bg-[#FFAA0A] cursor-pointer" />
+                    </nav>
+                </asp:Panel>
+                <asp:Panel runat="server" ID="emppanel" Visible="false">
+                    <nav class="flex flex-col gap-3">
+                        <asp:Button ID="btnDashboardEmp" runat="server" Text="Dashboard" CssClass="bg-[#FFAA0A] text-white text-xs font-semibold rounded px-4 py-2 text-left hover:cursor-pointer" />
+                        <asp:Button ID="btnMedicalReimbursementEmp" runat="server" Text="Medical Reimbursement" CssClass="bg-[#145445] text-white text-xs font-semibold rounded px-4 py-2 text-left hover:bg-[#FFAA0A] cursor-pointer" />
+                    </nav>
+                </asp:Panel>
                     <asp:Button ID="btnLogOut" runat="server" Text="Log Out" CssClass="border border-[#FF6B6B] text-white text-xs font-semibold rounded px-4 py-2 text-left hover:bg-[#FF6B6B] cursor-pointer" />
                 </nav>
             </aside>
