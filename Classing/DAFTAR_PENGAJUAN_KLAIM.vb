@@ -18,13 +18,13 @@ Namespace dataPengajuanKlaim
             cmd.Parameters.Add(New SqlParameter("@NIP", SqlDbType.Char, 10, ParameterDirection.Input, False, 0, 0, "", DataRowVersion.Original, NIP))
 
             Try
-                ConnDB.Open()
+                'ConnDB.Open()
                 cmd.ExecuteNonQuery()
                 Return True
             Catch ex As Exception
                 Return False
             Finally
-                ConnDB.Close()
+                'ConnDB.Close()
                 cmd.Dispose()
                 cmd = Nothing
             End Try
@@ -42,13 +42,13 @@ Namespace dataPengajuanKlaim
             cmd.Parameters.Add("@KdKlaim", SqlDbType.Int).Value = KdKlaim
 
             Try
-                ConnDB.Open()
+                'ConnDB.Open()
                 cmd.ExecuteNonQuery()
                 Return True
             Catch ex As Exception
                 Return False
             Finally
-                ConnDB.Close()
+                'ConnDB.Close()
                 cmd.Dispose()
                 cmd = Nothing
             End Try
@@ -72,13 +72,13 @@ Namespace dataPengajuanKlaim
             cmd.Parameters.Add(New SqlParameter("@Kdklaim", SqlDbType.Int, 4, ParameterDirection.Input, False, 0, 0, "", DataRowVersion.Original, Kdklaim))
 
             Try
-                ConnDB.Open()
+                'ConnDB.Open()
                 cmd.ExecuteNonQuery()
                 Return True
             Catch ex As Exception
                 Return False
             Finally
-                ConnDB.Close()
+                'ConnDB.Close()
                 cmd.Dispose()
                 cmd = Nothing
             End Try
@@ -92,7 +92,7 @@ Namespace dataPengajuanKlaim
                 cmd.Parameters.Add("@kdklaim", SqlDbType.Int).Value = Kdklaim
 
                 Try
-                    ConnDB.Open()
+                    'ConnDB.Open()
                     Using reader As SqlDataReader = cmd.ExecuteReader()
                         If reader.Read() Then
                             If Not reader.IsDBNull(reader.GetOrdinal("FileKwitansi")) Then
@@ -109,7 +109,7 @@ Namespace dataPengajuanKlaim
                 Catch ex As Exception
                     ' Tambahkan log error jika perlu
                 Finally
-                    ConnDB.Close()
+                    'ConnDB.Close()
                 End Try
             End Using
             Return result

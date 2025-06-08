@@ -56,6 +56,12 @@
                     </p>
                     <asp:Label ID="StatusLabel" runat="server" Text="PKWTT" CssClass="text-black text-sm"></asp:Label>
                 </div>
+                <div>
+                    <p class="text-[#145a52] font-semibold mb-1">
+                        No. HP
+                    </p>
+                    <asp:Label ID="selulerlabel" runat="server" Text="PKWTT" CssClass="text-black text-sm"></asp:Label>
+                </div>
             </div>
         </article>
         <article>

@@ -215,7 +215,7 @@ Public Class MR_EMP
 
             ' Simpan data ke database dan ambil KdKlaim
             Dim isSuccess As Boolean = Pengajuan.AddNewRequest(
-                Kategori:=category,
+            Kategori:=category,
                 TanggalPengobatan:=Date.Parse(selectedDate),
                 TanggalPengajuan:=DateTime.Now,
                 DetailPenyakit:=medicalDetail,
@@ -280,7 +280,7 @@ Public Class MR_EMP
         cmd.Connection = ConnDB
 
         Try
-            ConnDB.Open()
+            'ConnDB.Open()
             Dim reader As SqlDataReader = cmd.ExecuteReader()
             If reader.Read() Then
                 lastId = Convert.ToInt32(reader("KdKlaim"))
@@ -289,7 +289,7 @@ Public Class MR_EMP
         Catch ex As Exception
             ' Tangani kesalahan jika diperlukan
         Finally
-            ConnDB.Close()
+            'ConnDB.Close()
             cmd.Dispose()
         End Try
 
@@ -323,7 +323,7 @@ Public Class MR_EMP
 
     Protected Sub sendReqNotif(Kategori As String, TanggalPengobatan As Date, TanggalPengajuan As DateTime, DetailPenyakit As String, Biaya As Integer, Status_Terakhir As String)
 
-        Dim nomor As String = "6281806038088"
+        Dim nomor As String = "6285156909701"
         Dim waktuSekarang As String = TanggalPengajuan
         Dim pesanLengkap As String =
             $"[PENGAJUAN BARU REIMBURSEMENT]" & vbCrLf &

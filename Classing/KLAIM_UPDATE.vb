@@ -10,13 +10,13 @@ Public Class KLAIM_UPDATE
         cmd.Parameters.Add(New SqlParameter("@kdklaim", SqlDbType.Int, 9, ParameterDirection.Input, False, 0, 0, "", DataRowVersion.Original, KdKlaim))
         cmd.Parameters.Add(New SqlParameter("@status", SqlDbType.Char, 12, ParameterDirection.Input, False, 0, 0, "", DataRowVersion.Original, StatusTerakhir))
         Try
-            ConnDB.Open()
+            'ConnDB.Open()
             cmd.ExecuteNonQuery()
             Return True
         Catch ex As Exception
             Return False
         Finally
-            ConnDB.Close()
+            'ConnDB.Close()
             cmd.Dispose()
             cmd = Nothing
         End Try

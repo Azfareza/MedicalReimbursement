@@ -5,7 +5,9 @@ Public Class Login
     Dim LoginLogic As New LoginLogic.Login
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
-        Session.Clear()
+        If Not Page.IsPostBack Then
+            Session.Clear()
+        End If
     End Sub
 
     Protected Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
@@ -16,6 +18,7 @@ Public Class Login
             ' Simpan session
             Session("NIP") = nip
             Session("Role") = LoginLogic.GetUserRole(nip)
+            Session("Seluler") = LoginLogic.GetUserCell(nip)
 
             Dim userDetails As Dictionary(Of String, Object) = LoginLogic.GetUserDetail(nip)
             If userDetails IsNot Nothing Then
@@ -33,6 +36,9 @@ Public Class Login
                 End If
                 If userDetails.ContainsKey("Status") Then
                     Session("Status") = userDetails("Status").ToString()
+                End If
+                If userDetails.ContainsKey("Seluler") Then
+                    Session("Seluler") = userDetails("Seluler").ToString()
                 End If
             End If
 

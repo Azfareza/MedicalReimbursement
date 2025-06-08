@@ -40,6 +40,26 @@ Namespace LoginLogic
 
             Return ""
         End Function
+
+        Public Shared Function GetUserCell(nip As String) As String
+            Dim query As String = "SELECT Seluler FROM DAFTAR_PEGAWAI WHERE NIP = @NIP"
+            Dim cmd As New SqlCommand(query, ConnDB)
+            cmd.Parameters.AddWithValue("@NIP", nip)
+            Try
+                'ConnDB.Open()
+                Dim result As Object = cmd.ExecuteScalar()
+                If result IsNot Nothing Then
+                    Return result.ToString().Trim()
+                End If
+            Catch ex As Exception
+                Return ""
+            Finally
+                'ConnDB.Close()
+                cmd.Dispose()
+            End Try
+
+            Return ""
+        End Function
         Public Function GetUserDetail(nip As String) As Dictionary(Of String, Object)
             Dim Comm As New SqlCommand
             Dim userDetails As New Dictionary(Of String, Object)
@@ -56,6 +76,7 @@ Namespace LoginLogic
                     userDetails("Dept") = If(IsDBNull(reader("NamaDepartemen")), String.Empty, reader("NamaDepartemen").ToString())
                     userDetails("Jabatan") = If(IsDBNull(reader("NamaJabatan")), String.Empty, reader("NamaJabatan").ToString())
                     userDetails("Status") = If(IsDBNull(reader("Status")), String.Empty, reader("Status").ToString())
+                    userDetails("Seluler") = If(IsDBNull(reader("Seluler")), String.Empty, reader("Seluler").ToString())
                 End If
             End Using
             Return userDetails

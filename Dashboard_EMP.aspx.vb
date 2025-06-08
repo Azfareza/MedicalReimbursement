@@ -23,6 +23,7 @@
         DepartementLabel.Text = Session("Dept").ToString()
         JabatanLabel.Text = Session("Jabatan").ToString()
         StatusLabel.Text = Session("Status").ToString
+        selulerlabel.Text = Session("Seluler").ToString
     End Sub
 
 End Class
