@@ -2,28 +2,42 @@
     Inherits System.Web.UI.MasterPage
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        If Trim(Session("Role")) = "" Then
+            Response.Redirect("Login.aspx")
+        Else
+
+        End If
         Dim userRole As String = Session("Role").ToString()
         If userRole = "1" Then ' Role 1: Admin
             hrpanel.Visible = False
             Labeladmin.Visible = True
             Labeladmin.Text = "Hallo Admin!"
-            'karyawanPanel.Visible = False
-        ElseIf userRole = "2" Then ' Role 2: SuperUser
+            'NameLabelAdmin.Visible = True
+            'NameLabelAdmin.Text = Session("Name").ToString()
+        ElseIf userRole = "2" Then ' Role 2: Direksi
+            Dirpanel.Visible = True
+            Labeldir.Visible = True
+            Labeldir.Text = "DIREKSI"
+            ' NameLabelDir.Visible = True
+            ' NameLabelDir.Text = Session("Name").ToString()
+        ElseIf userRole = "3" Then ' Role 3: HR
             hrpanel.Visible = True
-            LabelHR.Visible = True ' Atau buat panel lain jika diperlukan
-            LabelHR.Text = "HR" ' Atau buat panel lain jika diperlukan
-            'karyawanPanel.Visible = True
-        ElseIf userRole = "3" Then ' Role 3: Karyawan
-            hrpanel.Visible = True
-            LabelDir.Visible = True
-            LabelDir.Text = "DIREKTUR"
-            'karyawanPanel.Visible = True
-        ElseIf userRole = "4" Then
-            EmpPanel.Visible = True
-            LabelEMP.Visible = True
-            LabelEMP.Text = "USER"
+            Labelhr.Visible = True
+            Labelhr.Text = "HR"
+            ' NameLabelHr.Visible = True
+            ' NameLabelHr.Text = Session("Name").ToString()
+        ElseIf userRole = "4" Then 'role 4 : pegawai
+            emppanel.Visible = True
+            Labelemp.Visible = True
+            Labelemp.Text = "HR"
+            ' NameLabelEmp.Visible = True
+            'NameLabelEmp.Text = Session("Name").ToString()
         End If
+
+
     End Sub
+
+
 
     Private Sub btnDashboardAdmin_Click(sender As Object, e As EventArgs) Handles btnDashboardAdmin.Click
         Response.Redirect("Dashboard.aspx")

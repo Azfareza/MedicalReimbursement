@@ -16,11 +16,9 @@ Public Class MR_HR
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not Page.IsPostBack Then
             If Trim(Session("Role")) = "" Then
-                If Trim(Session("Seluler")) = "" Then
-                    Response.Redirect("Login.aspx")
-                Else
+                Response.Redirect("Login.aspx")
+            Else
 
-                End If
             End If
             Dim userRole As String = Session("Role").ToString()
             If userRole = "1" Then ' Role 1: Admin
@@ -136,7 +134,7 @@ Public Class MR_HR
         txtDepartemenModal.Text = Trim(PilihText.Cells(3).Text)
         txtKategoriModal.Text = Trim(PilihText.Cells(4).Text)
         txtTanggalModal.Text = Trim(PilihText.Cells(5).Text)
-        txtbiayaModal.Text = Trim(PilihText.Cells(6).Text)
+        'txtbiayaModal.Text = Trim(PilihText.Cells(6).Text)
 
 
         txtClaim.Enabled = False
@@ -145,7 +143,8 @@ Public Class MR_HR
         txtDepartemenModal.Enabled = False
         txtKategoriModal.Enabled = False
         txtTanggalModal.Enabled = False
-        txtbiayaModal.Enabled = False
+        txtbiayaModal.Visible = False
+        lblBiayaModal.Visible = False
 
 
         Dim kdklaim = txtClaim.Text
@@ -207,6 +206,8 @@ Public Class MR_HR
             ViewState("ShowModal") = False
             BindgvReqList()
             BindgvHistory()
+            gvRequestList.SelectedIndex = -1
+            gvHistory.SelectedIndex = -1
         Else
             MsgBox("ALERT", MsgBoxStyle.Critical)
         End If
@@ -230,9 +231,11 @@ Public Class MR_HR
                 Biaya:=biaya
             )
             Pengajuan.InsertHistoryStatus("Reject", DateTime.Now, catatan, kdklaim)
-            pnlModal.Visible = False
+            ViewState("ShowModal") = False
             BindgvReqList()
             BindgvHistory()
+            gvRequestList.SelectedIndex = -1
+            gvHistory.SelectedIndex = -1
         Else
             MsgBox("ALERT", MsgBoxStyle.Critical)
         End If
