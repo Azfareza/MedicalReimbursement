@@ -45,7 +45,7 @@ Public Class Login
             ' Redirect sesuai role
             Select Case Session("Role").ToString()
                 Case "1"
-                    Response.Redirect("Dashboard.aspx")
+                    Response.Redirect("Dashboard_Admin.aspx")
                 Case "2"
                     Response.Redirect("Dashboard.aspx")
                 Case "3"

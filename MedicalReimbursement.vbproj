@@ -144,6 +144,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Dashboard.aspx" />
+    <Content Include="Dashboard_Admin.aspx" />
     <Content Include="Dashboard_EMP.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Employee_HR.aspx" />
@@ -227,6 +228,7 @@
     <Compile Include="Classing\Dashboard.vb" />
     <Compile Include="Classing\KLAIM_UPDATE.vb" />
     <Compile Include="Classing\Login.vb" />
+    <Compile Include="Classing\Pegawai.vb" />
     <Compile Include="Classing\UtiUmum.vb" />
     <Compile Include="Contact.aspx.designer.vb">
       <DependentUpon>Contact.aspx</DependentUpon>
@@ -240,6 +242,13 @@
     </Compile>
     <Compile Include="Dashboard.aspx.vb">
       <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard_Admin.aspx.designer.vb">
+      <DependentUpon>Dashboard_Admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard_Admin.aspx.vb">
+      <DependentUpon>Dashboard_Admin.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Dashboard_EMP.aspx.designer.vb">
