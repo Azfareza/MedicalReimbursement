@@ -9,7 +9,7 @@ Namespace dataPengajuanKlaim
             cmd.CommandType = CommandType.StoredProcedure
             cmd.Connection = ConnDB
 
-            cmd.Parameters.Add(New SqlParameter("@Kategori", SqlDbType.Char, 10, ParameterDirection.Input, False, 0, 0, "", DataRowVersion.Original, Kategori))
+            cmd.Parameters.Add(New SqlParameter("@Kategori", SqlDbType.Char, 12, ParameterDirection.Input, False, 0, 0, "", DataRowVersion.Original, Kategori))
             cmd.Parameters.Add(New SqlParameter("@TanggalPengobatan", SqlDbType.Date, 10, ParameterDirection.Input, False, 0, 0, "", DataRowVersion.Original, TanggalPengobatan))
             cmd.Parameters.Add(New SqlParameter("@TanggalPengajuan", SqlDbType.DateTime, 10, ParameterDirection.Input, False, 0, 0, "", DataRowVersion.Original, TanggalPengajuan))
             cmd.Parameters.Add(New SqlParameter("@DetailPenyakit", SqlDbType.Char, 30, ParameterDirection.Input, False, 0, 0, "", DataRowVersion.Original, DetailPenyakit))

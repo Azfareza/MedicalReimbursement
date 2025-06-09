@@ -367,12 +367,10 @@ Public Class MR_EMP
             Dim response As HttpWebResponse = CType(request.GetResponse(), HttpWebResponse)
             Using reader As New StreamReader(response.GetResponseStream())
                 Dim responseText As String = reader.ReadToEnd()
-                lblStatus.Text = "Pesan dikirim!"
             End Using
         Catch ex As WebException
             Using reader As New StreamReader(ex.Response.GetResponseStream())
                 Dim errorText As String = reader.ReadToEnd()
-                lblStatus.Text = "Gagal mengirim pesan!"
             End Using
         End Try
     End Sub

@@ -191,6 +191,18 @@ Public Class MR_HR
     Private Sub btnSetuju_Click(sender As Object, e As EventArgs) Handles btnSetuju.Click
         Dim kdklaim As Integer = CInt(txtClaim.Text)
         If KlaimUpdating.KlaimUpdater(txtClaim.Text, "Approved") = True Then
+            Dim nip As String = txtNIPModal.Text
+            Dim nama As String = txtNamaModal.Text
+            Dim category As String = txtKategoriModal.Text
+            Dim tanggal As String = txtTanggalModal.Text
+            Dim biaya As String = txtbiayaModal.Text
+            sendApproveNotif(
+                nip:=nip,
+                Nama:=nama,
+                Kategori:=category,
+                Tanggal:=tanggal,
+                Biaya:=biaya
+            )
             Pengajuan.InsertHistoryStatus("Approve", DateTime.Now, Nothing, kdklaim)
             ViewState("ShowModal") = False
             BindgvReqList()
@@ -204,11 +216,19 @@ Public Class MR_HR
         Dim kdklaim As Integer = CInt(txtClaim.Text)
         Dim catatan As String = Request.Form("rejectNote")
         If KlaimUpdating.KlaimUpdater(txtClaim.Text, "Rejected") = True Then
-            Dim category As String = lblKategoriModal.Text
+            Dim nip As String = txtNIPModal.Text
+            Dim nama As String = txtNamaModal.Text
+            Dim category As String = txtKategoriModal.Text
+            Dim tanggal As String = txtTanggalModal.Text
+            Dim biaya As String = txtbiayaModal.Text
             sendRejectNotif(
+                nip:=nip,
+                Nama:=nama,
                 Kategori:=category,
-                Note:=catatan
-)
+                Note:=catatan,
+                Tanggal:=tanggal,
+                Biaya:=biaya
+            )
             Pengajuan.InsertHistoryStatus("Reject", DateTime.Now, catatan, kdklaim)
             pnlModal.Visible = False
             BindgvReqList()
@@ -218,15 +238,18 @@ Public Class MR_HR
         End If
     End Sub
 
-    Protected Sub sendRejectNotif(Kategori As String, Note As String)
-
-        Dim nip As String = txtNIPModal.Text.Trim()
+    Protected Sub sendRejectNotif(nip As String, Nama As String, Kategori As String, Note As String, Tanggal As Date, Biaya As String)
 
         Dim nomor As String = LoginLogic.GetUserCell(nip)
         Dim pesanLengkap As String =
             $"*PENGAJUAN ANDA DI TOLAK!*" & vbCrLf &
+            $"NIP: {nip}" & vbCrLf &
+            $"Nama: {Nama}" & vbCrLf &
             $"Kategori: {Kategori}" & vbCrLf &
-            $"Note: {Note}" & vbCrLf
+            $"Tanggal Pengobatan: {Tanggal:dd/MM/yyyy}" & vbCrLf &
+            $"Biaya: {Biaya}" & vbCrLf & vbCrLf &
+            $"*Alasan Penolakan:*" & vbCrLf &
+            $"{Note}" & vbCrLf
 
         'Fill the TOKEN!
         Dim token As String = "zF8z5jBiZ5MBaXpP6q9N"
@@ -261,12 +284,62 @@ Public Class MR_HR
             Dim response As HttpWebResponse = CType(request.GetResponse(), HttpWebResponse)
             Using reader As New StreamReader(response.GetResponseStream())
                 Dim responseText As String = reader.ReadToEnd()
-                lblStatus.Text = "Pesan dikirim!"
             End Using
         Catch ex As WebException
             Using reader As New StreamReader(ex.Response.GetResponseStream())
                 Dim errorText As String = reader.ReadToEnd()
-                lblStatus.Text = "Gagal mengirim pesan!"
+            End Using
+        End Try
+    End Sub
+
+    Protected Sub sendApproveNotif(nip As String, Nama As String, Kategori As String, Tanggal As Date, Biaya As String)
+
+        Dim nomor As String = LoginLogic.GetUserCell(nip)
+        Dim pesanLengkap As String =
+            $"*PENGAJUAN ANDA TELAH DISETUJUI!*" & vbCrLf &
+            $"NIP: {nip}" & vbCrLf &
+            $"Nama: {Nama}" & vbCrLf &
+            $"Kategori: {Kategori}" & vbCrLf &
+            $"Tanggal Pengobatan: {Tanggal:dd/MM/yyyy}" & vbCrLf &
+            $"Biaya: {Biaya}" & vbCrLf & vbCrLf
+
+        'Fill the TOKEN!
+        Dim token As String = "zF8z5jBiZ5MBaXpP6q9N"
+
+        Dim boundary As String = "------------------------" & DateTime.Now.Ticks.ToString("x")
+        Dim request As HttpWebRequest = CType(WebRequest.Create("https://api.fonnte.com/send"), HttpWebRequest)
+        request.Method = "POST"
+        request.ContentType = "multipart/form-data; boundary=" & boundary
+        request.Headers.Add("Authorization", token)
+
+        Dim postData As New StringBuilder()
+        postData.AppendLine("--" & boundary)
+        postData.AppendLine("Content-Disposition: form-data; name=""target""")
+        postData.AppendLine()
+        postData.AppendLine(nomor)
+
+        postData.AppendLine("--" & boundary)
+        postData.AppendLine("Content-Disposition: form-data; name=""message""")
+        postData.AppendLine()
+        postData.AppendLine(pesanLengkap)
+
+        postData.AppendLine("--" & boundary & "--")
+
+        Dim byteArray As Byte() = Encoding.UTF8.GetBytes(postData.ToString())
+        request.ContentLength = byteArray.Length
+
+        Try
+            Using dataStream As Stream = request.GetRequestStream()
+                dataStream.Write(byteArray, 0, byteArray.Length)
+            End Using
+
+            Dim response As HttpWebResponse = CType(request.GetResponse(), HttpWebResponse)
+            Using reader As New StreamReader(response.GetResponseStream())
+                Dim responseText As String = reader.ReadToEnd()
+            End Using
+        Catch ex As WebException
+            Using reader As New StreamReader(ex.Response.GetResponseStream())
+                Dim errorText As String = reader.ReadToEnd()
             End Using
         End Try
     End Sub

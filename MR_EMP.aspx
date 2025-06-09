@@ -113,10 +113,6 @@
             </div>
 
             <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="bg-[#0052cc] text-white font-semibold rounded-md py-2 px-5 self-start cursor-pointer" OnClientClick="return confirm('Apakah kamu yakin ingin mengajukan klaim ini?');" OnClick="btnSubmit_Click"/>
-
-            <div class="text-center mt-4">
-                <asp:Label ID="lblStatus" runat="server" CssClass="text-blue-600 font-semibold"></asp:Label>
-            </div>
         </section>
     </div>
 </asp:Content>
