@@ -5,11 +5,12 @@ Imports System.Data
 Imports System.Net
 Imports MedicalReimbursement.LoginLogic.Login
 
-Public Class MR_HR
+Public Class MR_DIREKSI
     Inherits System.Web.UI.Page
     Dim DataMedicalReimburse As New DataReq.Data_Dashboard
     Dim Pengajuan As New dataPengajuanKlaim.DAFTAR_PENGAJUAN_KLAIM
     Dim LoginLogic As New LoginLogic.Login
+
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not Page.IsPostBack Then
@@ -22,31 +23,25 @@ Public Class MR_HR
             If userRole = "1" Then ' Role 1: Admin
                 Response.Redirect("Login.aspx")
             ElseIf userRole = "2" Then ' Role 2: Direksi
-                Response.Redirect("Login.aspx")
-            ElseIf userRole = "3" Then ' Role 3: HR
 
+            ElseIf userRole = "3" Then ' Role 3: HR
+                Response.Redirect("Login.aspx")
             ElseIf userRole = "4" Then ' Role 4: USER
                 Response.Redirect("Login.aspx")
             End If
             BindgvReqList()
             BindgvHistory()
-            BindgvRejectList()
         End If
     End Sub
     Private Sub BindgvReqList()
         gvRequestList.Visible = True
-        gvRequestList.DataSource = Pengajuan.SelectAllUnProcessed()
+        gvRequestList.DataSource = Pengajuan.SelectAllOnProcess()
         gvRequestList.DataBind()
     End Sub
     Private Sub BindgvHistory()
         gvHistory.Visible = True
-        gvHistory.DataSource = Pengajuan.SelectAllOnProcess()
+        gvHistory.DataSource = Pengajuan.SelectAllProcessed()
         gvHistory.DataBind()
-    End Sub
-    Private Sub BindgvRejectList()
-        gvRejectList.Visible = True
-        gvRejectList.DataSource = Pengajuan.SelectAllReject()
-        gvRejectList.DataBind()
     End Sub
 
     Protected Sub gvHistory_RowDataBound(sender As Object, e As GridViewRowEventArgs)
@@ -54,32 +49,6 @@ Public Class MR_HR
             Dim status As Object = DataBinder.Eval(e.Row.DataItem, "status_terakhir")
             Dim statusText As String = Convert.ToString(status).Trim().ToLower()
             Dim targetCell As TableCell = e.Row.Cells(6)
-            Select Case statusText
-                Case "approved"
-                    targetCell.Text = "Approved"
-                    targetCell.ForeColor = Drawing.Color.Green
-                    targetCell.Font.Bold = True
-                Case "rejected"
-                    targetCell.Text = "Rejected"
-                    targetCell.ForeColor = Drawing.Color.Red
-                    targetCell.Font.Bold = True
-                Case "on process"
-                    targetCell.Text = "On Process"
-                    targetCell.ForeColor = Drawing.Color.Orange
-                    targetCell.Font.Bold = True
-                Case Else
-                    targetCell.Text = statusText
-                    targetCell.ForeColor = Drawing.Color.Black
-            End Select
-            e.Row.Cells(6).Text = statusText
-        End If
-    End Sub
-
-    Protected Sub gvRejectList_RowDataBound(sender As Object, e As GridViewRowEventArgs)
-        If e.Row.RowType = DataControlRowType.DataRow Then
-            Dim status As Object = DataBinder.Eval(e.Row.DataItem, "status_terakhir")
-            Dim statusText As String = Convert.ToString(status).Trim().ToLower()
-            Dim targetCell As TableCell = e.Row.Cells(6)
 
             Select Case statusText
                 Case "approved"
@@ -89,10 +58,6 @@ Public Class MR_HR
                 Case "rejected"
                     targetCell.Text = "Rejected"
                     targetCell.ForeColor = Drawing.Color.Red
-                    targetCell.Font.Bold = True
-                Case "on process"
-                    targetCell.Text = "On Process"
-                    targetCell.ForeColor = Drawing.Color.Orange
                     targetCell.Font.Bold = True
                 Case Else
                     targetCell.Text = statusText
@@ -153,58 +118,13 @@ Public Class MR_HR
 
     End Sub
 
+
     Private Sub gvHistory_SelectedIndexChanged(sender As Object, e As EventArgs) Handles gvHistory.SelectedIndexChanged
         ViewState("ShowModal") = True
 
         Dim PilihText As GridViewRow = gvHistory.SelectedRow
 
-        txtClaim.Text = Trim(PilihText.Cells(0).Text)
-        txtNIPModal.Text = Trim(PilihText.Cells(1).Text)
-        txtNamaModal.Text = Trim(PilihText.Cells(2).Text)
-        txtDepartemenModal.Text = Trim(PilihText.Cells(3).Text)
-        txtKategoriModal.Text = Trim(PilihText.Cells(4).Text)
-        txtTanggalModal.Text = Trim(PilihText.Cells(5).Text)
 
-
-        txtClaim.Enabled = False
-        txtNIPModal.Enabled = False
-        txtNamaModal.Enabled = False
-        txtDepartemenModal.Enabled = False
-        txtKategoriModal.Enabled = False
-        txtTanggalModal.Enabled = False
-        txtbiayaModal.Visible = False
-        lblBiayaModal.Visible = False
-
-
-        Dim kdklaim = txtClaim.Text
-        Dim dokumen = Pengajuan.SelectDocument(kdklaim)
-
-        If dokumen IsNot Nothing Then
-            If dokumen.ContainsKey("kwitansi") Then
-                Dim base64String = Convert.ToBase64String(dokumen("kwitansi"))
-                Debug.WriteLine("KWITANSI BASE64: " & base64String.Substring(0, Math.Min(base64String.Length, 100)))
-                imgKwitansi.ImageUrl = "data:image/jpeg;base64," & base64String
-            End If
-            If dokumen.ContainsKey("resep") Then
-                Dim base64String = Convert.ToBase64String(dokumen("resep"))
-                Debug.WriteLine("RESEP BASE64: " & base64String.Substring(0, Math.Min(base64String.Length, 100)))
-                imgResep.ImageUrl = "data:image/jpeg;base64," & base64String
-            End If
-            If dokumen.ContainsKey("pendukung") Then
-                Dim base64String = Convert.ToBase64String(dokumen("pendukung"))
-                Debug.WriteLine("PENDUKUNG BASE64: " & base64String.Substring(0, Math.Min(base64String.Length, 100)))
-                imgPendukung.ImageUrl = "data:image/jpeg;base64," & base64String
-            End If
-
-        End If
-
-        ScriptManager.RegisterStartupScript(Me, Me.GetType(), "removeReviewOption", "document.getElementById('reviewOption')?.remove();", True)
-    End Sub
-
-    Private Sub gvRejectList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles gvRejectList.SelectedIndexChanged
-        ViewState("ShowModal") = True
-
-        Dim PilihText As GridViewRow = gvRejectList.SelectedRow
 
         txtClaim.Text = Trim(PilihText.Cells(0).Text)
         txtNIPModal.Text = Trim(PilihText.Cells(1).Text)
@@ -246,6 +166,8 @@ Public Class MR_HR
             End If
 
         End If
+
+        ScriptManager.RegisterStartupScript(Me, Me.GetType(), "removeReviewOption", "document.getElementById('reviewOption')?.remove();", True)
     End Sub
 
     Private Sub MR_HR_PreRender(sender As Object, e As EventArgs) Handles Me.PreRender
@@ -264,7 +186,7 @@ Public Class MR_HR
 
     Private Sub btnSetuju_Click(sender As Object, e As EventArgs) Handles btnSetuju.Click
         Dim kdklaim As Integer = CInt(txtClaim.Text)
-        If Pengajuan.KlaimUpdater(txtClaim.Text, "On Process") = True Then
+        If Pengajuan.KlaimUpdater(txtClaim.Text, "Approved") = True Then
             Dim nip As String = txtNIPModal.Text
             Dim nama As String = txtNamaModal.Text
             Dim category As String = txtKategoriModal.Text
@@ -277,14 +199,12 @@ Public Class MR_HR
                 Tanggal:=tanggal,
                 Biaya:=biaya
             )
-            Pengajuan.InsertHistoryStatus("On Process", DateTime.Now, Nothing, kdklaim)
+            Pengajuan.InsertHistoryStatus("Approve", DateTime.Now, Nothing, kdklaim)
             ViewState("ShowModal") = False
             BindgvReqList()
             BindgvHistory()
-            BindgvRejectList()
             gvRequestList.SelectedIndex = -1
             gvHistory.SelectedIndex = -1
-            gvRejectList.SelectedIndex = -1
         Else
             MsgBox("ALERT", MsgBoxStyle.Critical)
         End If
@@ -299,86 +219,84 @@ Public Class MR_HR
             Dim category As String = txtKategoriModal.Text
             Dim tanggal As String = txtTanggalModal.Text
             Dim biaya As String = txtbiayaModal.Text
-            sendRejectNotif(
-                nip:=nip,
-                Nama:=nama,
-                Kategori:=category,
-                Note:=catatan,
-                Tanggal:=tanggal,
-                Biaya:=biaya
-            )
+            'sendRejectNotif(
+            '    nip:=nip,
+            '    Nama:=nama,
+            '    Kategori:=category,
+            '    Note:=catatan,
+            '    Tanggal:=tanggal,
+            '    Biaya:=biaya
+            ')
             Pengajuan.InsertHistoryStatus("Reject", DateTime.Now, catatan, kdklaim)
             ViewState("ShowModal") = False
             BindgvReqList()
             BindgvHistory()
-            BindgvRejectList()
             gvRequestList.SelectedIndex = -1
             gvHistory.SelectedIndex = -1
-            gvRejectList.SelectedIndex = -1
         Else
             MsgBox("ALERT", MsgBoxStyle.Critical)
         End If
     End Sub
 
-    Protected Sub sendRejectNotif(nip As String, Nama As String, Kategori As String, Note As String, Tanggal As Date, Biaya As String)
+    'Protected Sub sendRejectNotif(nip As String, Nama As String, Kategori As String, Note As String, Tanggal As Date, Biaya As String)
 
-        Dim nomor As String = LoginLogic.GetUserCell(nip)
-        Dim pesanLengkap As String =
-            $"*PENGAJUAN ANDA DI TOLAK OLEH HR!*" & vbCrLf &
-            $"NIP: {nip}" & vbCrLf &
-            $"Nama: {Nama}" & vbCrLf &
-            $"Kategori: {Kategori}" & vbCrLf &
-            $"Tanggal Pengobatan: {Tanggal:dd/MM/yyyy}" & vbCrLf &
-            $"Biaya: {Biaya}" & vbCrLf & vbCrLf &
-            $"*Alasan Penolakan:*" & vbCrLf &
-            $"{Note}" & vbCrLf
+    '    Dim nomor As String = LoginLogic.GetUserCell(nip)
+    '    Dim pesanLengkap As String =
+    '        $"*PENGAJUAN ANDA DI TOLAK OLEH DIREKSI*" & vbCrLf &
+    '        $"NIP: {nip}" & vbCrLf &
+    '        $"Nama: {Nama}" & vbCrLf &
+    '        $"Kategori: {Kategori}" & vbCrLf &
+    '        $"Tanggal Pengobatan: {Tanggal:dd/MM/yyyy}" & vbCrLf &
+    '        $"Biaya: {Biaya}" & vbCrLf & vbCrLf &
+    '        $"*Alasan Penolakan:*" & vbCrLf &
+    '        $"{Note}" & vbCrLf
 
-        'Fill the TOKEN!
-        Dim token As String = "zF8z5jBiZ5MBaXpP6q9N"
+    '    'Fill the TOKEN!
+    '    Dim token As String = "zF8z5jBiZ5MBaXpP6q9N"
 
-        Dim boundary As String = "------------------------" & DateTime.Now.Ticks.ToString("x")
-        Dim request As HttpWebRequest = CType(WebRequest.Create("https://api.fonnte.com/send"), HttpWebRequest)
-        request.Method = "POST"
-        request.ContentType = "multipart/form-data; boundary=" & boundary
-        request.Headers.Add("Authorization", token)
+    '    Dim boundary As String = "------------------------" & DateTime.Now.Ticks.ToString("x")
+    '    Dim request As HttpWebRequest = CType(WebRequest.Create("https://api.fonnte.com/send"), HttpWebRequest)
+    '    request.Method = "POST"
+    '    request.ContentType = "multipart/form-data; boundary=" & boundary
+    '    request.Headers.Add("Authorization", token)
 
-        Dim postData As New StringBuilder()
-        postData.AppendLine("--" & boundary)
-        postData.AppendLine("Content-Disposition: form-data; name=""target""")
-        postData.AppendLine()
-        postData.AppendLine(nomor)
+    '    Dim postData As New StringBuilder()
+    '    postData.AppendLine("--" & boundary)
+    '    postData.AppendLine("Content-Disposition: form-data; name=""target""")
+    '    postData.AppendLine()
+    '    postData.AppendLine(nomor)
 
-        postData.AppendLine("--" & boundary)
-        postData.AppendLine("Content-Disposition: form-data; name=""message""")
-        postData.AppendLine()
-        postData.AppendLine(pesanLengkap)
+    '    postData.AppendLine("--" & boundary)
+    '    postData.AppendLine("Content-Disposition: form-data; name=""message""")
+    '    postData.AppendLine()
+    '    postData.AppendLine(pesanLengkap)
 
-        postData.AppendLine("--" & boundary & "--")
+    '    postData.AppendLine("--" & boundary & "--")
 
-        Dim byteArray As Byte() = Encoding.UTF8.GetBytes(postData.ToString())
-        request.ContentLength = byteArray.Length
+    '    Dim byteArray As Byte() = Encoding.UTF8.GetBytes(postData.ToString())
+    '    request.ContentLength = byteArray.Length
 
-        Try
-            Using dataStream As Stream = request.GetRequestStream()
-                dataStream.Write(byteArray, 0, byteArray.Length)
-            End Using
+    '    Try
+    '        Using dataStream As Stream = request.GetRequestStream()
+    '            dataStream.Write(byteArray, 0, byteArray.Length)
+    '        End Using
 
-            Dim response As HttpWebResponse = CType(request.GetResponse(), HttpWebResponse)
-            Using reader As New StreamReader(response.GetResponseStream())
-                Dim responseText As String = reader.ReadToEnd()
-            End Using
-        Catch ex As WebException
-            Using reader As New StreamReader(ex.Response.GetResponseStream())
-                Dim errorText As String = reader.ReadToEnd()
-            End Using
-        End Try
-    End Sub
+    '        Dim response As HttpWebResponse = CType(request.GetResponse(), HttpWebResponse)
+    '        Using reader As New StreamReader(response.GetResponseStream())
+    '            Dim responseText As String = reader.ReadToEnd()
+    '        End Using
+    '    Catch ex As WebException
+    '        Using reader As New StreamReader(ex.Response.GetResponseStream())
+    '            Dim errorText As String = reader.ReadToEnd()
+    '        End Using
+    '    End Try
+    'End Sub
 
     Protected Sub sendApproveNotif(nip As String, Nama As String, Kategori As String, Tanggal As Date, Biaya As String)
 
         Dim nomor As String = LoginLogic.GetUserCell(nip)
         Dim pesanLengkap As String =
-            $"*PENGAJUAN ANDA TELAH DISETUJUI OLEH HR!*" & vbCrLf &
+            $"*PENGAJUAN ANDA TELAH DISETUJUI!*" & vbCrLf &
             $"NIP: {nip}" & vbCrLf &
             $"Nama: {Nama}" & vbCrLf &
             $"Kategori: {Kategori}" & vbCrLf &

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Dashboard.aspx.vb" Inherits="MedicalReimbursement.Dashboard" MasterPageFile="~/Header.master" %>
+﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Dashboard_DIR.aspx.vb" Inherits="MedicalReimbursement.Dashboard_DIR" MasterPageFile="~/Header.master" %>
 
 <asp:Content ID="headContent" runat="server" ContentPlaceHolderID="head">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -17,7 +17,6 @@
         });
     </script>
 </asp:Content>
-
 <asp:Content ID="mainContent" runat="server" ContentPlaceHolderID="SubContent">
     <asp:ScriptManager ID="scriptmanager1" runat="server" />
 
@@ -38,7 +37,7 @@
                         <tbody>
                             </HeaderTemplate>
                             <ItemTemplate>
-                                <tr style="cursor:pointer" class="hover:bg-gray-100 transition duration-150" onclick='location.href="MR_HR.aspx"'>
+                                <tr style="cursor:pointer" class="hover:bg-gray-100 transition duration-150" onclick='location.href="MR_DIREKSI.aspx"'>
                                     <td class="font-semibold text-sm"><%# Eval("Namalengkap") %></td>
                                     <td class="text-xs text-gray-400"><%# Eval("Tanggalpengajuan") %></td>
                                     <td class="text-xs font-semibold text-blue-400"><%# Eval("Kategori") %></td>

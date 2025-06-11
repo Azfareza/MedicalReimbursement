@@ -29,22 +29,18 @@
         ElseIf userRole = "4" Then 'role 4 : pegawai
             emppanel.Visible = True
             Labelemp.Visible = True
-            Labelemp.Text = "HR"
+            Labelemp.Text = "USER"
             ' NameLabelEmp.Visible = True
             'NameLabelEmp.Text = Session("Name").ToString()
         End If
-
-
     End Sub
-
-
 
     Private Sub btnDashboardAdmin_Click(sender As Object, e As EventArgs) Handles btnDashboardAdmin.Click
         Response.Redirect("Dashboard.aspx")
     End Sub
 
     Private Sub btnDashboardDir_Click(sender As Object, e As EventArgs) Handles btnDashboardDir.Click
-        Response.Redirect("Dashboard.aspx")
+        Response.Redirect("Dashboard_DIR.aspx")
     End Sub
 
     Private Sub btnDashboardHr_Click(sender As Object, e As EventArgs) Handles btnDashboardHr.Click
@@ -56,7 +52,7 @@
     End Sub
 
     Private Sub btnMedicalReimbursementDir_Click(sender As Object, e As EventArgs) Handles btnMedicalReimbursementDir.Click
-        Response.Redirect("MR_HR.aspx")
+        Response.Redirect("MR_DIREKSI.aspx")
     End Sub
 
     Private Sub btnMedicalReimbursementHr_Click(sender As Object, e As EventArgs) Handles btnMedicalReimbursementHr.Click

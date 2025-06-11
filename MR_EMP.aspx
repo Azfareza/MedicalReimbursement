@@ -34,18 +34,30 @@
             <table id="logHistoryTable" class="w-full bg-white rounded-lg shadow-sm border border-gray-400 text-sm display">
                 <thead class="text-left font-semibold border-b border-gray-400">
                     <tr>
+                        <th class="p-3">Claim Code</th>
                         <th class="p-3">Category</th>
                         <th class="p-3">Req. Date</th>
                         <th class="p-3">Status</th>
+                        <th class="p-3">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <asp:Repeater ID="rptLogHistory" runat="server">
+                    <asp:Repeater ID="rptLogHistory" runat="server" OnItemDataBound="rptLogHistory_ItemDataBound">
                         <ItemTemplate>
-                            <tr class="border border-gray-400 rounded-md mt-2">
+                            <tr class="border border-gray-400 rounded-md mt-2" onclick='SelectedIndexChange'>
+                                <td class="p-3"><%# Eval("KdKlaim") %></td>
                                 <td class="p-3"><%# Eval("Kategori") %></td>
                                 <td class="p-3"><%# Eval("TanggalPengajuan") %></td>
-                                <td class="p-3"><%# Eval("Status_Terakhir") %></td>
+                                <td class="p-3">
+                                    <asp:Label ID="lblStatusTerakhir" runat="server" Text='<%# Eval("Status_Terakhir") %>' />
+                                </td>
+                                <td class="p-3">
+                                    <asp:LinkButton ID="lnkViewDetails" Visible="false"
+                                        runat="server" CssClass="text-blue-500 hover:text-blue-700 font-semibold"
+                                        CommandName="Update" CommandArgument='<%# Eval("KdKlaim") %>'
+                                        OnClientClick="lnkViewDetails_Click">View Details
+                                    </asp:LinkButton>
+                                </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>

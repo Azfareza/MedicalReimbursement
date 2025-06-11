@@ -1,4 +1,4 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="MR_HR.aspx.vb" Inherits="MedicalReimbursement.MR_HR" MasterPageFile="~/Header.master" %>
+﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="MR_DIREKSI.aspx.vb" Inherits="MedicalReimbursement.MR_DIREKSI" MasterPageFile="~/Header.master" %>
 
 <asp:Content ID="headContent" runat="server" ContentPlaceHolderID="head">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
@@ -85,6 +85,7 @@
 
                 <!-- Middle Column -->
                 <div class="space-y-4">
+
                     <div>
                         <asp:Label ID="lblKategoriModal" runat="server" AssociatedControlID="txtKategoriModal" Text="Kategori" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
                         <asp:TextBox ID="txtKategoriModal" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
@@ -163,7 +164,7 @@
     <%--END MODAL--%>
     <section class="max-w-5xl mx-auto space-y-10">
         <div>
-            <h2 class="text-[#f9a01b] font-extrabold text-2xl mb-6">REQUEST LIST (AWAITING)
+            <h2 class="text-[#f9a01b] font-extrabold text-2xl mb-6">REQUEST LIST
             </h2>
             <asp:GridView ID="gvRequestList" runat="server" DataKeyNames="kdklaim" CssClass="w-full text-center text-sm" AutoGenerateColumns="False" GridLines="None" HeaderStyle-Font-Bold="True" HeaderStyle-CssClass="font-semibold text-black" RowStyle-CssClass="bg-white rounded-full">
                 <Columns>
@@ -194,38 +195,7 @@
             </asp:GridView>
         </div>
         <div>
-            <h2 class="text-[#f9a01b] font-extrabold text-2xl mb-6">REJECTED LIST
-            </h2>
-            <asp:GridView ID="gvRejectList" runat="server" CssClass="w-full text-center text-sm" AutoGenerateColumns="False" GridLines="None" HeaderStyle-Font-Bold="True" HeaderStyle-CssClass="font-semibold text-black" RowStyle-CssClass="bg-white rounded-full" OnRowDataBound="gvHistory_RowDataBound">
-                <Columns>
-                    <asp:BoundField DataField="kdklaim" HeaderText="No. Klaim" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-                    <asp:BoundField DataField="NIP" HeaderText="NIP" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-                    <asp:BoundField DataField="Namalengkap" HeaderText="Nama" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-                    <asp:BoundField DataField="NamaDepartemen" HeaderText="Departemen" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-                    <asp:BoundField DataField="Kategori" HeaderText="Kategori" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-                    <asp:BoundField DataField="Tanggalpengajuan" HeaderText="Tanggal" DataFormatString="{0:dd-MM-yyyy}" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-                    <asp:BoundField DataField="status_terakhir" HeaderText="Status" ItemStyle-CssClass="py-4 px-6" HeaderStyle-CssClass="pb-3" />
-                    <asp:TemplateField>
-                        <ItemTemplate>
-                            <asp:LinkButton
-                                ID="btnSelect"
-                                runat="server"
-                                CommandName="Select"
-                                CssClass="text-blue-500 hover:text-blue-700"
-                                ToolTip="Lihat Detail">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5.25 12 5.25s8.268 2.693 9.542 6.75c-1.274 4.057-5.065 6.75-9.542 6.75S3.732 16.057 2.458 12z" />
-                            </svg>
-                            </asp:LinkButton>
-                        </ItemTemplate>
-                        <ItemStyle CssClass="py-4 px-6 text-center" />
-                    </asp:TemplateField>
-                </Columns>
-            </asp:GridView>
-        </div>
-        <div>
-            <h2 class="text-[#f9a01b] font-extrabold text-2xl mb-6">ON PROCESS LIST
+            <h2 class="text-[#f9a01b] font-extrabold text-2xl mb-6">HISTORY
             </h2>
             <asp:GridView ID="gvHistory" runat="server" CssClass="w-full text-center text-sm" AutoGenerateColumns="False" GridLines="None" HeaderStyle-Font-Bold="True" HeaderStyle-CssClass="font-semibold text-black" RowStyle-CssClass="bg-white rounded-full" OnRowDataBound="gvHistory_RowDataBound">
                 <Columns>

@@ -47,7 +47,7 @@ Public Class Login
                 Case "1"
                     Response.Redirect("Dashboard_Admin.aspx")
                 Case "2"
-                    Response.Redirect("Dashboard.aspx")
+                    Response.Redirect("Dashboard_DIR.aspx") '
                 Case "3"
                     Response.Redirect("Dashboard.aspx")
                 Case "4"

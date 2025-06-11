@@ -145,6 +145,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Dashboard.aspx" />
     <Content Include="Dashboard_Admin.aspx" />
+    <Content Include="Dashboard_DIR.aspx" />
     <Content Include="Dashboard_EMP.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Employee_HR.aspx" />
@@ -152,6 +153,7 @@
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
     <Content Include="Master_Request.aspx" />
+    <Content Include="MR_DIREKSI.aspx" />
     <Content Include="MR_EMP.aspx" />
     <Content Include="MR_HR.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -251,6 +253,13 @@
       <DependentUpon>Dashboard_Admin.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Dashboard_DIR.aspx.designer.vb">
+      <DependentUpon>Dashboard_DIR.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard_DIR.aspx.vb">
+      <DependentUpon>Dashboard_DIR.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Dashboard_EMP.aspx.designer.vb">
       <DependentUpon>Dashboard_EMP.aspx</DependentUpon>
     </Compile>
@@ -295,6 +304,13 @@
     <Compile Include="Master_Request.aspx.vb">
       <DependentUpon>Master_Request.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MR_DIREKSI.aspx.designer.vb">
+      <DependentUpon>MR_DIREKSI.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MR_DIREKSI.aspx.vb">
+      <DependentUpon>MR_DIREKSI.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="MR_EMP.aspx.designer.vb">
       <DependentUpon>MR_EMP.aspx</DependentUpon>

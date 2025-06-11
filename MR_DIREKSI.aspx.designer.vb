@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class MR_HR
+Partial Public Class MR_DIREKSI
 
     '''<summary>
     '''scriptmanager1 control.
@@ -255,15 +255,6 @@ Partial Public Class MR_HR
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvRequestList As Global.System.Web.UI.WebControls.GridView
-
-    '''<summary>
-    '''gvRejectList control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents gvRejectList As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
     '''gvHistory control.

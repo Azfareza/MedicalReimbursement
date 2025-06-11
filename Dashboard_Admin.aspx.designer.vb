@@ -30,4 +30,58 @@ Partial Public Class Dashboard_Admin
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rptPegawai As Global.System.Web.UI.WebControls.Repeater
+
+    '''<summary>
+    '''upModal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents upModal As Global.System.Web.UI.UpdatePanel
+
+    '''<summary>
+    '''pnlEditModal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pnlEditModal As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''lblEditNIP control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblEditNIP As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''ddlNewRole control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlNewRole As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''btnSaveEdit control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnSaveEdit As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnCloseModal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnCloseModal As Global.System.Web.UI.WebControls.Button
 End Class
