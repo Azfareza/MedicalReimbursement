@@ -31,6 +31,7 @@
                     <asp:Label ID="Labelemp" runat="server" Font-Bold="true" Font-Size="XX-Large" ForeColor="White" Visible="false" CssClass="nav-link mb-6 h-10 px-3"></asp:Label>
                 <div class="text-white mb-6 h-10 px-3">
                     <p class="font-bold text-sm">Welcome,</p>
+                    <asp:Label ID="FullNameLabel" runat="server" Text="Budiono Siregar"></asp:Label>
                 </div>
                 <nav class="flex flex-col gap-3">
                 <asp:Panel runat="server" ID="Adminpanel" Visible="false">

@@ -23,13 +23,13 @@ Partial Public Class Employee_HR
     Protected WithEvents scriptmanager1 As Global.System.Web.UI.ScriptManager
 
     '''<summary>
-    '''btnAddEmployee control.
+    '''upModal control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnAddEmployee As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents upModal As Global.System.Web.UI.UpdatePanel
 
     '''<summary>
     '''pnlModal control.
@@ -41,256 +41,67 @@ Partial Public Class Employee_HR
     Protected WithEvents pnlModal As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''btnCloseModal control.
+    '''lblNamaLengkap control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnCloseModal As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents lblNamaLengkap As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''lblFullName control.
+    '''lblTempatLahir control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblFullName As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblTempatLahir As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtFullName control.
+    '''lblTanggalLahir control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtFullName As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents lblTanggalLahir As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''lblEmail control.
+    '''lblJenisKelamin control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblEmail As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblJenisKelamin As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtEmail control.
+    '''lblKebangsaan control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtEmail As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents lblKebangsaan As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''lblPhone control.
+    '''lblAgama control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblPhone As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblAgama As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtPhone control.
+    '''lblNIK control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtPhone As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''lblPlaceOfBirth control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblPlaceOfBirth As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''txtPlaceOfBirth control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtPlaceOfBirth As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''lblDateOfBirth control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblDateOfBirth As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''txtDateOfBirth control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtDateOfBirth As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''lblAddress control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblAddress As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''txtAddress control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtAddress As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''lblReligion control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblReligion As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''txtReligion control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtReligion As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''lblNationalID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblNationalID As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''txtNationalID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtNationalID As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''lblGender control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblGender As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''rbMale control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rbMale As Global.System.Web.UI.WebControls.RadioButton
-
-    '''<summary>
-    '''rbFemale control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rbFemale As Global.System.Web.UI.WebControls.RadioButton
-
-    '''<summary>
-    '''lblMarriageStatus control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblMarriageStatus As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''rbMarried control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rbMarried As Global.System.Web.UI.WebControls.RadioButton
-
-    '''<summary>
-    '''rbSingle control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rbSingle As Global.System.Web.UI.WebControls.RadioButton
-
-    '''<summary>
-    '''lblBloodType control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblBloodType As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''rbBloodA control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rbBloodA As Global.System.Web.UI.WebControls.RadioButton
-
-    '''<summary>
-    '''rbBloodAB control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rbBloodAB As Global.System.Web.UI.WebControls.RadioButton
-
-    '''<summary>
-    '''rbBloodB control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rbBloodB As Global.System.Web.UI.WebControls.RadioButton
-
-    '''<summary>
-    '''rbBloodO control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rbBloodO As Global.System.Web.UI.WebControls.RadioButton
+    Protected WithEvents lblNIK As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''lblNIP control.
@@ -302,119 +113,137 @@ Partial Public Class Employee_HR
     Protected WithEvents lblNIP As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtNIP control.
+    '''lblNPWP control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtNIP As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents lblNPWP As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''lblStatus control.
+    '''lblSeluler control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblStatus As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblSeluler As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtStatus control.
+    '''lblEmail control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtStatus As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents lblEmail As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''lblJoinDate control.
+    '''lblDepartemen control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblJoinDate As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblDepartemen As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtJoinDate control.
+    '''lblJabatan control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtJoinDate As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents lblJabatan As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''lblBranch control.
+    '''lblAlamat control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblBranch As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblAlamat As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtBranch control.
+    '''lblKecamatan control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtBranch As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents lblKecamatan As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''lblPosition control.
+    '''lblKelurahan control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblPosition As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblKelurahan As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtPosition control.
+    '''lblKota control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtPosition As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents lblKota As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''lblLevel control.
+    '''lblProvinsi control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblLevel As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblProvinsi As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtLevel control.
+    '''rptTanggungan control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtLevel As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents rptTanggungan As Global.System.Web.UI.WebControls.Repeater
 
     '''<summary>
-    '''Button1 control.
+    '''btnCloseModal control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Button1 As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnCloseModal As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''gvEmployees control.
+    '''hdnShowModal control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents gvEmployees As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents hdnShowModal As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''upPegawaiTable control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents upPegawaiTable As Global.System.Web.UI.UpdatePanel
+
+    '''<summary>
+    '''rptPegawai control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rptPegawai As Global.System.Web.UI.WebControls.Repeater
 End Class

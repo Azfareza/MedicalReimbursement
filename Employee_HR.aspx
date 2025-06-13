@@ -2,6 +2,43 @@
 
 <asp:Content ID="headContent" runat="server" ContentPlaceHolderID="head">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/2.3.2/js/dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.min.css">
+    <script>
+        function initializeDataTable() {
+            // Destroy existing DataTable instance if it exists
+            if ($.fn.DataTable.isDataTable('#tabelPegawai')) {
+                $('#tabelPegawai').DataTable().destroy();
+            }
+            $('#tabelPegawai').DataTable({
+                "paging": true,
+                "pageLength": 12,
+                "searching": true,
+                "info": true,
+                "ordering": true,
+                "dom": '<"top"f>rt<"bottom"p><"clear">'
+            });
+        }
+
+        $(document).ready(function () {
+            initializeDataTable(); // Initialize on first page load
+
+            // Re-initialize DataTable after every ASP.NET AJAX partial postback
+            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function (sender, args) {
+                initializeDataTable();
+                // Check if the modal panel should be shown based on ViewState
+                var pnlModal = $('#<%= pnlModal.ClientID %>');
+                var hdnShowModal = $('#<%= hdnShowModal.ClientID %>');
+
+                if (hdnShowModal.val() === 'true') {
+                    pnlModal.removeClass('hidden');
+                    hdnShowModal.val('false'); // Reset the hidden field after showing
+                } else {
+                    pnlModal.addClass('hidden');
+                }
+            });
+        });
+    </script>
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="PageTitlePlaceHolder" runat="server">
@@ -10,124 +47,151 @@
 
 <asp:Content ID="mainContent" runat="server" ContentPlaceHolderID="SubContent">
     <asp:ScriptManager ID="scriptmanager1" runat="server" />
-    <div class="max-w-5xl mx-auto flex justify-end mb-8">
-        <asp:Button ID="btnAddEmployee" runat="server" Text="Add Employee" CssClass="bg-[#0052cc] text-white font-semibold rounded-lg py-3 px-6 flex items-center space-x-2 hover:cursor-pointer"/> <%--OnClick="btnAddEmployee_Click"--%> 
-        <asp:Panel ID="pnlModal" runat="server" CssClass="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-        <div class="bg-gray-100 bg-opacity-90 rounded-2xl p-10 max-w-6xl w-full grid grid-cols-1 sm:grid-cols-3 gap-x-12 gap-y-6 shadow-lg relative">
-        <asp:Button ID="btnCloseModal" runat="server" Text="×" CssClass="absolute top-4 right-4 text-3xl font-bold text-gray-700 hover:text-gray-900 bg-transparent border-none cursor-pointer"  />
 
-        <!-- Left Column -->
-        <div class="space-y-4">
-          <div>
-            <asp:Label ID="lblFullName" runat="server" AssociatedControlID="txtFullName" Text="Full Name" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
-            <asp:TextBox ID="txtFullName" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
-          </div>
-          <div>
-            <asp:Label ID="lblEmail" runat="server" AssociatedControlID="txtEmail" Text="Email" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
-            <asp:TextBox ID="txtEmail" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs" TextMode="Email"></asp:TextBox>
-          </div>
-          <div>
-            <asp:Label ID="lblPhone" runat="server" AssociatedControlID="txtPhone" Text="Phone Number" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
-            <asp:TextBox ID="txtPhone" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
-          </div>
-          <div>
-            <asp:Label ID="lblPlaceOfBirth" runat="server" AssociatedControlID="txtPlaceOfBirth" Text="Place of Birth" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
-            <asp:TextBox ID="txtPlaceOfBirth" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
-          </div>
-          <div>
-            <asp:Label ID="lblDateOfBirth" runat="server" AssociatedControlID="txtDateOfBirth" Text="Date of Birth" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
-            <asp:TextBox ID="txtDateOfBirth" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
-          </div>
-          <div>
-            <asp:Label ID="lblAddress" runat="server" AssociatedControlID="txtAddress" Text="Address" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
-            <asp:TextBox ID="txtAddress" runat="server" TextMode="MultiLine" Rows="4" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs resize-none"></asp:TextBox>
-          </div>
-        </div>
-
-        <!-- Middle Column -->
-        <div class="space-y-4">
-          <div>
-            <asp:Label ID="lblReligion" runat="server" AssociatedControlID="txtReligion" Text="Religion" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
-            <asp:TextBox ID="txtReligion" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
-          </div>
-          <div>
-            <asp:Label ID="lblNationalID" runat="server" AssociatedControlID="txtNationalID" Text="National ID" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
-            <asp:TextBox ID="txtNationalID" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
-          </div>
-          <div>
-            <asp:Label ID="lblGender" runat="server" Text="Gender" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
-            <div class="flex items-center space-x-4 text-xs">
-              <asp:RadioButton ID="rbMale" runat="server" GroupName="Gender" Text="Male" CssClass="accent-[#1d8ed1]" />
-              <asp:RadioButton ID="rbFemale" runat="server" GroupName="Gender" Text="Female" CssClass="accent-[#1d8ed1]" />
-            </div>
-          </div>
-          <div>
-            <asp:Label ID="lblMarriageStatus" runat="server" Text="Marriage Status" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
-            <div class="flex items-center space-x-4 text-xs">
-              <asp:RadioButton ID="rbMarried" runat="server" GroupName="MarriageStatus" Text="Married" CssClass="accent-[#1d8ed1]"/>
-              <asp:RadioButton ID="rbSingle" runat="server" GroupName="MarriageStatus" Text="Single" CssClass="accent-[#1d8ed1]" />
-            </div>
-          </div>
-          <div>
-            <asp:Label ID="lblBloodType" runat="server" Text="Blood Type" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
-            <div class="flex items-center space-x-4 text-xs">
-              <asp:RadioButton ID="rbBloodA" runat="server" GroupName="BloodType" Text="A" CssClass="accent-[#1d8ed1]" />
-              <asp:RadioButton ID="rbBloodAB" runat="server" GroupName="BloodType" Text="AB" CssClass="accent-[#1d8ed1]" />
-              <asp:RadioButton ID="rbBloodB" runat="server" GroupName="BloodType" Text="B" CssClass="accent-[#1d8ed1]" />
-              <asp:RadioButton ID="rbBloodO" runat="server" GroupName="BloodType" Text="O" CssClass="accent-[#1d8ed1]" />
-            </div>
-          </div>
-        </div>
-
-
-        <!-- Right Column -->
-        <div class="space-y-4">
-          <div>
-            <asp:Label ID="lblNIP" runat="server" AssociatedControlID="txtNIP" Text="NIP" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
-            <asp:TextBox ID="txtNIP" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
-          </div>
-          <div>
-            <asp:Label ID="lblStatus" runat="server" AssociatedControlID="txtStatus" Text="Status" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
-            <asp:TextBox ID="txtStatus" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
-          </div>
-          <div>
-            <asp:Label ID="lblJoinDate" runat="server" AssociatedControlID="txtJoinDate" Text="Join Date" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
-            <asp:TextBox ID="txtJoinDate" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
-          </div>
-          <div>
-            <asp:Label ID="lblBranch" runat="server" AssociatedControlID="txtBranch" Text="Branch" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
-            <asp:TextBox ID="txtBranch" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
-          </div>
-          <div>
-            <asp:Label ID="lblPosition" runat="server" AssociatedControlID="txtPosition" Text="Position" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
-            <asp:TextBox ID="txtPosition" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
-          </div>
-          <div>
-            <asp:Label ID="lblLevel" runat="server" AssociatedControlID="txtLevel" Text="Level" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
-            <asp:TextBox ID="txtLevel" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
-          </div>
-        </div>
-            <asp:Button ID="Button1" runat="server" Text="Button" />
-      </div>
-    </asp:Panel>
-
-    </div>
     <section class="max-w-5xl mx-auto">
-        <asp:GridView ID="gvEmployees" runat="server" AutoGenerateColumns="False" CssClass="w-full text-center text-sm font-semibold text-black" HeaderStyle-CssClass="pb-3" RowStyle-CssClass="bg-white rounded-full" GridLines="None">
-             <Columns>
-                  <asp:BoundField DataField="NIP" HeaderText="NIP" />
-                  <asp:BoundField DataField="Nama" HeaderText="Nama" />
-                  <asp:BoundField DataField="Divisi" HeaderText="Divisi" />
-                  <asp:BoundField DataField="Departemen" HeaderText="Departemen" />
-                  <asp:BoundField DataField="Level" HeaderText="Level" />
-                  <asp:BoundField DataField="Status_pegawai" HeaderText="Status" />
-                  <asp:TemplateField>
-                       <ItemTemplate>
-                            <asp:Button ID="btnEdit" runat="server" CssClass="bg-[#0052cc] p-2 rounded-sm text-white"  CommandArgument='<%# Eval("NIP") %>'></asp:Button>
-                            <span aria-hidden="true" class="absolute top-0 right-0 block h-3 w-3 rounded-full bg-red-600 border-2 border-white" style="position: relative; top: -1.25rem; left: 0.75rem;"></span>
-                       </ItemTemplate>
-                  </asp:TemplateField>
-             </Columns>
-        </asp:GridView>
+        <div class="flex justify-between items-center mb-4 px-1">
+            <h2 class="text-[#f97316] font-semibold text-lg">Daftar Pegawai</h2>
+        </div>
+
+        <asp:UpdatePanel ID="upModal" runat="server" UpdateMode="Conditional">
+            <ContentTemplate>
+                <asp:Panel ID="pnlModal" runat="server" CssClass="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-50">
+                    <div class="bg-white p-6 rounded-xl w-full max-w-3xl shadow-2xl relative max-h-[90vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
+                        <h3 class="text-xl font-bold text-[#145445] mb-6 border-b pb-2">📋 Detail Informasi Pegawai</h3>
+
+                        <div class="grid grid-cols-3 gap-4 text-sm">
+                            <div>
+                                <span class="font-semibold text-gray-700">Nama Lengkap:</span>
+                                <asp:Label ID="lblNamaLengkap" runat="server" CssClass="block mb-2 text-gray-800" />
+
+                                <span class="font-semibold text-gray-700">Tempat Lahir:</span>
+                                <asp:Label ID="lblTempatLahir" runat="server" CssClass="block mb-2 text-gray-800" />
+                                <span class="font-semibold text-gray-700">Tanggal Lahir:</span>
+                                <asp:Label ID="lblTanggalLahir" runat="server" CssClass="block mb-2 text-gray-800" />
+
+                                <span class="font-semibold text-gray-700">Jenis Kelamin:</span>
+                                <asp:Label ID="lblJenisKelamin" runat="server" CssClass="block mb-2 text-gray-800" />
+
+                                <span class="font-semibold text-gray-700">Kebangsaan:</span>
+                                <asp:Label ID="lblKebangsaan" runat="server" CssClass="block mb-2 text-gray-800" />
+
+                                <span class="font-semibold text-gray-700">Agama:</span>
+                                <asp:Label ID="lblAgama" runat="server" CssClass="block mb-2 text-gray-800" />
+                            </div>
+
+                            <div>
+                                <span class="font-semibold text-gray-700">NIK:</span>
+                                <asp:Label ID="lblNIK" runat="server" CssClass="block mb-2 text-gray-800" />
+
+                                <span class="font-semibold text-gray-700">NIP:</span>
+                                <asp:Label ID="lblNIP" runat="server" CssClass="block mb-2 text-gray-800" />
+
+                                <span class="font-semibold text-gray-700">NPWP:</span>
+                                <asp:Label ID="lblNPWP" runat="server" CssClass="block mb-2 text-gray-800" />
+
+                                <span class="font-semibold text-gray-700">Seluler:</span>
+                                <asp:Label ID="lblSeluler" runat="server" CssClass="block mb-2 text-gray-800" />
+
+                                <span class="font-semibold text-gray-700">Email:</span>
+                                <asp:Label ID="lblEmail" runat="server" CssClass="block mb-2 text-gray-800" />
+
+                                <span class="font-semibold text-gray-700">Departemen:</span>
+                                <asp:Label ID="lblDepartemen" runat="server" CssClass="block mb-2 text-gray-800" />
+
+                                <span class="font-semibold text-gray-700">Jabatan:</span>
+                                <asp:Label ID="lblJabatan" runat="server" CssClass="block mb-2 text-gray-800" />
+                            </div>
+                            <div>
+                                <span class="font-semibold text-gray-700">Alamat:</span>
+                                <asp:Label ID="lblAlamat" runat="server" CssClass="block mb-2 text-gray-800" />
+
+                                <span class="font-semibold text-gray-700">Kecamatan:</span>
+                                <asp:Label ID="lblKecamatan" runat="server" CssClass="block mb-2 text-gray-800" />
+
+                                <span class="font-semibold text-gray-700">Kelurahan:</span>
+                                <asp:Label ID="lblKelurahan" runat="server" CssClass="block mb-2 text-gray-800" />
+
+                                <span class="font-semibold text-gray-700">Kota:</span>
+                                <asp:Label ID="lblKota" runat="server" CssClass="block mb-2 text-gray-800" />
+
+                                <span class="font-semibold text-gray-700">Provinsi:</span>
+                                <asp:Label ID="lblProvinsi" runat="server" CssClass="block mb-2 text-gray-800" />
+                            </div>
+                        </div>
+
+                        <h3 class="text-xl font-bold text-[#145445] mt-6 mb-6 border-b pb-2">👨‍👩‍👧‍👦 Tanggungan Pegawai</h3>
+                        <asp:Repeater ID="rptTanggungan" runat="server">
+                            <HeaderTemplate>
+                                <table class="table-auto w-full text-sm border mb-4">
+                                    <thead class="bg-gray-100">
+                                        <tr>
+                                            <th class="border px-2 py-1">Nama</th>
+                                            <th class="border px-2 py-1">Tempat Lahir</th>
+                                            <th class="border px-2 py-1">Tanggal Lahir</th>
+                                            <th class="border px-2 py-1">Jenis Kelamin</th>
+                                            <th class="border px-2 py-1">Pekerjaan</th>
+                                            <th class="border px-2 py-1">Hubungan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                            </HeaderTemplate>
+                            <ItemTemplate>
+                                <tr>
+                                    <td class="border px-2 py-1"><%# Eval("NamaLengkap") %></td>
+                                    <td class="border px-2 py-1"><%# Eval("TempatLahir") %></td>
+                                    <td class="border px-2 py-1"><%# Eval("TanggalLahir", "{0:yyyy-MM-dd}") %></td>
+                                    <td class="border px-2 py-1"><%# Eval("JenisKelamin") %></td>
+                                    <td class="border px-2 py-1"><%# Eval("Pekerjaan") %></td>
+                                    <td class="border px-2 py-1"><%# Eval("Hubungan") %></td>
+                                </tr>
+                            </ItemTemplate>
+                            <FooterTemplate>
+                                    </tbody>
+                                </table>
+                            </FooterTemplate>
+                        </asp:Repeater>
+
+                        <div class="mt-6 text-right">
+                            <asp:Button ID="btnCloseModal" runat="server" Text="Tutup" CssClass="bg-red-600 hover:bg-red-700 text-white font-semibold px-5 py-2 rounded shadow-sm transition" OnClick="btnCloseModal_Click" />
+                        </div>
+
+                        <asp:HiddenField ID="hdnShowModal" runat="server" Value="false" />
+                    </div>
+                </asp:Panel>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+
+        <asp:UpdatePanel ID="upPegawaiTable" runat="server" UpdateMode="Conditional">
+            <ContentTemplate>
+                <table id="tabelPegawai" class="w-full bg-white rounded-lg shadow-sm border border-gray-400 text-sm display">
+                    <thead class="text-left font-semibold border-b border-gray-400">
+                        <tr>
+                            <th class="p-3">NIP</th>
+                            <th class="p-3">Nama Lengkap</th>
+                            <th class="p-3">Departemen</th>
+                            <th class="p-3">Jabatan</th>
+                            <th class="p-3">Status</th>
+                            <th class="p-3">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <asp:Repeater ID="rptPegawai" runat="server" OnItemCommand="rptPegawai_ItemCommand">
+                            <ItemTemplate>
+                                <tr class="border border-gray-400 rounded-md mt-2">
+                                    <td class="p-3"><%# Eval("NIP") %></td>
+                                    <td class="p-3"><%# Eval("NamaLengkap") %></td>
+                                    <td class="p-3"><%# Eval("NamaDepartemen") %></td>
+                                    <td class="p-3"><%# Eval("NamaJabatan") %></td>
+                                    <td class="p-3"><%# Eval("Status") %></td>
+                                    <td class="p-3">
+                                        <asp:Button Text="Detail" ID="btnEdit" runat="server" CssClass="bg-[#0052cc] p-2 rounded-sm text-white" CommandArgument='<%# Eval("NIP") %>' CommandName="View" />
+                                    </td>
+                                </tr>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </tbody>
+                </table>
+            </ContentTemplate>
+        </asp:UpdatePanel>
     </section>
 </asp:Content>

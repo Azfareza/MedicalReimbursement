@@ -7,26 +7,32 @@
         Else
 
         End If
+
+
         Dim userRole As String = Session("Role").ToString()
         If userRole = "1" Then ' Role 1: Admin
+            FullNameLabel.Visible = False
             hrpanel.Visible = False
             Labeladmin.Visible = True
             Labeladmin.Text = "Hallo Admin!"
             'NameLabelAdmin.Visible = True
             'NameLabelAdmin.Text = Session("Name").ToString()
         ElseIf userRole = "2" Then ' Role 2: Direksi
+            FullNameLabel.Visible = False
             Dirpanel.Visible = True
             Labeldir.Visible = True
             Labeldir.Text = "DIREKSI"
             ' NameLabelDir.Visible = True
             ' NameLabelDir.Text = Session("Name").ToString()
         ElseIf userRole = "3" Then ' Role 3: HR
+            FullNameLabel.Visible = False
             hrpanel.Visible = True
             Labelhr.Visible = True
             Labelhr.Text = "HR"
             ' NameLabelHr.Visible = True
             ' NameLabelHr.Text = Session("Name").ToString()
         ElseIf userRole = "4" Then 'role 4 : pegawai
+            FullNameLabel.Text = Session("Name").ToString()
             emppanel.Visible = True
             Labelemp.Visible = True
             Labelemp.Text = "USER"
