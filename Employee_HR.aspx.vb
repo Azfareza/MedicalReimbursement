@@ -19,7 +19,14 @@ Public Class Employee_HR
                     Case "2", "3"
                 End Select
             End If
-            BindAllPegawai()
+            hdnShowAddModal.Value = "false"
+            hdnShowModal.Value = "false"
+        End If
+
+        If hdnShowAddModal.Value = "true" Then
+            pnlModalAdd.CssClass = pnlModalAdd.CssClass.Replace("hidden", "").Trim()
+        Else
+            pnlModalAdd.CssClass &= " hidden"
         End If
 
         If hdnShowModal.Value = "true" Then
@@ -28,7 +35,21 @@ Public Class Employee_HR
             pnlModal.CssClass = pnlModal.CssClass + " hidden"
             pnlModal.CssClass = pnlModal.CssClass.Replace("  ", " ").Trim()
         End If
+        BindAllPegawai()
     End Sub
+
+    Protected Sub btnTambahPegawai_Click(sender As Object, e As EventArgs) Handles btnTambahPegawai.Click
+        pnlModalAdd.CssClass = pnlModalAdd.CssClass.Replace("hidden", "").Trim()
+        hdnShowAddModal.Value = "true"
+        upModalAdd.Update()
+    End Sub
+
+    Protected Sub btnBatalTambah_Click(sender As Object, e As EventArgs) Handles btnBatalTambah.Click
+        pnlModalAdd.CssClass &= " hidden"
+        hdnShowAddModal.Value = "false"
+        upModalAdd.Update()
+    End Sub
+
 
     Private Sub BindAllPegawai()
         rptPegawai.Visible = True
@@ -44,6 +65,68 @@ Public Class Employee_HR
             hdnShowModal.Value = "true"
             upModal.Update()
         End If
+    End Sub
+
+    Protected Sub btnSimpanPegawai_Click(sender As Object, e As EventArgs) Handles btnSimpanPegawai.Click
+        Try
+            ' === Data Pegawai ===
+            Dim nip As String = txtNIP.Text.Trim()
+            Dim namaLengkap As String = txtNamaLengkap.Text.Trim()
+            Dim tempatLahir As String = txtTempatLahir.Text.Trim()
+            Dim tanggalLahir As Date = Convert.ToDateTime(txtTanggalLahir.Text)
+            Dim jenisKelamin As String = ddlJenisKelamin.SelectedValue
+            Dim kebangsaan As String = txtKebangsaan.Text.Trim()
+            Dim agama As String = txtAgama.Text.Trim()
+            Dim nik As String = txtNIK.Text.Trim()
+            Dim npwp As String = txtNPWP.Text.Trim()
+            Dim seluler As String = txtSeluler.Text.Trim()
+            Dim email As String = txtEmail.Text.Trim()
+            Dim password As String = txtPassword.Text.Trim()
+            Dim role As Integer = 4 ' default role pegawai biasa
+            'Dim foto As Byte = Nothing
+
+            ' === Alamat ===
+            Dim provinsi As String = txtProvinsi.Text.Trim()
+            Dim kota As String = txtKota.Text.Trim()
+            Dim kecamatan As String = txtKecamatan.Text.Trim()
+            Dim kelurahan As String = txtKelurahan.Text.Trim()
+            Dim detilAlamat As String = txtDetilAlamat.Text.Trim()
+            Dim kodePos As Integer = If(IsNumeric(txtKodePos.Text), CInt(txtKodePos.Text), 0)
+            Dim aktifAlamat As Boolean = True
+
+            ' === Mutasi Kepegawaian ===
+            Dim kdDept As String = txtKdDept.Text.Trim()
+            Dim kdJabatan As String = txtKdJabatan.Text.Trim()
+            Dim tglMulai As Date = Convert.ToDateTime(txtTanggalMulai.Text)
+            Dim statusMutasi As String = DropDownList1.SelectedValue
+            Dim catatan As String = txtCatatan.Text.Trim()
+            Dim aktifMutasi As Boolean = True
+
+            ' === Panggil Method Insert ===
+            Dim insertedPegawai = DataPegawai.InsertPegawai(nip, nik, npwp, namaLengkap, tempatLahir, tanggalLahir, jenisKelamin, kebangsaan, seluler, email, agama, kdDept, password, role)
+            Dim insertedAlamat = DataPegawai.InsertAlamatPegawai(nip, provinsi, kota, kecamatan, kelurahan, detilAlamat, kodePos, aktifAlamat)
+            Dim insertedMutasi = DataPegawai.InsertMutasiPegawai(nip, kdDept, kdJabatan, tglMulai, statusMutasi, catatan, Nothing, aktifMutasi)
+
+            If insertedPegawai AndAlso insertedAlamat AndAlso insertedMutasi Then
+                Dim alertScript As String = $"<script type='text/javascript'>alert('BERHASIL!');</script>"
+                ClientScript.RegisterStartupScript(Me.GetType(), "ShowAlert", alertScript, False)
+                Session.Remove("SuccessMessage")
+                pnlModalAdd.CssClass &= " hidden"
+                hdnShowAddModal.Value = "false"
+                BindAllPegawai()
+            Else
+                Dim alertScript As String = $"<script type='text/javascript'>alert('GAGAL!');</script>"
+                ClientScript.RegisterStartupScript(Me.GetType(), "ShowAlert", alertScript, False)
+            End If
+            hdnShowAddModal.Value = "false"
+            pnlModalAdd.CssClass = " hidden"
+            upModalAdd.Update()
+
+        Catch ex As Exception
+            Dim alertScript As String = $"<script type='text/javascript'>alert('GAGAL!');</script>"
+            ClientScript.RegisterStartupScript(Me.GetType(), "ShowAlert", alertScript, False)
+            upModalAdd.Update()
+        End Try
     End Sub
 
     Private Sub LoadModalPegawaiDetail(nip As String)
@@ -76,7 +159,6 @@ Public Class Employee_HR
             Dim dtTanggungan As DataTable = DataPegawai.SelectTanggunganByNik(NIK)
             rptTanggungan.DataSource = dtTanggungan
             rptTanggungan.DataBind()
-
         End If
     End Sub
 

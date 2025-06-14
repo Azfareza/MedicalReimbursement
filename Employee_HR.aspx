@@ -51,6 +51,11 @@
     <section class="max-w-5xl mx-auto">
         <div class="flex justify-between items-center mb-4 px-1">
             <h2 class="text-[#f97316] font-semibold text-lg">Daftar Pegawai</h2>
+            <asp:Button ID="btnTambahPegawai" runat="server"
+                Text="➕ Tambah Pegawai"
+                CssClass="bg-[#16a34a] hover:bg-[#15803d] text-white font-semibold px-4 py-2 rounded-md shadow-sm transition"
+                OnClick="btnTambahPegawai_Click"
+             />
         </div>
 
         <asp:UpdatePanel ID="upModal" runat="server" UpdateMode="Conditional">
@@ -191,6 +196,121 @@
                         </asp:Repeater>
                     </tbody>
                 </table>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+
+        <asp:UpdatePanel ID="upModalAdd" runat="server" UpdateMode="Conditional">
+            <ContentTemplate>
+                <asp:Panel ID="pnlModalAdd" runat="server" CssClass="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-50">
+                    <div class="bg-white p-6 rounded-xl w-full max-w-7xl shadow-2xl relative max-h-[90vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
+                        <h3 class="text-xl font-bold text-[#145445] mb-4 border-b pb-2">➕ Tambah Pegawai Baru</h3>
+
+                        <div class="grid grid-cols-3 gap-4 text-sm">
+                            <div>
+                                <h4 class="text-xl font-bold text-[#145445] mb-4 border-b pb-2">Data Diri</h4>
+                                <label class="block font-semibold text-gray-700">NIP</label>
+                                <asp:TextBox ID="txtNIP" runat="server" CssClass="w-full border px-3 py-2 rounded-md mb-2" />
+
+                                <label class="block font-semibold text-gray-700">NIK</label>
+                                <asp:TextBox ID="txtNIK" runat="server" CssClass="w-full border px-3 py-2 rounded-md mb-2" />
+                                
+                                <label class="block font-semibold text-gray-700">NPWP</label>
+                                <asp:TextBox ID="txtNPWP" runat="server" CssClass="w-full border px-3 py-2 rounded-md mb-2" />
+
+                                <label class="block font-semibold text-gray-700">Nama Lengkap</label>
+                                <asp:TextBox ID="txtNamaLengkap" runat="server" CssClass="w-full border px-3 py-2 rounded-md mb-2" />
+
+                                <label class="block font-semibold text-gray-700">Tempat Lahir</label>
+                                <asp:TextBox ID="txtTempatLahir" runat="server" CssClass="w-full border px-3 py-2 rounded-md mb-2" />
+
+                                <label class="block font-semibold text-gray-700">Tanggal Lahir</label>
+                                <asp:TextBox ID="txtTanggalLahir" runat="server" CssClass="w-full border px-3 py-2 rounded-md mb-2" TextMode="Date" />
+                                
+                                <label class="block font-semibold text-gray-700">Jenis Kelamin</label>
+                                <asp:DropDownList ID="ddlJenisKelamin" runat="server" CssClass="w-full border px-3 py-2 rounded-md mb-2">
+                                    <asp:ListItem Text="Laki-Laki" Value="Laki-Laki" />
+                                    <asp:ListItem Text="Perempuan" Value="Perempuan" />
+                                </asp:DropDownList>
+
+                                <label class="block font-semibold text-gray-700">Kebangsaan</label>
+                                <asp:TextBox ID="txtKebangsaan" runat="server" CssClass="w-full border px-3 py-2 rounded-md mb-2"/>
+                                
+                                <label class="block font-semibold text-gray-700">Agama</label>
+                                <asp:TextBox ID="txtAgama" runat="server" CssClass="w-full border px-3 py-2 rounded-md mb-2"/>
+                            </div>
+                            <div>
+
+                                <h4 class="text-xl font-bold text-[#145445] mb-4 border-b pb-2">Alamat</h4>
+                                <label class="block font-semibold text-gray-700">Provinsi</label>
+                                <asp:TextBox ID="txtProvinsi" runat="server" CssClass="w-full border px-3 py-2 rounded-md mb-2"/>
+
+                                <label class="block font-semibold text-gray-700">Kota</label>
+                                <asp:TextBox ID="txtKota" runat="server" CssClass="w-full border px-3 py-2 rounded-md mb-2"/>
+
+                                <label class="block font-semibold text-gray-700">Kecamatan</label>
+                                <asp:TextBox ID="txtKecamatan" runat="server" CssClass="w-full border px-3 py-2 rounded-md mb-2"/>
+
+                                <label class="block font-semibold text-gray-700">Kelurahan</label>
+                                <asp:TextBox ID="txtKelurahan" runat="server" CssClass="w-full border px-3 py-2 rounded-md mb-2"/>
+
+                                <label class="block font-semibold text-gray-700">Detail Alamat</label>
+                                <asp:TextBox ID="txtDetilAlamat" runat="server" CssClass="w-full border px-3 py-2 rounded-md mb-2"/>
+
+                                <label class="block font-semibold text-gray-700">Kode Pos</label>
+                                <asp:TextBox ID="txtKodePos" runat="server" CssClass="w-full border px-3 py-2 rounded-md mb-2"/>
+
+                                <%-- Aktif = 1 --%>
+
+                                <h4 class="text-xl font-bold text-[#145445] mb-4 mt-4 border-b pb-2">Kontak</h4>
+                                <label class="block font-semibold text-gray-700">E-Mail</label>
+                                <asp:TextBox ID="txtEmail" runat="server" CssClass="w-full border px-3 py-2 rounded-md mb-2"/>
+
+                                <label class="block font-semibold text-gray-700">Seluler</label>
+                                <asp:TextBox ID="txtSeluler" runat="server" CssClass="w-full border px-3 py-2 rounded-md mb-2"/>
+                            </div>
+
+                            <div>
+                                <h4 class="text-xl font-bold text-[#145445] mb-4 border-b pb-2">Data Kepegawaian</h4>
+                                <label class="block font-semibold text-gray-700">Kode Departemen</label>
+                                <asp:TextBox ID="txtKdDept" runat="server" CssClass="w-full border px-3 py-2 rounded-md mb-2"/>
+
+                                <label class="block font-semibold text-gray-700">Kode Jabatan</label>
+                                <asp:TextBox ID="txtKdJabatan" runat="server" CssClass="w-full border px-3 py-2 rounded-md mb-2"/>
+                                
+                                <label class="block font-semibold text-gray-700">Tanggal Mulai</label>
+                                <asp:TextBox ID="txtTanggalMulai" runat="server" CssClass="w-full border px-3 py-2 rounded-md mb-2" TextMode="Date" />
+                                
+                                <label class="block font-semibold text-gray-700">Status</label>
+                                <asp:DropDownList ID="DropDownList1" runat="server" CssClass="w-full border px-3 py-2 rounded-md mb-2">
+                                    <asp:ListItem Text="PKWT" Value="PKWT" />
+                                    <asp:ListItem Text="PKWTT" Value="PKWTT" />
+                                </asp:DropDownList>
+
+                                <label class="block font-semibold text-gray-700">Catatan</label>
+                                <asp:TextBox ID="txtCatatan" runat="server" CssClass="w-full border px-3 py-2 rounded-md mb-2"/>
+
+                                <%-- Foto = Null --%>
+
+                                <label class="block font-semibold text-gray-700">Password</label>
+                                <asp:TextBox ID="txtPassword" runat="server" CssClass="w-full border px-3 py-2 rounded-md mb-2"/>
+
+                                <%-- Role = 4 --%>
+                            </div>
+
+                        </div>
+
+                        <div class="mt-4 text-right">
+                            <asp:Button ID="btnSimpanPegawai" runat="server" Text="Simpan"
+                                CssClass="bg-green-600 hover:bg-green-700 text-white font-semibold px-5 py-2 rounded shadow-sm transition" />
+
+                            <asp:Button ID="btnBatalTambah" runat="server" Text="Batal"
+                                CssClass="ml-2 bg-gray-400 hover:bg-gray-500 text-white font-semibold px-5 py-2 rounded shadow-sm transition"
+                                OnClick="btnBatalTambah_Click" />
+                        </div>
+
+                        <asp:HiddenField ID="hdnShowAddModal" runat="server" Value="false" />
+                    </div>
+                </asp:Panel>
             </ContentTemplate>
         </asp:UpdatePanel>
     </section>

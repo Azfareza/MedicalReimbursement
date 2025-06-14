@@ -23,6 +23,15 @@ Partial Public Class Employee_HR
     Protected WithEvents scriptmanager1 As Global.System.Web.UI.ScriptManager
 
     '''<summary>
+    '''btnTambahPegawai control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnTambahPegawai As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''upModal control.
     '''</summary>
     '''<remarks>
@@ -246,4 +255,256 @@ Partial Public Class Employee_HR
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rptPegawai As Global.System.Web.UI.WebControls.Repeater
+
+    '''<summary>
+    '''upModalAdd control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents upModalAdd As Global.System.Web.UI.UpdatePanel
+
+    '''<summary>
+    '''pnlModalAdd control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pnlModalAdd As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''txtNIP control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtNIP As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtNIK control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtNIK As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtNPWP control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtNPWP As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtNamaLengkap control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtNamaLengkap As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtTempatLahir control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtTempatLahir As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtTanggalLahir control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtTanggalLahir As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''ddlJenisKelamin control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlJenisKelamin As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''txtKebangsaan control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtKebangsaan As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtAgama control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtAgama As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtProvinsi control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtProvinsi As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtKota control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtKota As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtKecamatan control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtKecamatan As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtKelurahan control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtKelurahan As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtDetilAlamat control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtDetilAlamat As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtKodePos control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtKodePos As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtEmail control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtEmail As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtSeluler control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtSeluler As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtKdDept control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtKdDept As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtKdJabatan control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtKdJabatan As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtTanggalMulai control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtTanggalMulai As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''DropDownList1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DropDownList1 As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''txtCatatan control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtCatatan As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtPassword control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPassword As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''btnSimpanPegawai control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnSimpanPegawai As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnBatalTambah control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnBatalTambah As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''hdnShowAddModal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hdnShowAddModal As Global.System.Web.UI.WebControls.HiddenField
 End Class
