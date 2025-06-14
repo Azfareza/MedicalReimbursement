@@ -8,7 +8,7 @@ Public Class Employee_HR
     Dim DataPegawai As New DAFTAR_PEGAWAI.Pegawai
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        If Not Page.IsPostBack Then
+        If Not Page.IsPostBack AndAlso Not IsCallback Then
             If Trim(Session("Role")) = "" Then
                 Response.Redirect("Login.aspx")
             Else
@@ -21,6 +21,7 @@ Public Class Employee_HR
             End If
             hdnShowAddModal.Value = "false"
             hdnShowModal.Value = "false"
+            BindAllPegawai()
         End If
 
         If hdnShowAddModal.Value = "true" Then
@@ -35,7 +36,6 @@ Public Class Employee_HR
             pnlModal.CssClass = pnlModal.CssClass + " hidden"
             pnlModal.CssClass = pnlModal.CssClass.Replace("  ", " ").Trim()
         End If
-        BindAllPegawai()
     End Sub
 
     Protected Sub btnTambahPegawai_Click(sender As Object, e As EventArgs) Handles btnTambahPegawai.Click
@@ -49,7 +49,6 @@ Public Class Employee_HR
         hdnShowAddModal.Value = "false"
         upModalAdd.Update()
     End Sub
-
 
     Private Sub BindAllPegawai()
         rptPegawai.Visible = True
@@ -69,7 +68,6 @@ Public Class Employee_HR
 
     Protected Sub btnSimpanPegawai_Click(sender As Object, e As EventArgs) Handles btnSimpanPegawai.Click
         Try
-            ' === Data Pegawai ===
             Dim nip As String = txtNIP.Text.Trim()
             Dim namaLengkap As String = txtNamaLengkap.Text.Trim()
             Dim tempatLahir As String = txtTempatLahir.Text.Trim()
@@ -82,10 +80,8 @@ Public Class Employee_HR
             Dim seluler As String = txtSeluler.Text.Trim()
             Dim email As String = txtEmail.Text.Trim()
             Dim password As String = txtPassword.Text.Trim()
-            Dim role As Integer = 4 ' default role pegawai biasa
-            'Dim foto As Byte = Nothing
+            Dim role As Integer = 4
 
-            ' === Alamat ===
             Dim provinsi As String = txtProvinsi.Text.Trim()
             Dim kota As String = txtKota.Text.Trim()
             Dim kecamatan As String = txtKecamatan.Text.Trim()
@@ -94,7 +90,6 @@ Public Class Employee_HR
             Dim kodePos As Integer = If(IsNumeric(txtKodePos.Text), CInt(txtKodePos.Text), 0)
             Dim aktifAlamat As Boolean = True
 
-            ' === Mutasi Kepegawaian ===
             Dim kdDept As String = txtKdDept.Text.Trim()
             Dim kdJabatan As String = txtKdJabatan.Text.Trim()
             Dim tglMulai As Date = Convert.ToDateTime(txtTanggalMulai.Text)
@@ -102,28 +97,26 @@ Public Class Employee_HR
             Dim catatan As String = txtCatatan.Text.Trim()
             Dim aktifMutasi As Boolean = True
 
-            ' === Panggil Method Insert ===
             Dim insertedPegawai = DataPegawai.InsertPegawai(nip, nik, npwp, namaLengkap, tempatLahir, tanggalLahir, jenisKelamin, kebangsaan, seluler, email, agama, kdDept, password, role)
             Dim insertedAlamat = DataPegawai.InsertAlamatPegawai(nip, provinsi, kota, kecamatan, kelurahan, detilAlamat, kodePos, aktifAlamat)
             Dim insertedMutasi = DataPegawai.InsertMutasiPegawai(nip, kdDept, kdJabatan, tglMulai, statusMutasi, catatan, Nothing, aktifMutasi)
 
             If insertedPegawai AndAlso insertedAlamat AndAlso insertedMutasi Then
-                Dim alertScript As String = $"<script type='text/javascript'>alert('BERHASIL!');</script>"
-                ClientScript.RegisterStartupScript(Me.GetType(), "ShowAlert", alertScript, False)
-                Session.Remove("SuccessMessage")
-                pnlModalAdd.CssClass &= " hidden"
+                Session("SuccessMessage") = "Data berhasil ditambahkan"
                 hdnShowAddModal.Value = "false"
+                pnlModalAdd.CssClass &= " hidden"
                 BindAllPegawai()
+                upPegawaiTable.Update()
+                ScriptManager.RegisterStartupScript(Me, Me.GetType(), "HideModalAdd", "$('#" & pnlModalAdd.ClientID & "').addClass('hidden'); $('#" & hdnShowAddModal.ClientID & "').val('false');", True)
+                Response.Redirect(Request.RawUrl)
             Else
-                Dim alertScript As String = $"<script type='text/javascript'>alert('GAGAL!');</script>"
+                Dim alertScript As String = "<script type='text/javascript'>alert('GAGAL!');</script>"
                 ClientScript.RegisterStartupScript(Me.GetType(), "ShowAlert", alertScript, False)
+                upModalAdd.Update()
             End If
-            hdnShowAddModal.Value = "false"
-            pnlModalAdd.CssClass = " hidden"
-            upModalAdd.Update()
 
         Catch ex As Exception
-            Dim alertScript As String = $"<script type='text/javascript'>alert('GAGAL!');</script>"
+            Dim alertScript As String = "<script type='text/javascript'>alert('GAGAL: " & ex.Message & "');</script>"
             ClientScript.RegisterStartupScript(Me.GetType(), "ShowAlert", alertScript, False)
             upModalAdd.Update()
         End Try
@@ -155,7 +148,6 @@ Public Class Employee_HR
             lblProvinsi.Text = row("Provinsi").ToString()
 
             Dim NIK = row("NIK").ToString()
-
             Dim dtTanggungan As DataTable = DataPegawai.SelectTanggunganByNik(NIK)
             rptTanggungan.DataSource = dtTanggungan
             rptTanggungan.DataBind()
