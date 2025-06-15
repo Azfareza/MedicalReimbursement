@@ -2,43 +2,66 @@
     Inherits System.Web.UI.MasterPage
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        If Trim(Session("Role")) = "" Then
+        ' Redirect jika tidak ada sesi login
+        If Session("Role") Is Nothing OrElse Trim(Session("Role").ToString()) = "" Then
             Response.Redirect("Login.aspx")
-        Else
-
+            Return
         End If
-
 
         Dim userRole As String = Session("Role").ToString()
-        If userRole = "1" Then ' Role 1: Admin
-            FullNameLabel.Visible = False
-            hrpanel.Visible = False
-            Labeladmin.Visible = True
-            Labeladmin.Text = "Hallo Admin!"
-            'NameLabelAdmin.Visible = True
-            'NameLabelAdmin.Text = Session("Name").ToString()
-        ElseIf userRole = "2" Then ' Role 2: Direksi
-            FullNameLabel.Visible = False
-            Dirpanel.Visible = True
-            Labeldir.Visible = True
-            Labeldir.Text = "DIREKSI"
-            ' NameLabelDir.Visible = True
-            ' NameLabelDir.Text = Session("Name").ToString()
-        ElseIf userRole = "3" Then ' Role 3: HR
-            FullNameLabel.Visible = False
-            hrpanel.Visible = True
-            Labelhr.Visible = True
-            Labelhr.Text = "HR"
-            ' NameLabelHr.Visible = True
-            ' NameLabelHr.Text = Session("Name").ToString()
-        ElseIf userRole = "4" Then 'role 4 : pegawai
-            FullNameLabel.Text = Session("Name").ToString()
-            emppanel.Visible = True
-            Labelemp.Visible = True
-            Labelemp.Text = "USER"
-            ' NameLabelEmp.Visible = True
-            'NameLabelEmp.Text = Session("Name").ToString()
-        End If
+
+        ' Reset semua panel dan label ke default
+        Adminpanel.Visible = False
+        Dirpanel.Visible = False
+        hrpanel.Visible = False
+        emppanel.Visible = False
+
+        Labeladmin.Visible = False
+        Labeldir.Visible = False
+        Labelhr.Visible = False
+        Labelemp.Visible = False
+
+        FullNameAdmin.Visible = False
+        FullNameDIR.Visible = False
+        FullNameHR.Visible = False
+        FullNameEMP.Visible = False
+
+        ' Ambil nama user dari session
+        Dim namaLengkap As String = If(Session("Name") IsNot Nothing, Session("Name").ToString(), "User")
+
+        ' Tampilkan sesuai role
+        Select Case userRole
+            Case "1" ' Admin
+                Adminpanel.Visible = True
+                Labeladmin.Visible = True
+                Labeladmin.Text = "Hallo Admin!"
+                FullNameAdmin.Visible = True
+                FullNameAdmin.Text = namaLengkap
+
+            Case "2" ' Direksi
+                Dirpanel.Visible = True
+                Labeldir.Visible = True
+                Labeldir.Text = "DIREKSI"
+                FullNameDIR.Visible = True
+                FullNameDIR.Text = namaLengkap
+
+            Case "3" ' HR
+                hrpanel.Visible = True
+                Labelhr.Visible = True
+                Labelhr.Text = "HR"
+                FullNameHR.Visible = True
+                FullNameHR.Text = namaLengkap
+
+            Case "4" ' Pegawai
+                emppanel.Visible = True
+                Labelemp.Visible = True
+                Labelemp.Text = "USER"
+                FullNameEMP.Visible = True
+                FullNameEMP.Text = namaLengkap
+
+            Case Else
+                Response.Redirect("Login.aspx")
+        End Select
     End Sub
 
     Private Sub btnDashboardAdmin_Click(sender As Object, e As EventArgs) Handles btnDashboardAdmin.Click

@@ -68,13 +68,40 @@ Partial Public Class Sidebar
     Protected WithEvents Labelemp As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''FullNameLabel control.
+    '''FullNameAdmin control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents FullNameLabel As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents FullNameAdmin As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''FullNameDIR control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents FullNameDIR As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''FullNameHR control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents FullNameHR As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''FullNameEMP control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents FullNameEMP As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''Adminpanel control.

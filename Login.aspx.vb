@@ -7,6 +7,10 @@ Public Class Login
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
         If Not Page.IsPostBack Then
             Session.Clear()
+            Session.Abandon()
+            Response.Cache.SetExpires(DateTime.UtcNow.AddMinutes(-1))
+            Response.Cache.SetCacheability(HttpCacheability.NoCache)
+            Response.Cache.SetNoStore()
         End If
     End Sub
 
