@@ -77,11 +77,11 @@ Partial Public Class Dashboard_EMP
     Protected WithEvents selulerlabel As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''rptRequests control.
+    '''MedicalReimbursementGrid control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rptRequests As Global.System.Web.UI.WebControls.Repeater
+    Protected WithEvents MedicalReimbursementGrid As Global.System.Web.UI.WebControls.GridView
 End Class
