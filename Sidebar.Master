@@ -59,7 +59,7 @@
                         <asp:Button ID="btnMedicalReimbursementEmp" runat="server" Text="Medical Reimbursement" CssClass="bg-[#145445] text-white text-xs font-semibold rounded px-4 py-2 text-left hover:bg-[#FFAA0A] cursor-pointer" />
                     </nav>
                 </asp:Panel>
-                    <asp:Button ID="btnLogOut" runat="server" Text="Log Out" CssClass="border border-[#FF6B6B] text-white text-xs font-semibold rounded px-4 py-2 text-left hover:bg-[#FF6B6B] cursor-pointer" />
+                    <asp:Button ID="btnLogOut" runat="server" Text="Log Out" OnClientClick='return confirm("Apakah anda ingin logout?");' CssClass="border border-[#FF6B6B] text-white text-xs font-semibold rounded px-4 py-2 text-left hover:bg-[#FF6B6B] cursor-pointer" />
                 </nav>
             </aside>
 

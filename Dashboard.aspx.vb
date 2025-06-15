@@ -24,6 +24,13 @@ Public Class Dashboard
                 Response.Redirect("Login.aspx")
             End If
             BindRequest()
+            Dim statusData = GetStatusChartData()
+            Dim kategoriData = GetKategoriChartData()
+
+            Dim script As String = $"
+    renderCharts({statusData}, {kategoriData});
+"
+            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "renderCharts", script, True)
         End If
 
     End Sub
@@ -33,4 +40,20 @@ Public Class Dashboard
         rptRequests.DataSource = pengajuan.SelectAllUnProcessed
         rptRequests.DataBind()
     End Sub
+
+    Private Function GetStatusChartData() As String
+        Dim dt As DataTable = pengajuan.GetStatusSummary()
+        Dim processed = dt.Select("status_terakhir IN ('Approved','Rejected','On Process')").Length
+        Dim unprocessed = dt.Select("status_terakhir = 'Awaiting'").Length
+        Return $"[{processed},{unprocessed}]"
+    End Function
+
+    Private Function GetKategoriChartData() As String
+        Dim dt As DataTable = pengajuan.GetKategoriSummary()
+        Dim rawatJalan = dt.Select("kategori = 'Rawat Jalan'").Length
+        Dim kacamata = dt.Select("kategori = 'Kacamata'").Length
+        Dim persalinan = dt.Select("kategori = 'Persalinan'").Length
+        Return $"[{rawatJalan},{kacamata},{persalinan}]"
+    End Function
+
 End Class

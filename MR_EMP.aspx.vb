@@ -392,4 +392,19 @@ Public Class MR_EMP
         rptLogHistory.DataSource = dtLogHistory
         rptLogHistory.DataBind()
     End Sub
+
+    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+        HapusInput()
+    End Sub
+
+    Private Sub HapusInput()
+        ddlReimbursementCategory.SelectedValue = "null"
+        txtDate.Text = ""
+        txtMedicalDetail.Text = ""
+        txtTotalCost.Text = ""
+        fileKwitansi.Attributes.Clear()
+        filePendukung.Attributes.Clear()
+        fileResep.Attributes.Clear()
+    End Sub
+
 End Class

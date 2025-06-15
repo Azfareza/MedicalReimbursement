@@ -319,6 +319,35 @@ Namespace dataPengajuanKlaim
             End Try
         End Function
 
+        Public Function GetStatusSummary() As DataTable
+            Dim Comm As New SqlCommand("SELECT Status_Terakhir FROM DAFTAR_PENGAJUAN_KLAIM", ConnDB)
+            Comm.CommandType = CommandType.Text
+            Dim DA As New SqlDataAdapter(Comm)
+            Dim DT As New DataTable("GetStatusSummary")
+            Try
+                DA.Fill(DT)
+                Return DT
+            Catch ex As Exception
+                Return DT
+            Finally
+                DA.Dispose()
+            End Try
+        End Function
+        Public Function GetKategoriSummary() As DataTable
+            Dim Comm As New SqlCommand("SELECT Kategori FROM DAFTAR_PENGAJUAN_KLAIM", ConnDB)
+            Comm.CommandType = CommandType.Text
+            Dim DA As New SqlDataAdapter(Comm)
+            Dim DT As New DataTable("GetStatusSummary")
+            Try
+                DA.Fill(DT)
+                Return DT
+            Catch ex As Exception
+                Return DT
+            Finally
+                DA.Dispose()
+            End Try
+        End Function
+
 
     End Class
 End Namespace
