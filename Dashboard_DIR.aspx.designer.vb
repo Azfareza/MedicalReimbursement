@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Dashboard_EMP
+Partial Public Class Dashboard_DIR
 
     '''<summary>
     '''scriptmanager1 control.
@@ -23,65 +23,11 @@ Partial Public Class Dashboard_EMP
     Protected WithEvents scriptmanager1 As Global.System.Web.UI.ScriptManager
 
     '''<summary>
-    '''FullNameLabel control.
+    '''rptRequests control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents FullNameLabel As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''NIPLabel control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents NIPLabel As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''DepartementLabel control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents DepartementLabel As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''JabatanLabel control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents JabatanLabel As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''StatusLabel control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents StatusLabel As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''selulerlabel control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents selulerlabel As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''MedicalReimbursementGrid control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents MedicalReimbursementGrid As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents rptRequests As Global.System.Web.UI.WebControls.Repeater
 End Class
