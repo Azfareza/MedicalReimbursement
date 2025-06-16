@@ -42,6 +42,25 @@ Public Class MR_EMP
             btnSubmit.Style("display") = "none"
 
         End If
+        RegisterClientScript()
+    End Sub
+
+    Private Sub RegisterClientScript()
+        Dim script As String = "
+<script>
+function openModal(url) {
+    document.getElementById('docModal').style.display = 'block';
+    document.getElementById('docViewer').setAttribute('data', url);
+    document.getElementById('downloadLink').setAttribute('href', url);
+}
+function closeModal() {
+    document.getElementById('docModal').style.display = 'none';
+    document.getElementById('docViewer').setAttribute('data', '');
+    document.getElementById('downloadLink').setAttribute('href', '#');
+}
+</script>"
+
+        ClientScript.RegisterStartupScript(Me.GetType(), "modalScript", script)
     End Sub
 
     Private Function HitungReimbursement(ByRef hasil As Integer) As Boolean
@@ -265,15 +284,21 @@ Public Class MR_EMP
                 txtTotalCost.Text = reader("Biaya").ToString()
 
                 lblCalculation.Text = String.Empty
+
+                Dim previewBuilder As New StringBuilder()
                 If Not IsDBNull(reader("FileKwitansi")) Then
-                    lblCalculation.Text &= "<br/><span class='text-xs text-green-600'>📄 Kwitansi sebelumnya tersedia.</span>"
+                    previewBuilder.Append("<br/><a href=""#"" onclick=""openModal('PreviewDokumen.aspx?tipe=kwitansi&kdklaim=" & kdKlaim & "'); return false;"" class='text-blue-500 text-xs'>📄 Lihat Kwitansi</a>")
                 End If
+
                 If Not IsDBNull(reader("FileResep")) Then
-                    lblCalculation.Text &= "<br/><span class='text-xs text-green-600'>📄 Resep sebelumnya tersedia.</span>"
+                    previewBuilder.Append("<br/><a href=""#"" onclick=""openModal('PreviewDokumen.aspx?tipe=resep&kdklaim=" & kdKlaim & "'); return false;"" class='text-blue-500 text-xs'>📄 Lihat Resep</a>")
                 End If
+
                 If Not IsDBNull(reader("FilePendukung")) Then
-                    lblCalculation.Text &= "<br/><span class='text-xs text-green-600'>📄 Dokumen pendukung sebelumnya tersedia.</span>"
+                    previewBuilder.Append("<br/><a href=""#"" onclick=""openModal('PreviewDokumen.aspx?tipe=pendukung&kdklaim=" & kdKlaim & "'); return false;"" class='text-blue-500 text-xs'>📄 Lihat Dokumen Pendukung</a>")
                 End If
+
+                lblCalculation.Text &= previewBuilder.ToString()
 
                 btnSubmit.Enabled = True
                 btnSubmit.Style("display") = "inline-block"

@@ -156,6 +156,7 @@
     <Content Include="MR_DIREKSI.aspx" />
     <Content Include="MR_EMP.aspx" />
     <Content Include="MR_HR.aspx" />
+    <Content Include="PreviewDokumen.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -344,6 +345,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="PreviewDokumen.aspx.designer.vb">
+      <DependentUpon>PreviewDokumen.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PreviewDokumen.aspx.vb">
+      <DependentUpon>PreviewDokumen.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Sidebar.Master.designer.vb">
       <DependentUpon>Sidebar.Master</DependentUpon>

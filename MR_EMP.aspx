@@ -1,4 +1,4 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="MR_EMP.aspx.vb" Inherits="MedicalReimbursement.MR_EMP" MasterPageFile="~/Header.master"%>
+﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="MR_EMP.aspx.vb" Inherits="MedicalReimbursement.MR_EMP" MasterPageFile="~/Header.master" %>
 
 <asp:Content ID="headContent" runat="server" ContentPlaceHolderID="head">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -24,7 +24,7 @@
 
 <asp:Content ID="mainContent" runat="server" ContentPlaceHolderID="SubContent">
     <asp:ScriptManager ID="scriptmanager1" runat="server" />
-            
+
     <div class="flex flex-col md:flex-row gap-6 container mx-auto px-4">
         <section class="bg-white rounded-lg p-5 flex-1 w-1/2">
             <div class="flex justify-between items-center mb-4 px-1">
@@ -52,11 +52,13 @@
                                     <asp:Label ID="lblStatusTerakhir" runat="server" Text='<%# Eval("Status_Terakhir") %>' />
                                 </td>
                                 <td class="p-3">
-                                    <asp:LinkButton ID="lnkViewDetails" Visible="false"
-                                        runat="server" CssClass="text-blue-500 hover:text-blue-700 font-semibold"
-                                        CommandName="Update" CommandArgument='<%# Eval("KdKlaim") %>'
-                                        OnClientClick="lnkViewDetails_Click">View Details
-                                    </asp:LinkButton>
+                                    <asp:Panel ID="pnlActions" runat="server">
+                                        <asp:LinkButton ID="lnkViewDetails" Visible="false"
+                                            runat="server" CssClass="text-blue-500 hover:text-blue-700 font-semibold"
+                                            CommandName="Update" CommandArgument='<%# Eval("KdKlaim") %>'
+                                            OnClientClick="lnkViewDetails_Click">View Details
+                                        </asp:LinkButton>
+                                    </asp:Panel>
                                 </td>
                             </tr>
                         </ItemTemplate>
@@ -64,10 +66,9 @@
                 </tbody>
             </table>
         </section>
-     <!-- Form -->
+        <!-- Form -->
         <section class="flex-1 w-1/2">
-            <h2 class="text-[#f97316] font-semibold text-lg mb-4">
-                Add New Request
+            <h2 class="text-[#f97316] font-semibold text-lg mb-4">Add New Request
             </h2>
 
             <div class="flex flex-col md:flex-row gap-6 mb-4">
@@ -86,7 +87,7 @@
                     <asp:TextBox ID="txtDate" runat="server" TextMode="Date" CssClass="w-full rounded-md border bg-gray-200 p-2 text-sm focus:border-blue-500 focus:ring focus:ring-blue-200" />
                 </div>
             </div>
-        
+
             <div class="mb-4">
                 <asp:Label AssociatedControlID="txtMedicalDetail" runat="server" Text="Medical Detail" CssClass="block text-xs font-semibold mb-1" />
                 <asp:TextBox ID="txtMedicalDetail" runat="server" TextMode="MultiLine" Rows="4" CssClass="w-full rounded-md bg-gray-200 text-xs p-3 resize-none"></asp:TextBox>
@@ -95,10 +96,10 @@
                 <asp:Label AssociatedControlID="txtTotalCost" runat="server" Text="Total Cost" CssClass="block text-xs font-semibold mb-1" />
                 <div class="flex flex-col md:flex-row gap-6">
                     <div class="w-5/6">
-                        <asp:TextBox ID="txtTotalCost" runat="server" CssClass="w-full rounded-md bg-gray-200 font-semibold px-3 py-2 w-full" />            
+                        <asp:TextBox ID="txtTotalCost" runat="server" CssClass="w-full rounded-md bg-gray-200 font-semibold px-3 py-2 w-full" />
                     </div>
                     <div class="w-1/6">
-                        <asp:Button ID="btnCalculate" runat="server" Text="Calculate" CssClass="bg-[#0052cc] text-white font-semibold rounded-md py-2 px-5 w-full cursor-pointer" OnClick="btnCalculate_Click"  />
+                        <asp:Button ID="btnCalculate" runat="server" Text="Calculate" CssClass="bg-[#0052cc] text-white font-semibold rounded-md py-2 px-5 w-full cursor-pointer" OnClick="btnCalculate_Click" />
                     </div>
                 </div>
             </div>
@@ -124,8 +125,20 @@
                 </div>
             </div>
 
-            <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="bg-[#0052cc] text-white font-semibold rounded-md py-2 px-5 self-start cursor-pointer" OnClick="btnSubmit_Click"/>
-            <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="bg-[#c6131b] text-white font-semibold rounded-md py-2 px-5 self-start cursor-pointer"/>
+            <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="bg-[#0052cc] text-white font-semibold rounded-md py-2 px-5 self-start cursor-pointer" OnClick="btnSubmit_Click" />
+            <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="bg-[#c6131b] text-white font-semibold rounded-md py-2 px-5 self-start cursor-pointer" />
         </section>
     </div>
+
+<!-- Modal Viewer -->
+<div id="docModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#00000080; z-index:1000;">
+    <div style="position:relative; margin:40px auto; width:90%; height:90%; background:white; border-radius:8px; overflow:hidden;">
+        <div style="text-align:right; padding:10px;">
+            <button onclick="closeModal()" style="background:#c00; color:white; border:none; padding:5px 10px; border-radius:4px;">❌ Tutup</button>
+        </div>
+        <object id="docViewer" data="" type="image/jpeg" style="width:100%; height:90%;">
+            <p class="text-red-500 text-center">Dokumen tidak dapat ditampilkan. <a id="downloadLink" href="#" class="text-blue-500">Unduh di sini</a>.</p>
+        </object>
+    </div>
+</div>
 </asp:Content>
