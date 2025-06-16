@@ -347,6 +347,25 @@ Namespace dataPengajuanKlaim
                 DA.Dispose()
             End Try
         End Function
+        Public Function GetDetailPenyakit(kdklaim As String) As DataTable
+            Dim query As String = "SELECT DetailPenyakit FROM DAFTAR_PENGAJUAN_KLAIM WHERE KdKlaim = @kdklaim"
+            Dim cmd As New SqlCommand(query, ConnDB)
+            cmd.Parameters.AddWithValue("@kdklaim", kdklaim)
+
+            Dim da As New SqlDataAdapter(cmd)
+            Dim dt As New DataTable()
+
+            Try
+                'ConnDB.Open()
+                da.Fill(dt)
+            Catch ex As Exception
+                ' Optional log
+            Finally
+                'ConnDB.Close()
+            End Try
+
+            Return dt
+        End Function
 
 
     End Class

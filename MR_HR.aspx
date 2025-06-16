@@ -97,6 +97,10 @@
                         <asp:Label ID="lblBiayaModal" runat="server" AssociatedControlID="txtBiayaModal" Text="Biaya" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
                         <asp:TextBox ID="txtbiayaModal" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
                     </div>
+                    <div>
+                        <asp:Label ID="lblDetilPenyakitModal" runat="server" AssociatedControlID="txtDetilPenyakitModal" Text="Detail" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
+                        <asp:TextBox ID="txtDetilPenyakitModal" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
+                    </div>
                 </div>
 
                 <!-- Right Column -->

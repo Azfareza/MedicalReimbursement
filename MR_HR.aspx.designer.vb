@@ -167,6 +167,24 @@ Partial Public Class MR_HR
     Protected WithEvents txtbiayaModal As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''lblDetilPenyakitModal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDetilPenyakitModal As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtDetilPenyakitModal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtDetilPenyakitModal As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''lblKwitansi control.
     '''</summary>
     '''<remarks>

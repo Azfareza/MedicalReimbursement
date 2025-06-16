@@ -104,7 +104,7 @@ Public Class MR_HR
 
     Private Sub gvRequestList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles gvRequestList.SelectedIndexChanged
         ViewState("ShowModal") = True
-        'pnlModal.Visible = True
+
         Dim PilihText As GridViewRow = gvRequestList.SelectedRow
 
         Dim kodeklaim As String = gvRequestList.DataKeys(PilihText.RowIndex).Value.ToString()
@@ -116,7 +116,6 @@ Public Class MR_HR
         txtTanggalModal.Text = Trim(PilihText.Cells(5).Text)
         txtbiayaModal.Text = Trim(PilihText.Cells(6).Text)
 
-
         txtClaim.Enabled = False
         txtNIPModal.Enabled = False
         txtNamaModal.Enabled = False
@@ -125,9 +124,24 @@ Public Class MR_HR
         txtTanggalModal.Enabled = False
         txtbiayaModal.Enabled = False
 
-        Dim kdklaim = txtClaim.Text
-        Dim dokumen = Pengajuan.SelectDocument(kdklaim)
+        Dim dtDetil As DataTable = Pengajuan.GetDetailPenyakit(kodeklaim)
 
+        If dtDetil IsNot Nothing AndAlso dtDetil.Rows.Count > 0 Then
+            Dim drDetil As DataRow = dtDetil.Rows(0)
+
+            If drDetil.Table.Columns.Contains("DetailPenyakit") AndAlso Not IsDBNull(drDetil("DetailPenyakit")) Then
+                txtDetilPenyakitModal.Text = drDetil("DetailPenyakit").ToString().Trim()
+            Else
+                txtDetilPenyakitModal.Text = "-"
+            End If
+        Else
+            txtDetilPenyakitModal.Text = "-"
+        End If
+        txtDetilPenyakitModal.Enabled = False
+
+
+        ' ⬇ Ambil dokumen opsional
+        Dim dokumen = Pengajuan.SelectDocument(kodeklaim)
         If dokumen IsNot Nothing Then
             If dokumen.ContainsKey("kwitansi") AndAlso dokumen("kwitansi") IsNot Nothing Then
                 Dim base64String = Convert.ToBase64String(dokumen("kwitansi"))
@@ -135,23 +149,23 @@ Public Class MR_HR
             Else
                 imgKwitansi.ImageUrl = ""
             End If
+
             If dokumen.ContainsKey("resep") AndAlso dokumen("resep") IsNot Nothing Then
                 Dim base64String = Convert.ToBase64String(dokumen("resep"))
                 imgResep.ImageUrl = "data:image/jpeg;base64," & base64String
             Else
                 imgResep.ImageUrl = ""
             End If
+
             If dokumen.ContainsKey("pendukung") AndAlso dokumen("pendukung") IsNot Nothing Then
                 Dim base64String = Convert.ToBase64String(dokumen("pendukung"))
                 imgPendukung.ImageUrl = "data:image/jpeg;base64," & base64String
             Else
                 imgPendukung.ImageUrl = ""
             End If
-
         End If
-
-
     End Sub
+
 
     Private Sub gvHistory_SelectedIndexChanged(sender As Object, e As EventArgs) Handles gvHistory.SelectedIndexChanged
         ViewState("ShowModal") = True
