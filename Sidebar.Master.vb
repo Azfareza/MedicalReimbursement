@@ -34,7 +34,7 @@
             Case "1" ' Admin
                 Adminpanel.Visible = True
                 Labeladmin.Visible = True
-                Labeladmin.Text = "Hallo Admin!"
+                Labeladmin.Text = "Admin!"
                 FullNameAdmin.Visible = True
                 FullNameAdmin.Text = namaLengkap
 

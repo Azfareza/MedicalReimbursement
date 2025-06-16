@@ -30,7 +30,7 @@ Public Class Dashboard_DIR
 
     Private Sub BindRequest()
         rptRequests.Visible = True
-        rptRequests.DataSource = pengajuan.SelectAllUnProcessed
+        rptRequests.DataSource = pengajuan.SelectAllOnProcess
         rptRequests.DataBind()
     End Sub
 End Class
