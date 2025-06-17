@@ -16,13 +16,7 @@
                 ImageUrl="https://storage.googleapis.com/a1aa/image/dcc648eb-8145-4b6b-6446-fca61fbff108.jpg"
                 AlternateText="Mining trucks and equipment in a mining site" />
             <div aria-label="Company logo and dashboard title" class="absolute inset-0 flex items-center gap-4 px-6">
-                <asp:Image ID="imgLogo" runat="server" CssClass="h-20 w-20 object-contain"
-                    ImageUrl="https://kutaibara.co.id/wp-content/uploads/2023/04/KBN-Logo-horizontal.png"
-                    AlternateText="Kutai Bara Nusantara company logo with flame and diamond shapes" />
                 <div class="text-[#145445] font-semibold text-xl md:text-2xl flex items-center gap-1">
-                    <span class="text-lg md:text-xl font-normal block leading-none">KUTAI BARA NUSANTARA<br />
-                        <span class="text-xs font-light leading-tight block">A Leading Energy Producer</span>
-                    </span>
                     <asp:ContentPlaceHolder ID="PageTitlePlaceHolder" runat="server">
                         <span class="text-[#145445] font-extrabold text-2xl md:text-3xl ml-2">DASHBOARD</span>
                     </asp:ContentPlaceHolder>

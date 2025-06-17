@@ -4,6 +4,7 @@
 <html>
 <head runat="server">
     <title></title>
+    <link rel="icon" href="https://kutaibara.co.id/wp-content/uploads/2023/04/fav-300x300.png" />
     <asp:ContentPlaceHolder ID="head" runat="server">
         <script src="https://cdn.tailwindcss.com"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
@@ -24,13 +25,12 @@
         <div class="flex min-h-screen">
             <!-- Sidebar -->
             <aside class="bg-[#1B5E57] w-56 flex flex-col p-5">
-                <%--<asp:TextBox ID="txtSearch" runat="server" CssClass="mb-6 h-10 rounded px-3 text-gray-900" />--%>
-                    <asp:Label ID="Labeladmin" runat="server" Font-Bold="true" Font-Size="XX-Large" ForeColor="White" Visible="false" CssClass="nav-link mb-6 h-10 px-3"></asp:Label>
-                    <asp:Label ID="Labeldir" runat="server" Font-Bold="true" Font-Size="XX-Large" ForeColor="White" Visible="false" CssClass="nav-link mb-6 h-10 px-3"></asp:Label>
-                    <asp:Label ID="Labelhr" runat="server" Font-Bold="true" Font-Size="XX-Large" ForeColor="White" Visible="false" CssClass="nav-link mb-6 h-10 px-3"></asp:Label>
-                    <asp:Label ID="Labelemp" runat="server" Font-Bold="true" Font-Size="XX-Large" ForeColor="White" Visible="false" CssClass="nav-link mb-6 h-10 px-3"></asp:Label>
-                <div class="text-white mb-6 h-10 px-3">
-                    <p class="font-bold text-sm">Welcome,</p>
+                <asp:Image ID="imgLogo" runat="server" CssClass="h-20 w-full object-contain bg-white p-3 rounded-xl"
+                    ImageUrl="https://kutaibara.co.id/wp-content/uploads/2023/04/KBN-Logo-horizontal.png"
+                    AlternateText="Kutai Bara Nusantara company logo with flame and diamond shapes" />
+                <asp:Label ID="Labeladmin" runat="server" Font-Bold="true" Font-Size="XX-Large" ForeColor="White" Visible="false" CssClass="nav-link mb-6 h-10 px-3"></asp:Label>
+                <div class="text-white mb-6 h-10 px-3 mt-5">
+                    <p class="font-bold text-md">Welcome,</p>
                     <asp:Label ID="FullNameAdmin" runat="server" Text="Budiono Siregar"></asp:Label>
                     <asp:Label ID="FullNameDIR" runat="server" Text="Budiono Siregar"></asp:Label>
                     <asp:Label ID="FullNameHR" runat="server" Text="Budiono Siregar"></asp:Label>

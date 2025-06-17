@@ -17,9 +17,6 @@
         emppanel.Visible = False
 
         Labeladmin.Visible = False
-        Labeldir.Visible = False
-        Labelhr.Visible = False
-        Labelemp.Visible = False
 
         FullNameAdmin.Visible = False
         FullNameDIR.Visible = False
@@ -40,22 +37,16 @@
 
             Case "2" ' Direksi
                 Dirpanel.Visible = True
-                Labeldir.Visible = True
-                Labeldir.Text = "DIREKSI"
                 FullNameDIR.Visible = True
                 FullNameDIR.Text = namaLengkap
 
             Case "3" ' HR
                 hrpanel.Visible = True
-                Labelhr.Visible = True
-                Labelhr.Text = "HR"
                 FullNameHR.Visible = True
                 FullNameHR.Text = namaLengkap
 
             Case "4" ' Pegawai
                 emppanel.Visible = True
-                Labelemp.Visible = True
-                Labelemp.Text = "USER"
                 FullNameEMP.Visible = True
                 FullNameEMP.Text = namaLengkap
 
