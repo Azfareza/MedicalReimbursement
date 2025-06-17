@@ -136,7 +136,7 @@
         <div style="text-align:right; padding:10px;">
             <button onclick="closeModal()" style="background:#c00; color:white; border:none; padding:5px 10px; border-radius:4px;">❌ Tutup</button>
         </div>
-        <object id="docViewer" data="" type="image/jpeg" style="width:100%; height:90%;">
+        <object id="docViewer" data="" type="image/png" style="width:100%; height:90%;">
             <p class="text-red-500 text-center">Dokumen tidak dapat ditampilkan. <a id="downloadLink" href="#" class="text-blue-500">Unduh di sini</a>.</p>
         </object>
     </div>

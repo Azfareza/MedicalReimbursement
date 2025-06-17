@@ -416,34 +416,5 @@ Namespace dataPengajuanKlaim
             Return dt
         End Function
 
-        'Public Function GetAlasanReject(KdKlaim As String) As DataTable
-        '    Dim alasan As String = ""
-        '    Using cmd As New SqlCommand("DTA_ALASAN_REJECT", ConnDB)
-        '        cmd.CommandType = CommandType.StoredProcedure
-        '        cmd.Parameters.Add("@KdKlaim", SqlDbType.Int).Value = KdKlaim
-
-        '        Try
-        '            'ConnDB.Open()
-        '            Using reader As SqlDataReader = cmd.ExecuteReader()
-        '                If reader.HasRows Then
-        '                    If reader.Read() Then
-        '                        If Not reader.IsDBNull(reader.GetOrdinal("Catatan")) Then
-        '                            alasan = reader("Catatan").ToString()
-        '                        End If
-        '                    End If
-        '                Else
-        '                    alasan = "Tidak ditemukan / Status tidak 'Rejected'"
-        '                End If
-        '            End Using
-        '        Catch ex As Exception
-        '            alasan = "Terjadi kesalahan: " & ex.Message
-        '        Finally
-        '            'ConnDB.Close()
-        '        End Try
-        '    End Using
-        '    'Return alasan
-        'End Function
-
-
     End Class
 End Namespace

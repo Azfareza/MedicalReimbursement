@@ -267,6 +267,10 @@ function closeModal() {
             ViewState("EditID") = kdKlaim
             LoadDataToForm(kdKlaim)
             ' Optional: feedback visual
+            fileKwitansi.Enabled = True
+            fileResep.Enabled = True
+            filePendukung.Enabled = True
+            lblCalculation.Visible = True
             lblCalculation.Text &= "<br/><span class='text-xs text-blue-600'>🔄 Mode edit aktif untuk KdKlaim #" & kdKlaim & "</span>"
             btnSubmit.Text = "Update Pengajuan"
         End If
@@ -420,6 +424,10 @@ function closeModal() {
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
         HapusInput()
+        lblCalculation.Visible = False
+        fileKwitansi.Enabled = False
+        fileResep.Enabled = False
+        filePendukung.Enabled = False
     End Sub
 
     Private Sub HapusInput()
