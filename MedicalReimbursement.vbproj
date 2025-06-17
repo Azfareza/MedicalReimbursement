@@ -231,6 +231,7 @@
     <Compile Include="Classing\Dashboard.vb" />
     <Compile Include="Classing\KLAIM_UPDATE.vb" />
     <Compile Include="Classing\Login.vb" />
+    <Compile Include="Classing\MASTER_TANGGUNGAN.vb" />
     <Compile Include="Classing\Pegawai.vb" />
     <Compile Include="Classing\UtiUmum.vb" />
     <Compile Include="Contact.aspx.designer.vb">

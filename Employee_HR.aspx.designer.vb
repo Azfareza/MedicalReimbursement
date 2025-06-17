@@ -221,6 +221,114 @@ Partial Public Class Employee_HR
     Protected WithEvents rptTanggungan As Global.System.Web.UI.WebControls.Repeater
 
     '''<summary>
+    '''btnShowFormTanggungan control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnShowFormTanggungan As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''upFormTanggungan control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents upFormTanggungan As Global.System.Web.UI.UpdatePanel
+
+    '''<summary>
+    '''pnlFormTanggungan control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pnlFormTanggungan As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''txtNamaLengkapTgn control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtNamaLengkapTgn As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtNpwpTgn control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtNpwpTgn As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtTempatLahirTgn control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtTempatLahirTgn As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtTanggalLahirTgn control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtTanggalLahirTgn As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtJenisKelaminTgn control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtJenisKelaminTgn As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtPekerjaanTgn control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPekerjaanTgn As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtHubunganTgn control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtHubunganTgn As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''btnSubmitTanggungan control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnSubmitTanggungan As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnCancelTanggungan control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnCancelTanggungan As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''btnCloseModal control.
     '''</summary>
     '''<remarks>

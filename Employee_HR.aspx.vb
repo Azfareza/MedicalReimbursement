@@ -6,6 +6,7 @@ Public Class Employee_HR
     Inherits System.Web.UI.Page
 
     Dim DataPegawai As New DAFTAR_PEGAWAI.Pegawai
+    Dim DataTanggungan As New DAFTAR_TANGGUNGAN.MASTER_TANGGUNGAN
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not Page.IsPostBack AndAlso Not IsCallback Then
@@ -148,11 +149,47 @@ Public Class Employee_HR
             lblProvinsi.Text = row("Provinsi").ToString()
 
             Dim NIK = row("NIK").ToString()
-            Dim dtTanggungan As DataTable = DataPegawai.SelectTanggunganByNik(NIK)
+            Dim dtTanggungan As DataTable = DataTanggungan.SelectTanggunganByNik(NIK)
             rptTanggungan.DataSource = dtTanggungan
             rptTanggungan.DataBind()
         End If
     End Sub
+
+    Protected Sub btnShowFormTanggungan_Click(sender As Object, e As EventArgs)
+        pnlFormTanggungan.CssClass = Replace(pnlFormTanggungan.CssClass, "hidden", "").Trim()
+    End Sub
+
+    Protected Sub btnCancelTanggungan_Click(sender As Object, e As EventArgs)
+        pnlFormTanggungan.CssClass &= " hidden"
+    End Sub
+
+    Protected Sub btnSubmitTanggungan_Click(sender As Object, e As EventArgs)
+        Dim result As Boolean = DataTanggungan.InsertTanggungan(
+        lblNIK.Text.Trim(),
+        txtNpwpTgn.Text.Trim(),
+        txtNamaLengkapTgn.Text.Trim(),
+        txtTempatLahirTgn.Text.Trim(),
+        Convert.ToDateTime(txtTanggalLahirTgn.Text),
+        txtJenisKelaminTgn.Text.Trim(),
+        txtPekerjaanTgn.Text.Trim(),
+        txtHubunganTgn.Text.Trim()
+    )
+
+        If result Then
+            DataTanggungan.SelectTanggunganByNik(lblNIK.Text)
+            txtNpwpTgn.Text = ""
+            txtNamaLengkapTgn.Text = ""
+            txtTempatLahirTgn.Text = ""
+            txtTanggalLahirTgn.Text = ""
+            txtJenisKelaminTgn.Text = ""
+            txtPekerjaanTgn.Text = ""
+            txtHubunganTgn.Text = ""
+            pnlFormTanggungan.CssClass &= " hidden"
+        Else
+        End If
+    End Sub
+
+
 
     Protected Sub btnCloseModal_Click(sender As Object, e As EventArgs) Handles btnCloseModal.Click
         hdnShowModal.Value = "false"
