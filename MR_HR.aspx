@@ -101,6 +101,10 @@
                         <asp:Label ID="lblDetilPenyakitModal" runat="server" AssociatedControlID="txtDetilPenyakitModal" Text="Detail" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
                         <asp:TextBox ID="txtDetilPenyakitModal" runat="server" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
                     </div>
+                    <div>
+                        <asp:Label ID="lblAlasan" runat="server" AssociatedControlID="txtAlasan" Text="Alasan" CssClass="block text-[10px] font-semibold text-black mb-1"></asp:Label>
+                        <asp:TextBox ID="txtAlasan" runat="server" TextMode="MultiLine" Rows="5" Columns="50" CssClass="w-full rounded-md border border-gray-300 px-3 py-2 text-xs"></asp:TextBox>
+                    </div>
                 </div>
 
                 <!-- Right Column -->

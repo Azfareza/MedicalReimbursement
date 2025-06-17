@@ -123,6 +123,8 @@ Public Class MR_HR
         txtKategoriModal.Enabled = False
         txtTanggalModal.Enabled = False
         txtbiayaModal.Enabled = False
+        lblAlasan.Visible = False
+        txtAlasan.Visible = False
 
         Dim dtDetil As DataTable = Pengajuan.GetDetailPenyakit(kodeklaim)
 
@@ -188,9 +190,27 @@ Public Class MR_HR
         txtTanggalModal.Enabled = False
         txtbiayaModal.Visible = False
         lblBiayaModal.Visible = False
+        lblAlasan.Visible = False
+        txtAlasan.Visible = False
 
 
         Dim kdklaim = txtClaim.Text
+
+        Dim dtDetil As DataTable = Pengajuan.GetDetailPenyakit(kdklaim)
+
+        If dtDetil IsNot Nothing AndAlso dtDetil.Rows.Count > 0 Then
+            Dim drDetil As DataRow = dtDetil.Rows(0)
+
+            If drDetil.Table.Columns.Contains("DetailPenyakit") AndAlso Not IsDBNull(drDetil("DetailPenyakit")) Then
+                txtDetilPenyakitModal.Text = drDetil("DetailPenyakit").ToString().Trim()
+            Else
+                txtDetilPenyakitModal.Text = "-"
+            End If
+        Else
+            txtDetilPenyakitModal.Text = "-"
+        End If
+        txtDetilPenyakitModal.Enabled = False
+
         Dim dokumen = Pengajuan.SelectDocument(kdklaim)
 
         If dokumen IsNot Nothing Then
@@ -238,8 +258,28 @@ Public Class MR_HR
         txtbiayaModal.Visible = False
         lblBiayaModal.Visible = False
 
+        Dim KdKlaim = txtClaim.Text
 
-        Dim kdklaim = txtClaim.Text
+        Dim dtDetil As DataTable = Pengajuan.GetDetailPenyakit(KdKlaim)
+
+        If dtDetil IsNot Nothing AndAlso dtDetil.Rows.Count > 0 Then
+            Dim drDetil As DataRow = dtDetil.Rows(0)
+
+            If drDetil.Table.Columns.Contains("DetailPenyakit") AndAlso Not IsDBNull(drDetil("DetailPenyakit")) Then
+                txtDetilPenyakitModal.Text = drDetil("DetailPenyakit").ToString().Trim()
+            Else
+                txtDetilPenyakitModal.Text = "-"
+            End If
+        Else
+            txtDetilPenyakitModal.Text = "-"
+        End If
+        txtDetilPenyakitModal.Enabled = False
+
+        Dim alasan As String = Pengajuan.GetAlasanReject(KdKlaim)
+        txtAlasan.Enabled = False
+        txtAlasan.Visible = False
+        txtAlasan.Text = alasan
+
         Dim dokumen = Pengajuan.SelectDocument(kdklaim)
 
         If dokumen IsNot Nothing Then

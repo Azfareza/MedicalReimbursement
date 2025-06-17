@@ -185,6 +185,24 @@ Partial Public Class MR_HR
     Protected WithEvents txtDetilPenyakitModal As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''lblAlasan control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblAlasan As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtAlasan control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtAlasan As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''lblKwitansi control.
     '''</summary>
     '''<remarks>
