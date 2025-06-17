@@ -123,6 +123,8 @@ Public Class MR_HR
         txtKategoriModal.Enabled = False
         txtTanggalModal.Enabled = False
         txtbiayaModal.Enabled = False
+        txtbiayaModal.Visible = True
+        lblBiayaModal.Visible = True
         lblAlasan.Visible = False
         txtAlasan.Visible = False
 
@@ -188,13 +190,28 @@ Public Class MR_HR
         txtDepartemenModal.Enabled = False
         txtKategoriModal.Enabled = False
         txtTanggalModal.Enabled = False
-        txtbiayaModal.Visible = False
-        lblBiayaModal.Visible = False
+        txtbiayaModal.Visible = True
+        lblBiayaModal.Visible = True
         lblAlasan.Visible = False
         txtAlasan.Visible = False
 
 
         Dim kdklaim = txtClaim.Text
+
+
+        Dim biaya As DataTable = Pengajuan.GetBiaya(kdklaim)
+        If biaya IsNot Nothing AndAlso biaya.Rows.Count > 0 Then
+            Dim biayamdl As DataRow = biaya.Rows(0)
+
+            If biayamdl.Table.Columns.Contains("Biaya") AndAlso Not IsDBNull(biayamdl("Biaya")) Then
+                txtbiayaModal.Text = biayamdl("Biaya").ToString().Trim()
+            Else
+                txtbiayaModal.Text = "-"
+            End If
+        Else
+            txtbiayaModal.Text = "-"
+        End If
+        txtbiayaModal.Enabled = False
 
         Dim dtDetil As DataTable = Pengajuan.GetDetailPenyakit(kdklaim)
 
@@ -255,10 +272,24 @@ Public Class MR_HR
         txtDepartemenModal.Enabled = False
         txtKategoriModal.Enabled = False
         txtTanggalModal.Enabled = False
-        txtbiayaModal.Visible = False
-        lblBiayaModal.Visible = False
+        txtbiayaModal.Visible = True
+        lblBiayaModal.Visible = True
 
         Dim KdKlaim = txtClaim.Text
+
+        Dim biaya As DataTable = Pengajuan.GetBiaya(KdKlaim)
+        If biaya IsNot Nothing AndAlso biaya.Rows.Count > 0 Then
+            Dim biayamdl As DataRow = biaya.Rows(0)
+
+            If biayamdl.Table.Columns.Contains("Biaya") AndAlso Not IsDBNull(biayamdl("Biaya")) Then
+                txtbiayaModal.Text = biayamdl("Biaya").ToString().Trim()
+            Else
+                txtbiayaModal.Text = "-"
+            End If
+        Else
+            txtbiayaModal.Text = "-"
+        End If
+        txtbiayaModal.Enabled = False
 
         Dim dtDetil As DataTable = Pengajuan.GetDetailPenyakit(KdKlaim)
 
@@ -275,12 +306,23 @@ Public Class MR_HR
         End If
         txtDetilPenyakitModal.Enabled = False
 
-        Dim alasan As String = Pengajuan.GetAlasanReject(KdKlaim)
-        txtAlasan.Enabled = False
-        txtAlasan.Visible = False
-        txtAlasan.Text = alasan
+        Dim alasan As DataTable = Pengajuan.GetAlasanReject(KdKlaim)
+        If alasan IsNot Nothing AndAlso alasan.Rows.Count > 0 Then
+            Dim alasanrjct As DataRow = alasan.Rows(0)
 
-        Dim dokumen = Pengajuan.SelectDocument(kdklaim)
+            If alasanrjct.Table.Columns.Contains("Catatan") AndAlso Not IsDBNull(alasanrjct("Catatan")) Then
+                txtAlasan.Text = alasanrjct("Catatan").ToString().Trim()
+            Else
+                txtAlasan.Text = "-"
+            End If
+        Else
+            txtAlasan.Text = "-"
+        End If
+        txtAlasan.Enabled = False
+        txtAlasan.Visible = True
+        lblAlasan.Visible = True
+
+        Dim dokumen = Pengajuan.SelectDocument(KdKlaim)
 
         If dokumen IsNot Nothing Then
             If dokumen.ContainsKey("kwitansi") Then

@@ -366,34 +366,83 @@ Namespace dataPengajuanKlaim
 
             Return dt
         End Function
+        Public Function GetBiaya(kdklaim As String) As DataTable
+            Dim query As String = "SELECT Biaya FROM DAFTAR_PENGAJUAN_KLAIM WHERE KdKlaim = @kdklaim"
+            Dim cmd As New SqlCommand(query, ConnDB)
+            cmd.Parameters.AddWithValue("@kdklaim", kdklaim)
 
-        Public Function GetAlasanReject(KdKlaim As Integer) As String
-            Dim alasan As String = ""
-            Using cmd As New SqlCommand("DTA_ALASAN_REJECT", ConnDB)
-                cmd.CommandType = CommandType.StoredProcedure
-                cmd.Parameters.Add("@KdKlaim", SqlDbType.Int).Value = KdKlaim
+            Dim da As New SqlDataAdapter(cmd)
+            Dim dt As New DataTable()
 
-                Try
-                    'ConnDB.Open()
-                    Using reader As SqlDataReader = cmd.ExecuteReader()
-                        If reader.HasRows Then
-                            If reader.Read() Then
-                                If Not reader.IsDBNull(reader.GetOrdinal("Catatan")) Then
-                                    alasan = reader("Catatan").ToString()
-                                End If
-                            End If
-                        Else
-                            alasan = "Tidak ditemukan / Status tidak 'Rejected'"
-                        End If
-                    End Using
-                Catch ex As Exception
-                    alasan = "Terjadi kesalahan: " & ex.Message
-                Finally
-                    'ConnDB.Close()
-                End Try
-            End Using
-            Return alasan
+            Try
+                'ConnDB.Open()
+                da.Fill(dt)
+            Catch ex As Exception
+                ' Optional log
+            Finally
+                'ConnDB.Close()
+            End Try
+
+            Return dt
         End Function
+        Public Function GetAlasanReject(kdklaim As String) As DataTable
+            Dim query As String = "SELECT 
+        hs.Catatan as Catatan
+    FROM DAFTAR_PENGAJUAN_KLAIM dp
+    OUTER APPLY (
+        SELECT TOP 1 Catatan
+        FROM DAFTAR_HISTORI_STATUS
+        WHERE KdKlaim = dp.KdKlaim
+        ORDER BY KdHistatus DESC
+    ) hs
+    WHERE dp.KdKlaim = @KdKlaim
+      AND dp.Status_Terakhir = 'Rejected'
+"
+            Dim cmd As New SqlCommand(query, ConnDB)
+            cmd.Parameters.AddWithValue("@kdklaim", kdklaim)
+
+            Dim da As New SqlDataAdapter(cmd)
+            Dim dt As New DataTable()
+
+            Try
+                'ConnDB.Open()
+                da.Fill(dt)
+            Catch ex As Exception
+                ' Optional log
+            Finally
+                'ConnDB.Close()
+            End Try
+
+            Return dt
+        End Function
+
+        'Public Function GetAlasanReject(KdKlaim As String) As DataTable
+        '    Dim alasan As String = ""
+        '    Using cmd As New SqlCommand("DTA_ALASAN_REJECT", ConnDB)
+        '        cmd.CommandType = CommandType.StoredProcedure
+        '        cmd.Parameters.Add("@KdKlaim", SqlDbType.Int).Value = KdKlaim
+
+        '        Try
+        '            'ConnDB.Open()
+        '            Using reader As SqlDataReader = cmd.ExecuteReader()
+        '                If reader.HasRows Then
+        '                    If reader.Read() Then
+        '                        If Not reader.IsDBNull(reader.GetOrdinal("Catatan")) Then
+        '                            alasan = reader("Catatan").ToString()
+        '                        End If
+        '                    End If
+        '                Else
+        '                    alasan = "Tidak ditemukan / Status tidak 'Rejected'"
+        '                End If
+        '            End Using
+        '        Catch ex As Exception
+        '            alasan = "Terjadi kesalahan: " & ex.Message
+        '        Finally
+        '            'ConnDB.Close()
+        '        End Try
+        '    End Using
+        '    'Return alasan
+        'End Function
 
 
     End Class
