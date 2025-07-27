@@ -17,7 +17,7 @@
             </div>
 
             <div class="mb-4">
-                <asp:Label ID="UsernameLabel" CssClass="block font-semibold mb-1" Text="Username" AssociatedControlID="txtUsername" runat="server"></asp:Label>
+                <asp:Label ID="UsernameLabel" CssClass="block font-semibold mb-1" Text="NIP" AssociatedControlID="txtUsername" runat="server"></asp:Label>
                 <asp:TextBox ID="txtUsername" runat="server" CssClass="w-full px-4 py-2 rounded-lg bg-gray-100 focus:outline-none" />
             </div>
             <div class="mb-6">

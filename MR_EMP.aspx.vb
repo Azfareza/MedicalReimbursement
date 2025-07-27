@@ -25,6 +25,9 @@ Public Class MR_EMP
             ElseIf userRole = "4" Then ' Role 4: USER
 
             End If
+
+            Session("ActiveMenu") = "MR_EMP"
+
             BindLogHistoris()
             txtMedicalDetail.Attributes("placeholder") = "Input Diagnosa Disini"
 

@@ -41,15 +41,6 @@ Partial Public Class Sidebar
     Protected WithEvents imgLogo As Global.System.Web.UI.WebControls.Image
 
     '''<summary>
-    '''Labeladmin control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Labeladmin As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''FullNameAdmin control.
     '''</summary>
     '''<remarks>
@@ -84,6 +75,42 @@ Partial Public Class Sidebar
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents FullNameEMP As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Labeladmin control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Labeladmin As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Labeldir control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Labeldir As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Labelhr control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Labelhr As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Labelemp control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Labelemp As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''Adminpanel control.

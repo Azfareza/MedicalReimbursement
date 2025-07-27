@@ -23,6 +23,10 @@ Public Class Dashboard
             ElseIf userRole = "4" Then ' Role 4: USER
                 Response.Redirect("Login.aspx")
             End If
+
+            Session("ActiveMenu") = "Dashboard"
+
+
             BindRequest()
             Dim statusData = GetStatusChartData()
             Dim kategoriData = GetKategoriChartData()

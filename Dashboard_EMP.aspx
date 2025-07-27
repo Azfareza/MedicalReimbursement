@@ -7,13 +7,13 @@
     <script>
         $(document).ready(function () {
             $('#requestsTable').DataTable({
-                "paging": false,
+                "paging": true,
                 "pageLength": 5,
                 "searching": false,
                 "info": false,
                 "ordering": true,
                 "order": [[1, "desc"]],
-                "dom": 'rt' // Menggunakan 'rt' untuk menghilangkan search bar dan paging
+                "dom": 'rtip'
             });
         });
     </script>

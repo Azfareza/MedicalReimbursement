@@ -28,6 +28,9 @@ Public Class MR_HR
             ElseIf userRole = "4" Then ' Role 4: USER
                 Response.Redirect("Login.aspx")
             End If
+
+            Session("ActiveMenu") = "MR_HR"
+
             BindgvReqList()
             BindgvHistory()
             BindgvRejectList()

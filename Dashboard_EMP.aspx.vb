@@ -20,6 +20,8 @@
 
         End If
 
+        Session("ActiveMenu") = "Dashboard_EMP"
+
         BindLogHistoris()
 
         NIPLabel.Text = Session("NIP").ToString()

@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="flex-1 w-1/2">
-                    <asp:Label ID="lblDate" runat="server" AssociatedControlID="txtDate" CssClass="block text-xs font-semibold mb-1" Text="Select Date" />
+                    <asp:Label ID="lblDate" runat="server" AssociatedControlID="txtDate" CssClass="block text-xs font-semibold mb-1" Text="Select Treatment Date" />
                     <asp:TextBox ID="txtDate" runat="server" TextMode="Date" CssClass="w-full rounded-md border bg-gray-200 p-2 text-sm focus:border-blue-500 focus:ring focus:ring-blue-200" />
                 </div>
             </div>

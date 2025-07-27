@@ -23,6 +23,9 @@ Partial Public Class Dashboard_Admin
             ElseIf userRole = "4" Then ' Role 4: USER
                 Response.Redirect("Login.aspx")
             End If
+
+            Session("ActiveMenu") = "Dashboard_Admin"
+
             BindAllPegawai()
             BindRolesToDropdown()
 

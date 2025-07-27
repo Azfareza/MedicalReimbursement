@@ -22,6 +22,9 @@ Public Class Employee_HR
             End If
             hdnShowAddModal.Value = "false"
             hdnShowModal.Value = "false"
+
+            Session("ActiveMenu") = "Employee_HR"
+
             BindAllPegawai()
         End If
 
